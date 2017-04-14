@@ -1,0 +1,19 @@
+{
+  "name": "@digix/etc-refund",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Chris Hitchcott <hitchcott@gmail.com> (http://hitchcott.com)",
+  "license": "MIT",
+  "dependencies": {
+    "@digix/truffle-lightwallet-provider": "0.0.11",
+    "async": "^2.3.0",
+    "web3": "^0.18.4"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3"
+  }
+}

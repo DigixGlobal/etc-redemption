@@ -1,0 +1,77 @@
+{
+  "contract_name": "Permissioned",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "active",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "Premissioned",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "kill",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newADmin",
+          "type": "address"
+        }
+      ],
+      "name": "transferAdmin",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_active",
+          "type": "bool"
+        }
+      ],
+      "name": "setActive",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "admin",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x60606040526000805460a060020a60ff021916905534610000575b61022a806100296000396000f3006060604052361561005c5763ffffffff60e060020a60003504166302fb0c5e811461006157806320835c321461008257806341c0e1b51461009157806375829def146100a0578063acec338a146100bb578063f851a440146100cf575b610000565b346100005761006e6100f8565b604080519115158252519081900360200190f35b346100005761008f610108565b005b346100005761008f610133565b005b346100005761008f600160a060020a036004351661015f565b005b346100005761008f60043515156101a7565b005b34610000576100dc6101ef565b60408051600160a060020a039092168252519081900360200190f35b60005460a060020a900460ff1681565b6000805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a03161790555b565b60005433600160a060020a0390811691161461014e57610000565b600054600160a060020a0316ff5b5b565b60005433600160a060020a0390811691161461017a57610000565b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b50565b60005433600160a060020a039081169116146101c257610000565b6000805474ff0000000000000000000000000000000000000000191660a060020a831515021790555b5b50565b600054600160a060020a0316815600a165627a7a72305820d39380b9bfe6d4e22c3e63fe1ef11300fb65079a1bebb93e8a3f70093a1c9a680029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1492100298576
+}
