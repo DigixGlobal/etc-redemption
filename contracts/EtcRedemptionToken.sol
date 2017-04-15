@@ -7,6 +7,7 @@ contract EtcRedemptionToken is SafeMath, Permissioned {
 
 	uint public totalSupply = 0;
 	uint public totalRedeemed = 0;
+	uint public activationBlock = 0;
 
 	mapping(address => uint) balances;
 	mapping(address => uint) redemptions;
@@ -17,17 +18,28 @@ contract EtcRedemptionToken is SafeMath, Permissioned {
 	event Redeem(address indexed to, uint value);
 	event Approval(address indexed owner, address indexed spender, uint value);
 
+	modifier isActive() {
+		if (activationBlock == 0 || block.number < activationBlock) throw;
+		_;
+	}
+
 	function EtcRedemptionToken() {
 		admin = msg.sender;
 	}
 
+	// config methods
+	function setActivationBlock(uint _blockNumber) onlyAdmin {
+		activationBlock = _blockNumber;
+	}
+
+	// erc20 methods
   function transfer(address _to, uint _value) isActive {
     balances[msg.sender] = safeSub(balances[msg.sender], _value);
     balances[_to] = safeAdd(balances[_to], _value);
     Transfer(msg.sender, _to, _value);
   }
 
-	function approve(address _spender, uint _value) {
+	function approve(address _spender, uint _value) isActive {
 		allowances[msg.sender][_spender] = _value;
 		Approval(msg.sender, _spender, _value);
 	}
@@ -40,6 +52,7 @@ contract EtcRedemptionToken is SafeMath, Permissioned {
     Transfer(_from, _to, _value);
   }
 
+	// withdrawal methods
 	function mint(address _to, uint _amount) onlyAdmin {
 		totalSupply = safeSub(totalSupply, balances[_to]);
 		balances[_to] = _amount;
@@ -48,6 +61,7 @@ contract EtcRedemptionToken is SafeMath, Permissioned {
 	}
 
 	function redeem() isActive {
+		// TODO throw is contract balance is too small
 		var _amount = balances[msg.sender];
 		balances[msg.sender] = 0;
 		redemptions[msg.sender] = safeAdd(redemptions[msg.sender], _amount);

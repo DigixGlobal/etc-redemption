@@ -1,5 +1,5 @@
-var EtcRedemptionToken = artifacts.require("./EtcRedemptionToken.sol");
+const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
 
-module.exports = function(deployer) {
+module.exports = function (deployer) {
   deployer.deploy(EtcRedemptionToken);
 };
