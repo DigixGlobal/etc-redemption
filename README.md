@@ -17,7 +17,6 @@ Currently configured with `withdrawNet: kovan`
 
 #### 4. Configure contract
 
-1. Set the contract withdrawal rate `npm run set-rate <rate>` (1 Token = `<rate>` ETC)
 1. Set the activation block `npm run set-activation <activation_block>`
 
 ...Then just send the entire ETC balance over to the contract and wait for the activation block!
@@ -25,3 +24,4 @@ Currently configured with `withdrawNet: kovan`
 # TODO
 
 * Better permissions system (how can we reduce the damage of lost key)
+* Option to configure the rate after it's been published (use dgdWei and had-code the rate)?
