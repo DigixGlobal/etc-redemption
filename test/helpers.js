@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+
 module.exports = {
   testAccounts: [
     '0x000000000000000000000000000000000000001',
@@ -14,5 +16,8 @@ module.exports = {
       assert.ok(e);
     }
     assert.ifError(res, message);
+  },
+  randomAddress() {
+    return `0x${crypto.randomBytes(20).toString('hex')}`;
   },
 };
