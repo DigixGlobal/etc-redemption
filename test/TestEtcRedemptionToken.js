@@ -1,27 +1,7 @@
 const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
 const MockSafeMath = artifacts.require('MockSafeMath');
 
-
-const testAccounts = [
-  '0x000000000000000000000000000000000000001',
-  '0x000000000000000000000000000000000000002',
-  '0x000000000000000000000000000000000000003',
-];
-
-const BIG_INT = '115792089237316195423570985008687907853269984665640564039457584007913129639935';
-const BIG_INT_MINUS_TWO = '115792089237316195423570985008687907853269984665640564039457584007913129639933';
-
-async function assertThrow(fn, message = 'did not throw a an error') {
-  let res;
-  try {
-    res = await fn();
-  } catch (e) {
-    assert.ok(e);
-  }
-  assert.ifError(res, message);
-}
-
-// const web3p = function ()
+const { assertThrow, testAccounts, BIG_INT, BIG_INT_MINUS_TWO } = require('./helpers');
 
 contract('EtcRedemptionToken', function (accounts) {
   let token;
@@ -38,25 +18,25 @@ contract('EtcRedemptionToken', function (accounts) {
     let safeMath;
     it('adds safely', async function () {
       safeMath = await MockSafeMath.deployed();
-      assert.equal(await safeMath.add.call(1, 2), 3);
-      assert.equal(await safeMath.add.call(100, 200), 300);
-      assert.equal((await safeMath.add.call(BIG_INT_MINUS_TWO, 2)).toString(10), BIG_INT);
+      assert.equal(await safeMath.safeAdd.call(1, 2), 3);
+      assert.equal(await safeMath.safeAdd.call(100, 200), 300);
+      assert.equal((await safeMath.safeAdd.call(BIG_INT_MINUS_TWO, 2)).toString(10), BIG_INT);
     });
     it('throws unsafe adds', async function () {
-      await assertThrow(() => safeMath.add.call(5, -2));
-      await assertThrow(() => safeMath.add.call(BIG_INT, BIG_INT));
-      await assertThrow(() => safeMath.add.call(BIG_INT_MINUS_TWO, BIG_INT));
-      await assertThrow(() => safeMath.add.call(BIG_INT, 2));
+      await assertThrow(() => safeMath.safeAdd.call(5, -2));
+      await assertThrow(() => safeMath.safeAdd.call(BIG_INT, BIG_INT));
+      await assertThrow(() => safeMath.safeAdd.call(BIG_INT_MINUS_TWO, BIG_INT));
+      await assertThrow(() => safeMath.safeAdd.call(BIG_INT, 2));
     });
     it('subs safely', async function () {
-      assert.equal(await safeMath.sub.call(2, 1), 1);
-      assert.equal(await safeMath.sub.call(600, 200), 400);
-      assert.equal((await safeMath.sub.call(BIG_INT, 2)).toString(10), BIG_INT_MINUS_TWO);
+      assert.equal(await safeMath.safeSub.call(2, 1), 1);
+      assert.equal(await safeMath.safeSub.call(600, 200), 400);
+      assert.equal((await safeMath.safeSub.call(BIG_INT, 2)).toString(10), BIG_INT_MINUS_TWO);
     });
     it('thorws unsafe subs', async function () {
-      await assertThrow(() => safeMath.sub.call(2, 3));
-      await assertThrow(() => safeMath.sub.call(BIG_INT_MINUS_TWO, BIG_INT));
-      await assertThrow(() => safeMath.sub.call(100, 300));
+      await assertThrow(() => safeMath.safeSub.call(2, 3));
+      await assertThrow(() => safeMath.safeSub.call(BIG_INT_MINUS_TWO, BIG_INT));
+      await assertThrow(() => safeMath.safeSub.call(100, 300));
     });
   });
   describe('permissions', function () {
