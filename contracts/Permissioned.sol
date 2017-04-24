@@ -4,7 +4,7 @@ contract Permissioned {
 
   address public admin;
 
-  function Premissioned() {
+  function Permissioned() {
     admin = msg.sender;
   }
 
@@ -19,8 +19,12 @@ contract Permissioned {
     admin = _newAdmin;
   }
 
-  function kill() onlyAdmin {
-    suicide(admin);
+  /*function drain() onlyAdmin {
+    admin.send(address(this).balance);
   }
+
+  function seppuku() onlyAdmin {
+    suicide(admin);
+  }*/
 
 }

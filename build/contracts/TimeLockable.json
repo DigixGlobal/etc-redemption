@@ -1,0 +1,77 @@
+{
+  "contract_name": "TimeLockable",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "Premissioned",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "kill",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newAdmin",
+          "type": "address"
+        }
+      ],
+      "name": "transferAdmin",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "activationBlock",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_blockNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "setActivationBlock",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "admin",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x6060604052600060015534610000575b6101f98061001e6000396000f3006060604052361561005c5763ffffffff60e060020a60003504166320835c32811461006157806341c0e1b51461007057806375829def1461007f57806380faa3d21461009a5780638cb25bf2146100b9578063f851a440146100cb575b610000565b346100005761006e6100f4565b005b346100005761006e61011f565b005b346100005761006e600160a060020a036004351661014b565b005b34610000576100a7610193565b60408051918252519081900360200190f35b346100005761006e600435610199565b005b34610000576100d86101be565b60408051600160a060020a039092168252519081900360200190f35b6000805473ffffffffffffffffffffffffffffffffffffffff191633600160a060020a03161790555b565b60005433600160a060020a0390811691161461013a57610000565b600054600160a060020a0316ff5b5b565b60005433600160a060020a0390811691161461016657610000565b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b50565b60015481565b60005433600160a060020a039081169116146101b457610000565b60018190555b5b50565b600054600160a060020a0316815600a165627a7a7230582044d65d99aa5a661878eed026682cf30c2705c96afd1cb2d57c3fd91a7072dcff0029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1493012774465
+}

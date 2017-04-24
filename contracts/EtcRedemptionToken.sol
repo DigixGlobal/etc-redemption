@@ -13,10 +13,6 @@ contract EtcRedemptionToken is TimeLockable, ERC20 {
   event Fund(address indexed from, uint value);
   event Redeem(address indexed from, address indexed to, uint value);
 
-  function EtcRedemptionToken() {
-    admin = msg.sender;
-  }
-
   function () payable {
     // not really payable; let's prevent accidental sends
     if (msg.value > 0) { throw; }

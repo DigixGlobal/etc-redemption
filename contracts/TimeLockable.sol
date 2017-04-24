@@ -7,7 +7,7 @@ contract TimeLockable is Permissioned {
   uint public activationBlock = 0;
 
   modifier isActive() {
-    if (activationBlock == 0 || block.number < activationBlock) throw;
+    if (activationBlock == 0 || block.number <= activationBlock) throw;
     _;
   }
 
