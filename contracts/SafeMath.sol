@@ -1,6 +1,6 @@
 pragma solidity ^0.4.8;
 
-contract SafeMath {
+library SafeMath {
 
   function assert(bool assertion) internal {
     if (!assertion) {
