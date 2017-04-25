@@ -67,7 +67,32 @@ contract('ERC20', function (accounts) {
       assert.equal(await token.balanceOf.call(accounts[0]), 0);
       assert.equal(await token.balanceOf.call(accounts[1]), 5);
     });
-    // TODO approve & transferFrom, allowance
-    // TODO copy other erc20 tests
+  });
+  describe('transferFrom, approve, allowance', function () {
+    it('can approve and transfer balances', async function () {
+      token = await ERC20.new({ from: accounts[0] });
+      await token.mint(accounts[0], 10);
+      await token.setActivationBlock(1);
+      await token.approve(accounts[1], 5, { from: accounts[0] });
+      assert.equal(await token.allowance.call(accounts[0], accounts[1]), 5);
+      await token.transferFrom(accounts[0], accounts[2], 3, { from: accounts[1] });
+      assert.equal(await token.balanceOf.call(accounts[0]), 7);
+      assert.equal(await token.balanceOf.call(accounts[2]), 3);
+    });
+    it('throws if the balance isnt great enough', async function () {
+      await assertThrow(() => token.transferFrom(accounts[0], accounts[2], 3, { from: accounts[1] }));
+      assert.equal(await token.balanceOf.call(accounts[0]), 7);
+      assert.equal(await token.balanceOf.call(accounts[2]), 3);
+    });
+    it('throws when contract isnt active', async function () {
+      await token.setActivationBlock(0);
+      await assertThrow(() => token.transferFrom(accounts[0], accounts[2], 1, { from: accounts[1] }));
+      assert.equal(await token.balanceOf.call(accounts[0]), 7);
+      assert.equal(await token.balanceOf.call(accounts[2]), 3);
+      await token.setActivationBlock(1);
+      await token.transferFrom(accounts[0], accounts[2], 1, { from: accounts[1] });
+      assert.equal(await token.balanceOf.call(accounts[0]), 6);
+      assert.equal(await token.balanceOf.call(accounts[2]), 4);
+    });
   });
 });

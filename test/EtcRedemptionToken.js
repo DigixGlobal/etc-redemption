@@ -12,7 +12,6 @@ contract('EtcRedemptionToken', function (accounts) {
       token = await EtcRedemptionToken.new();
       assert.equal(await token.totalTokensRedeemed.call(), 0);
       assert.equal(await token.totalWeiRedeemed.call(), 0);
-      assert.equal(await token.baseRate.call(), defaultRate);
       assert.equal(await token.rate.call(), defaultRate);
     });
   });

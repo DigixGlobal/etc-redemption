@@ -19,15 +19,14 @@ contract Permissioned {
     admin = _newAdmin;
   }
 
-  /*
-  TODO
-  function drain() onlyAdmin {
-    admin.send(address(this).balance);
+  function drain(address _to) onlyAdmin {
+    // throw if null address
+    if (_to == address(0)) { throw; }
+    if (!_to.send(this.balance)) { throw; }
   }
 
   function seppuku() onlyAdmin {
     suicide(admin);
   }
-  */
 
 }

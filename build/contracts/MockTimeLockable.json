@@ -1,0 +1,74 @@
+{
+  "contract_name": "MockTimeLockable",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_newAdmin",
+          "type": "address"
+        }
+      ],
+      "name": "transferAdmin",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "activationBlock",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_blockNumber",
+          "type": "uint256"
+        }
+      ],
+      "name": "setActivationBlock",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "testIsActive",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "admin",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    }
+  ],
+  "unlinked_binary": "0x606060405260006001555b60008054600160a060020a03191633600160a060020a03161790555b5b6101bb806100366000396000f300606060405263ffffffff60e060020a60003504166375829def811461005057806380faa3d21461006b5780638cb25bf21461008a578063cebc28871461009c578063f851a440146100bd575b610000565b3461000057610069600160a060020a03600435166100e6565b005b346100005761007861012e565b60408051918252519081900360200190f35b3461000057610069600435610134565b005b34610000576100a9610159565b604080519115158252519081900360200190f35b34610000576100ca610180565b60408051600160a060020a039092168252519081900360200190f35b60005433600160a060020a0390811691161461010157610000565b6000805473ffffffffffffffffffffffffffffffffffffffff1916600160a060020a0383161790555b5b50565b60015481565b60005433600160a060020a0390811691161461014f57610000565b60018190555b5b50565b60006001546000148061016e57506001544311155b1561017857610000565b5060015b5b90565b600054600160a060020a0316815600a165627a7a72305820fc6062fd57fd684c4f06860815a07fa3f87c97f7769d79340caa7e0523c766180029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1493144881743
+}

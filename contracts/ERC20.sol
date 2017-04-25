@@ -16,7 +16,6 @@ contract ERC20 is Permissioned, TimeLockable {
   event Approval(address indexed owner, address indexed spender, uint value);
 
   function transfer(address _to, uint _value) isActive {
-
     balances[msg.sender] = SafeMath.safeSub(balances[msg.sender], _value);
     balances[_to] = SafeMath.safeAdd(balances[_to], _value);
     Transfer(msg.sender, _to, _value);
