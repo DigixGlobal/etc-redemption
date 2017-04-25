@@ -25,6 +25,11 @@ contract('ERC20', function (accounts) {
       await token.mint(accounts[2], 0);
       assert.equal(await token.balanceOf.call(accounts[2]), 0);
     });
+    it('prevents non-admins from minting', async function () {
+      await token.mint(accounts[0], 20);
+      await assertThrow(() => token.mint(accounts[0], 1, { from: accounts[1] }));
+      assert.equal(await token.balanceOf.call(accounts[0]), 20);
+    });
   });
   describe('transfer', function () {
     it('allows transfer if sender has balance and contract set to active', async function () {

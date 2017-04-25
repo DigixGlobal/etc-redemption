@@ -11,10 +11,11 @@
     "confirm-balances": "truffle exec ./scripts/confirmBalances.js --network kovan"
   },
   "dependencies": {
-    "awaiting": "^2.2.0",
     "@digix/truffle-lightwallet-provider": "0.0.11",
     "async": "^2.3.0",
-    "web3": "^0.18.4"
+    "awaiting": "^2.2.0",
+    "web3": "^0.18.4",
+    "web3-provider-engine": "^12.0.2"
   },
   "devDependencies": {
     "eslint": "^3.19.0",

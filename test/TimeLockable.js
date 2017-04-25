@@ -6,11 +6,9 @@ const MockTimeLockable = artifacts.require('MockTimeLockable');
 
 contract('TimeLockable', function () {
   let timeLockable;
-  before(async function () {
-    timeLockable = await MockTimeLockable.new();
-  });
   describe('init', function () {
     it('activationBlock initializes with 0', async function () {
+      timeLockable = await MockTimeLockable.new();
       assert.equal(await timeLockable.activationBlock.call(), 0);
     });
   });

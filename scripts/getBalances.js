@@ -1,16 +1,19 @@
 /* eslint-disable no-underscore-dangle, max-len */
 const fs = require('fs');
 const Web3 = require('web3');
-const abis = require('./abis');
+
+const abis = require('./data/abis');
 const eachLimit = require('async/eachLimit');
 
 const toBlock = parseInt(process.argv[process.argv.length - 1], 10);
+// etherscan test: 3,575,643
 
 if (!toBlock) {
   throw new Error('Must pass a block number');
 }
-
+// const web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io'));
 const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+// const web3 = new Web3(provider);
 const token = web3.eth.contract(abis.token).at('0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A');
 const crowdsale = web3.eth.contract(abis.crowdsale).at('0xF0160428a8552AC9bB7E050D90eEADE4DDD52843');
 
@@ -19,15 +22,19 @@ const totalDgdWei = web3.toBigNumber(2000000).times(1e9);
 const rate = totalWei.dividedBy(totalDgdWei);
 
 function getCrowdsaleBalances() {
-  process.stdout.write('getting crowdsale balances...\n');
+  process.stdout.write('getting crowdsale balances (can take a few minutes)...\n');
   const balances = {};
   let i = 0;
   return new Promise((resolve) => {
     // TODO also check proxy address
     crowdsale.Purchase({}, { fromBlock: 1239208, toBlock }).get((err, purchases) => {
-      eachLimit(purchases, 50, ({ transactionHash }, eachCallback) => {
+      // TODO check user Info for the `to, rather than from`
+      eachLimit(purchases, 16, (purchase, eachCallback) => {
         i += 1;
+        // console.log(purchase)
+        const { transactionHash } = purchase;
         process.stdout.write(` ${i}/${purchases.length}     \r`);
+        // get the input data...
         web3.eth.getTransaction(transactionHash, (err1, tx) => {
           balances[tx.from] = {};
           crowdsale.userInfo.call(tx.from, toBlock, (err2, userInfo) => {
@@ -36,7 +43,7 @@ function getCrowdsaleBalances() {
               balances[tx.from].unclaimed = userInfo[2];
             }
             token.balanceOf.call(tx.from, toBlock, (err3, balanceOf) => {
-              if (balanceOf.toNumber()) {
+              if (balanceOf && balanceOf.toNumber()) {
                 balances[tx.from].dgds = balanceOf;
               }
               eachCallback();
@@ -58,9 +65,9 @@ function getTransferBalances({ crowdsaleBalances }) {
         const users = {};
         Object.values(claims).forEach(({ args }) => { users[args._user] = true; });
         Object.values(transfers).forEach(({ args }) => { users[args._to] = true; });
-        eachLimit(Object.keys(users), 100, (user, eachCallback) => {
+        eachLimit(Object.keys(users), 32, (user, eachCallback) => {
           i += 1;
-          process.stdout.write(` ${i}/${transfers.length}     \r`);
+          process.stdout.write(`\r ${i}/${transfers.length}  `);
           // check if it's a contract....
           web3.eth.getCode(user, (err3, res) => {
             const contract = res !== '0x';
@@ -102,7 +109,9 @@ function getTransferBalances({ crowdsaleBalances }) {
   });
 
   // add up
-  Object.keys(balances).forEach((k) => {
+  Object.keys(balances)
+  .sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1))
+  .forEach((k) => {
     const { contract, dgds, unclaimed } = balances[k];
     totalDgds = dgds ? ((totalDgds && totalDgds.add(dgds)) || dgds) : totalDgds;
     totalUnclaimed = unclaimed ? ((totalUnclaimed && totalUnclaimed.add(unclaimed)) || unclaimed) : totalUnclaimed;
@@ -124,9 +133,8 @@ function getTransferBalances({ crowdsaleBalances }) {
   const total = (totalDgds && totalDgds.add(totalUnclaimed || 0)) || totalUnclaimed;
   const contractCount = Object.keys(contracts).length;
   // write the fle
-  fs.writeFileSync(`./scripts/balances-${toBlock}.json`, JSON.stringify({
+  fs.writeFileSync(`./scripts/data/balances-${toBlock}-${created}.json`, JSON.stringify({
     toBlock,
-    created,
     rate,
     contractCount,
     targetTotalWei: totalWei.toString(10),

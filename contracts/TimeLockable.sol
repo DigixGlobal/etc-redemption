@@ -11,7 +11,6 @@ contract TimeLockable is Permissioned {
     _;
   }
 
-  // config methods
   function setActivationBlock(uint _blockNumber) onlyAdmin {
     activationBlock = _blockNumber;
   }
