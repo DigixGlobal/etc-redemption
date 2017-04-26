@@ -9,15 +9,23 @@ module.exports = {
     development: {
       host: 'localhost',
       port: 6545,
-      network_id: '*', // Match any network id
+      network_id: '*',
     },
     kovan: {
       network_id: '42',
       provider: new LightWalletProvider({
         keystore: KEYSTORE,
         password: PASSWORD,
-        rpcUrl: 'https://ethereum03.digixdev.com/',
+        rpcUrl: 'https://kovan.infura.io/',
         pollingInterval: 2000,
+      }),
+    },
+    mainnet: {
+      network_id: '1',
+      provider: new LightWalletProvider({
+        keystore: KEYSTORE,
+        password: PASSWORD,
+        rpcUrl: 'https://mainnet.infura.io/',
       }),
     },
   },
