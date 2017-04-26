@@ -1,4 +1,4 @@
-const getContract = require('./contract');
+const getContract = require('./helpers/contract');
 const eachLimit = require('../node_modules/async/eachLimit');
 
 function confirmBalances({ data, token }) {

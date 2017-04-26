@@ -1,5 +1,5 @@
 const fs = require('fs');
-const getContract = require('./contract');
+const getContract = require('./helpers/contract');
 const eachLimit = require('../node_modules/async/eachLimit');
 
 function mintTokens({ data, token }) {

@@ -57,5 +57,4 @@ contract('Permissioned', function (accounts) {
       assert.equal(afterBalance.minus(beforeBalance), 0);
     });
   });
-
 });
