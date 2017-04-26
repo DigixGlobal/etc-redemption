@@ -1,16 +1,19 @@
 /* eslint-disable no-underscore-dangle, max-len */
 const fs = require('fs');
 const Web3 = require('web3');
-
-const abis = require('./data/abis');
 const eachLimit = require('async/eachLimit');
 
+const abis = require('./data/abis');
+const provider = require('./helpers/provider');
+
+const maxBatch = 1000;
 const toBlock = parseInt(process.argv[process.argv.length - 1], 10);
 // etherscan test: 3,575,643
 
 if (!toBlock) {
   throw new Error('Must pass a block number');
 }
+
 // const web3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io'));
 const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
 // const web3 = new Web3(provider);
@@ -21,19 +24,48 @@ const totalWei = web3.toBigNumber(465134.9598).times(1e18);
 const totalDgdWei = web3.toBigNumber(2000000).times(1e9);
 const rate = totalWei.dividedBy(totalDgdWei);
 
+
+function getEvents(method, name, args, cb) {
+  // TODO split based on toBlock, aim for a batch of 20 requests?
+  const totalSpan = args.toBlock - args.fromBlock;
+  const batchCount = Math.ceil(totalSpan / maxBatch);
+  const batches = new Array(batchCount).fill().map((n, i) => {
+    const start = args.fromBlock + (maxBatch * i);
+    const overlappingEnd = (start + maxBatch) - 1;
+    const end = overlappingEnd > args.toBlock ? args.toBlock : overlappingEnd;
+    return { fromBlock: start, toBlock: end, i };
+  });
+  const eventBatches = new Array(batches.length);
+  process.stdout.write(`  scanning ${totalSpan} blocks for ${name} events...\r`);
+  let total = 0;
+  let processed = 0;
+  eachLimit(batches, 4, (args2, eachCallback) => {
+    method({}, { fromBlock: args2.fromBlock, toBlock: args2.toBlock }).get((err, res) => {
+      processed += 1;
+      total += res.length;
+      process.stdout.write(`  scanning ${totalSpan} blocks for ${name} events... ${total} events, ${(Math.round((processed / batches.length) * 100))}%\r`);
+      eventBatches[args2.i] = res;
+      eachCallback();
+    });
+  }, () => {
+    process.stdout.write('\n');
+    const combined = eventBatches.reduce((o, b) => o.concat(b), []);
+    cb(null, combined);
+  });
+}
+
 function getCrowdsaleBalances() {
-  process.stdout.write('getting crowdsale balances (can take a few minutes)...\n');
+  process.stdout.write('\nGetting crowdsale balances: \n');
   const balances = {};
-  let i = 0;
   return new Promise((resolve) => {
+    let i = 0;
     // TODO also check proxy address
-    crowdsale.Purchase({}, { fromBlock: 1239208, toBlock }).get((err, purchases) => {
+    getEvents(crowdsale.Purchase.bind(crowdsale), 'Purchase', { fromBlock: 1239208, toBlock: 1374207 }, (err, purchases) => {
       // TODO check user Info for the `to, rather than from`
-      eachLimit(purchases, 16, (purchase, eachCallback) => {
+      eachLimit(purchases, 4, (purchase, eachCallback) => {
         i += 1;
         // console.log(purchase)
         const { transactionHash } = purchase;
-        process.stdout.write(` ${i}/${purchases.length}     \r`);
         // get the input data...
         web3.eth.getTransaction(transactionHash, (err1, tx) => {
           balances[tx.from] = {};
@@ -46,28 +78,33 @@ function getCrowdsaleBalances() {
               if (balanceOf && balanceOf.toNumber()) {
                 balances[tx.from].dgds = balanceOf;
               }
+              process.stdout.write(`  getting crowdsale balance info... ${Math.round((i / purchases.length) * 100)}%\r`);
               eachCallback();
             });
           });
         });
-      }, () => { resolve(balances); });
+      }, () => {
+        process.stdout.write('\n');
+        resolve(balances);
+      });
     });
   });
 }
 
 function getTransferBalances({ crowdsaleBalances }) {
-  process.stdout.write('getting transfered balances...\n');
+  process.stdout.write('\nGetting Claimed and Transferred balances: \n');
   const balances = {};
   let i = 0;
   return new Promise((resolve) => {
-    crowdsale.Claim({}, { fromBlock: 1239208, toBlock }).get((err, claims) => {
-      token.Transfer({}, { fromBlock: 1409121, toBlock }).get((err2, transfers) => {
+    getEvents(crowdsale.Claim, 'Claim', { fromBlock: 1239208, toBlock }, (err, claims) => {
+      getEvents(token.Transfer, 'Transfer', { fromBlock: 1409121, toBlock }, (err2, transfers) => {
         const users = {};
         Object.values(claims).forEach(({ args }) => { users[args._user] = true; });
         Object.values(transfers).forEach(({ args }) => { users[args._to] = true; });
-        eachLimit(Object.keys(users), 32, (user, eachCallback) => {
+        const totalUsers = Object.keys(users).length;
+        eachLimit(Object.keys(users), 4, (user, eachCallback) => {
           i += 1;
-          process.stdout.write(`\r ${i}/${transfers.length}  `);
+          process.stdout.write(`  getting post-crowdsale balance info... ${Math.round((i / totalUsers) * 100)}% \r`);
           // check if it's a contract....
           web3.eth.getCode(user, (err3, res) => {
             const contract = res !== '0x';
@@ -98,6 +135,7 @@ function getTransferBalances({ crowdsaleBalances }) {
 
   // fetch
   const crowdsaleBalances = await getCrowdsaleBalances();
+  // TODO comapre crowdsalebalances
   const balances = await getTransferBalances({ crowdsaleBalances });
 
   // merge
@@ -132,8 +170,10 @@ function getTransferBalances({ crowdsaleBalances }) {
   // grand total
   const total = (totalDgds && totalDgds.add(totalUnclaimed || 0)) || totalUnclaimed;
   const contractCount = Object.keys(contracts).length;
+  const fileName = `./scripts/data/balances-${toBlock}-${created}.json`;
+  process.stdout.write(`\n\nWriting: ${fileName}`);
   // write the fle
-  fs.writeFileSync(`./scripts/data/balances-${toBlock}-${created}.json`, JSON.stringify({
+  fs.writeFileSync(fileName, JSON.stringify({
     toBlock,
     rate,
     contractCount,
@@ -145,5 +185,5 @@ function getTransferBalances({ crowdsaleBalances }) {
     contracts,
   }));
   // next step, do the things...
-  console.log(`done! total: ${total / 1e9} target: ${totalDgdWei / 1e9} diff: ${(totalDgdWei - total) / 1e9} contracts: ${contractCount}`);
+  process.stdout.write(`\n\n✅  Done! total: ${total / 1e9} target: ${totalDgdWei / 1e9} diff: ${(totalDgdWei - total) / 1e9} contracts: ${contractCount}\n`);
 }());

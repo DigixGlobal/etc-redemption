@@ -1,5 +1,12 @@
 Currently configured with `withdrawNet: kovan`
 
+## Steps
+
+1. getBalances
+1. compareReports
+1. mintTokens
+1. confirmBalances
+
 #### 1. Deploy the contract
 
 * Migrate contract to `withdrawNet` with truffle `truffle migrate --reset --network <withdrawNet>`

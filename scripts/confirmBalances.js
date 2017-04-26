@@ -11,7 +11,7 @@ function confirmBalances({ data, token }) {
         i += 1;
         const match = etcWei === balance.toString(10);
         if (!match) { throw new Error('Balance mismatch!'); }
-        console.log(`${address} ${etcWei} ${i} / ${addresses.length} `);
+        console.log(`${address} : ${i} / ${addresses.length} : ${etcWei}`);
         cb();
       });
     }, resolve);
@@ -22,8 +22,8 @@ module.exports = async function () {
   const { data, token } = await getContract(artifacts);
   try {
     await confirmBalances({ data, token });
-    console.log('confirmed!');
+    console.log('✅  Confirmed!');
   } catch (e) {
-    console.log('there was an error!');
+    console.log('⛔️  There was a mismatch!');
   }
 };
