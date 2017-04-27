@@ -1,23 +1,30 @@
 const fs = require('fs');
-const getContract = require('./helpers/contract');
 const eachLimit = require('../node_modules/async/eachLimit');
+
+const Token = artifacts.require('EtcRedemptionToken');
+
+const scriptsDir = './scripts/data/';
+
+const fromTx = !isNaN(process.argv[process.argv.length - 2]) ? parseInt(process.argv[process.argv.length - 2], 10) : 0;
+const toBlock = parseInt(process.argv[process.argv.length - 1], 10);
+if (!toBlock) { throw new Error('Must pass a block number'); }
 
 function mintTokens({ data, token }) {
   return new Promise((resolve) => {
+    if (fromTx) { console.log(`Resuming from tx # ${fromTx}`); }
     const transactions = [];
-    let i = 0;
+    let i = fromTx;
     const addresses = Object.keys(data.balances);
-    eachLimit(addresses, 6, function (address, cb) {
-      const { etcWei, dgd } = data.balances[address];
-      token.mint(address, etcWei).then(({ receipt: { transactionHash, blockNumber } }) => {
+    eachLimit(addresses.slice(fromTx), 6, function (address, cb) {
+      const { combined } = data.balances[address];
+      token.mint(address, combined).then(({ receipt: { transactionHash, blockNumber } }) => {
         i += 1;
-        console.log(`${address} ${transactionHash} ${etcWei} -- ${i} / ${addresses.length}`);
+        console.log(`${address} ${transactionHash} ${combined} -- ${i} / ${addresses.length}`);
         transactions.push({
           transactionHash,
           blockNumber,
           address,
-          etcWei,
-          dgd,
+          tokens: combined,
         });
         cb();
       });
@@ -25,11 +32,16 @@ function mintTokens({ data, token }) {
   });
 }
 
+
 module.exports = async function () {
-  const obj = await getContract(artifacts);
-  const txs = await mintTokens(obj);
+  const token = await Token.new();
+  const output = `transactions-${toBlock}-${new Date().getTime()}`;
+  const filename = fs.readdirSync(scriptsDir).filter(a => a.indexOf(`balances-${toBlock}-`) === 0)[0];
+  const data = JSON.parse(fs.readFileSync(`${scriptsDir}/${filename}`));
+  console.log(`Minting balances equivalent to block ${toBlock} using: ${filename}`);
+  const txs = await mintTokens({ token, data });
   // write the report;
-  fs.writeFileSync(`transactions-${obj.toBlock}-${new Date().getTime()}`, JSON.stringify(txs));
-  console.log('done!');
+  fs.writeFileSync(output, JSON.stringify(txs));
+  console.log(`✅  done! wrote: transactions-${toBlock}-${new Date().getTime()}`);
   // console.log(Object.keys(data.balances));
 };
