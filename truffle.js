@@ -20,6 +20,17 @@ module.exports = {
         pollingInterval: 2000,
       }),
     },
+    classic: {
+      network_id: '1',
+      gas: 4500000,
+      gasPrice: 21100000000,
+      provider: new LightWalletProvider({
+        keystore: KEYSTORE,
+        password: PASSWORD,
+        debug: true,
+        rpcUrl: 'https://digixparity04.digix.io/',
+      }),
+    },
     mainnet: {
       network_id: '1',
       provider: new LightWalletProvider({
