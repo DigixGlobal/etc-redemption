@@ -16,7 +16,9 @@ module.exports = {
       provider: new LightWalletProvider({
         keystore: KEYSTORE,
         password: PASSWORD,
-        rpcUrl: 'https://kovan.infura.io/',
+        rpcUrl: 'http://localhost:8545/',
+        // rpcUrl: 'https://kovan.infura.io/',
+        // debug: true,
         pollingInterval: 2000,
       }),
     },
@@ -27,7 +29,7 @@ module.exports = {
       provider: new LightWalletProvider({
         keystore: KEYSTORE,
         password: PASSWORD,
-        debug: true,
+        // debug: true,
         rpcUrl: 'https://digixparity04.digix.io/',
       }),
     },

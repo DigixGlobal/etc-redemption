@@ -34,11 +34,11 @@ function mintTokens({ data, token }) {
 
 
 module.exports = async function () {
-  const token = await Token.new();
+  const token = await Token.deployed();
   const output = `transactions-${toBlock}-${new Date().getTime()}`;
   const filename = fs.readdirSync(scriptsDir).filter(a => a.indexOf(`balances-${toBlock}-`) === 0)[0];
   const data = JSON.parse(fs.readFileSync(`${scriptsDir}/${filename}`));
-  console.log(`Minting balances equivalent to block ${toBlock} using: ${filename}`);
+  console.log(`Minting balances for contract ${token.address} equivalent to block ${toBlock} using: ${filename}`);
   const txs = await mintTokens({ token, data });
   // write the report;
   fs.writeFileSync(output, JSON.stringify(txs));
