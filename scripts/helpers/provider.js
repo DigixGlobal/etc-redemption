@@ -10,7 +10,12 @@ const engine = new ProviderEngine();
 // filters
 engine.addProvider(new FilterSubprovider());
 // data source
-engine.addProvider(new RpcSubprovider({ rpcUrl: 'https://mainnet.infura.io' }));
+
+const rpcUrl = 'http://localhost:8546';
+// const rpcUrl = 'https://mainnet.infura.io';
+// const rpcUrl = 'https://ethereum03.digixdev.com';
+
+engine.addProvider(new RpcSubprovider({ rpcUrl }));
 // network connectivity error
 engine.on('error', (err) => { console.log(err.stack); });
 // start polling for blocks
