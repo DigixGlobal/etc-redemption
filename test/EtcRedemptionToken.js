@@ -3,7 +3,7 @@ const { randomAddress, assertThrow } = require('./helpers');
 
 const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
 
-const defaultRate = 1000000;
+const defaultRate = 232550000;
 
 contract('EtcRedemptionToken', function (accounts) {
   let token;

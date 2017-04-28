@@ -2,12 +2,9 @@ const fs = require('fs');
 const a = require('../node_modules/awaiting');
 const eachLimit = require('../node_modules/async/eachLimit');
 const getEvents = require('./helpers/getEvents');
+const { scriptsDir, toBlock } = require('./helpers/config');
 
 const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
-
-const scriptsDir = './scripts/data/';
-const toBlock = parseInt(process.argv[process.argv.length - 1], 10);
-if (!toBlock) { throw new Error('Must pass a block number'); }
 
 function confirmBalances({ data, token }) {
   return new Promise((resolve) => {

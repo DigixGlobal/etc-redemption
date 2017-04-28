@@ -4,19 +4,14 @@ const Web3 = require('web3');
 const eachLimit = require('async/eachLimit');
 const abis = require('./data/abis');
 const getEvents = require('./helpers/getEvents');
+const { scriptsDir, toBlock } = require('./helpers/config');
 
 // const provider = require('./helpers/provider'); // if we wanted to try with infura
 const provider = new Web3.providers.HttpProvider('http://localhost:8546');
 // const provider = new Web3.providers.HttpProvider('https://mainnet.infura.io');
 
-const toBlock = parseInt(process.argv[process.argv.length - 1], 10);
-// etherscan test: 3,575,643
-
-if (!toBlock) {
-  throw new Error('Must pass a block number');
-}
-
 const web3 = new Web3(provider);
+
 const token = web3.eth.contract(abis.token).at('0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A');
 const crowdsale = web3.eth.contract(abis.crowdsale).at('0xF0160428a8552AC9bB7E050D90eEADE4DDD52843');
 
@@ -110,7 +105,7 @@ function getBalances() {
 
   const total = (totalDgds && totalDgds.add(totalUnclaimed || 0)) || totalUnclaimed;
   const contractCount = Object.keys(contracts).length;
-  const fileName = `./scripts/data/balances-${toBlock}-${created}.json`;
+  const fileName = `${scriptsDir}/balances-${toBlock}-${created}.json`;
   process.stdout.write(`\n\nWriting: ${fileName}`);
   // write the fle
   fs.writeFileSync(fileName, JSON.stringify({

@@ -43,16 +43,4 @@ contract('SafeMath', function () {
       await assertThrow(() => safeMath.safeMul.call(BIG_INT, 2));
     });
   });
-  describe('safeDiv', function () {
-    it('divides safely', async function () {
-      const c = 123103901231;
-      const b = 232301;
-      assert.equal(await safeMath.safeDiv.call(c, b), Math.floor(c / b));
-    });
-    // it('throws unsafe divides', async function () {
-    //   // uint c = a * b;
-    //   // assert(a == 0 || c / a == b);
-    //   // no tests on zeppelin, this impossible to test as web3 handles it all?
-    // });
-  });
 });

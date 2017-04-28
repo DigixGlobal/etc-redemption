@@ -1,13 +1,10 @@
 const fs = require('fs');
 const eachLimit = require('../node_modules/async/eachLimit');
+const { scriptsDir, toBlock } = require('./helpers/config');
 
 const Token = artifacts.require('EtcRedemptionToken');
 
-const scriptsDir = './scripts/data/';
-
-const fromTx = !isNaN(process.argv[process.argv.length - 2]) ? parseInt(process.argv[process.argv.length - 2], 10) : 0;
-const toBlock = parseInt(process.argv[process.argv.length - 1], 10);
-if (!toBlock) { throw new Error('Must pass a block number'); }
+const fromTx = !isNaN(process.argv[process.argv.length - 1]) ? parseInt(process.argv[process.argv.length - 1], 10) : 0;
 
 const transactions = [];
 

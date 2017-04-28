@@ -1,9 +1,5 @@
 const fs = require('fs');
-
-const scriptsDir = './scripts/data';
-
-const toBlock = parseInt(process.argv[process.argv.length - 1], 10);
-if (!toBlock) { throw new Error('Must pass a block number'); }
+const { scriptsDir, toBlock } = require('./helpers/config');
 
 function getData(name) {
   const parsed = JSON.parse(fs.readFileSync(`${scriptsDir}/${name}`));

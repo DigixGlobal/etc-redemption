@@ -1,0 +1,7 @@
+{
+  "toBlock": 3575643,
+  "activationBlock": 4000000,
+  "etcPool": 465100,
+  "dgdPool": 2000000,
+  "scriptsDir": "./scripts/data"
+}
