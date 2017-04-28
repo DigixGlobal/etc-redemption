@@ -2,7 +2,7 @@
 
 This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
 
-Contract code: https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/
+**[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)** 
 
 ## Overview
 

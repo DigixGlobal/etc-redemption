@@ -2,24 +2,13 @@
 
 This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
 
-**[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)** 
-
 ## Overview
 
 [Digix recently outlined](https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40) a proposal to allow DGD holders to redeem ETC. Since this proposal, with feedback from the DGD holder community, it has evolved into a less complex redemption process (by removing the voting step). This repository has been produced to describe and provide all the tools needed perform this updated redemption process.
 
-The proposed contracts and process details are presented to the community for discussion, criticisms and code review.
+The proposed contracts and process details are presented to the community for discussion, questions and criticisms. The current codebase is subject to change pending code review.
 
-## Terminology
-
-* **Testnet** Kovan Testnet
-* **ETH Chain** Ethereum Mainnet
-* **ETC Chain** Ethereum Classic Mainnet
-* **RTC** Redemption Token Contract
-* **ETC-DGDR** DigixDAO Ethereum Classic Redemption Tokens
-* **Snapshot Block** Block on ETH chain where data is collected to determine DGD balances and thus populate the RTC ledger
-* **Activation Block** The block on ETC chain where the ETC-DGDR is activated (after this block, transfers and redemptions are allowed)
-* **MultiSig** contracts for holding funds and executing methods on both ETH and ETC chains
+**[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)**
 
 ## Changes to Proposal v1
 
@@ -33,13 +22,11 @@ The main change is that we've decided to skip the carbonvote step. After gauging
 
 In the previous proposal, the RTC was somewhat sidelined as the voting system would be the primary refund mechanism. Without voting, the RTC becomes the primary (only) mechanism, so additional time has been spend designing and developing it accordingly. See [Redemption Token Contract](#redemption-token-contract) section for more details.
 
-Each redemption token represents 1:1 equivalent of snapshotted DGD balances. These redemption tokens are known as `ETC-DGDR`. To claim ETC, holders of ETC-DGDR should call a method on the ETC-DGDR contract to burn their holdings in return of an ETC value. At the point of burning, the balance of ETC-DGDR drops to 0, and a fixed rate will be used to convert this balance into ETC.
+Each redemption token represents 1:1 equivalent of DGD balances. These redemption tokens are known as `ETC-DGDR`. To claim ETC, holders of ETC-DGDR should call a method on the ETC-DGDR contract to burn their holdings in return of an ETC value. At the point of burning, the balance of ETC-DGDR drops to 0, and a fixed rate will be used to convert this balance into ETC.
 
 For example, a user has 100 DGD, gets 100 ETC-DGDR, and burns it for ~22.3 ETC.
 
 The conversion rate to ETC used will be close to 100% of the original ETC pool, but with an additional fee deduced from the pool based on the gas used for testing, deployment and minting (which could amount to around a few USD cents per user).
-
-**ETC-DGDR balances with less than 3x the required gas value will be ignored!**
 
 ### MultiSig & Top-up System
 

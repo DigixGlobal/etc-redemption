@@ -12,7 +12,7 @@
   "license": "BSD-3-Clause",
   "scripts": {
     "test": "truffle test",
-    "docs:build": "cd ./scripts/doxity; npm run build",
+    "docs:build": "./node_modules/.bin/doxity build",
     "docs:develop": "cd ./scripts/doxity; npm run develop",
     "docs:compile": "./node_modules/.bin/doxity compile",
     "estimate-gas": "truffle exec scripts/estimateGas.js --network classic",
