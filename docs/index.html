@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+ <html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>@digix/etc-refund</title><link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css" rel="stylesheet"/><link href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAOVBMVEUAAAAAAAAAAAAAAAAAAAAAAAAAAABHcEwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcBYCzAAAAE3RSTlPkZE7emXPXAMzHihi+QAwqs6mhB70WSgAAAQFJREFUOMuFk1mSwyAMRAUWhH3J/Q8bFikxNp7pn7hKL12qbgGvfwS/T6Utqfgd4DUYAt5qBziAgwwQ8x3I0DQtEFHdgdqBYVEbgPEKRBhqe4Y+R5cugJ0AtA0HgHIFBM1BT4Nm4RfAHCzFiguAhqQekvQ0D+kpajUB8dhFCn1e/ihLdIAWc3nXRTEGKXX+WIFoDP2xfq3We0A3f+WyzAnIM7tU+jZyA5y3/QVyA3xYI70BjkNfy5IsoVlurZtKxsC9g1zLonm1mi/nsoMkA8unFa9luWlgyaLecogdGFd/dMBvHg5iGYBpc7eJOuObXt4BOm0fbyDAwPZtvrxgnS/3AwT9GsisQa84AAAAAElFTkSuQmCC" rel="icon"/><style>@import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Mono);@media only screen and (max-width:767px){[class*="computer only"]:not(.mobile),[class*="large screen only"]:not(.mobile),[class*="mobile hidden"],[class*="or lower hidden"],[class*="tablet only"]:not(.mobile),[class*="widescreen only"]:not(.mobile){display:none!important}}@media only screen and (min-width:768px) and (max-width:991px){[class*="computer only"]:not(.tablet),[class*="large screen only"]:not(.tablet),[class*="mobile only"]:not(.tablet),[class*="or lower hidden"]:not(.mobile),[class*="tablet hidden"],[class*="widescreen only"]:not(.tablet){display:none!important}}@media only screen and (min-width:992px) and (max-width:1199px){[class*="computer hidden"],[class*="large screen only"]:not(.computer),[class*="mobile only"]:not(.computer),[class*="or lower hidden"]:not(.tablet):not(.mobile),[class*="tablet only"]:not(.computer),[class*="widescreen only"]:not(.computer){display:none!important}}@media only screen and (min-width:1200px) and (max-width:1919px){[class*="computer only"]:not([class*="large screen"]),[class*="large screen hidden"],[class*="mobile only"]:not([class*="large screen"]),[class*="or lower hidden"]:not(.computer):not(.tablet):not(.mobile),[class*="tablet only"]:not([class*="large screen"]),[class*="widescreen only"]:not([class*="large screen"]){display:none!important}}@media only screen and (min-width:1920px){[class*="computer only"]:not([class*=widescreen]),[class*="large screen only"]:not([class*=widescreen]),[class*="mobile only"]:not([class*=widescreen]),[class*="tablet only"]:not([class*=widescreen]),[class*="widescreen hidden"],[class*="widescreen or lower hidden"]{display:none!important}}.ui.header,.ui.menu,body,h1,h2,h3,h4,h5{font-family:Roboto,sans-serif}pre.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}code{padding:0 .3em}code,pre{font-family:Roboto Mono,monospace;border:1px solid rgba(0,0,0,.05);background:rgba(0,0,0,.01)}code>code,pre>code{border:none;background:none}pre{padding:1em}.vertical.menu .item{overflow:hidden;text-overflow:ellipsis}.vertical.menu .item.active{overflow:visible}.pusher{display:flex;min-height:100vh;flex-direction:column}.pusher>.container:not(.footer){flex:1}.pusher>.footer{height:auto;margin-top:2em}.header code.signature{font-size:.6em}.ui.method-input{max-width:6em;overflow:hidden;text-overflow:ellipsis;text-align:right}.ui.method-input input{background:hsla(0,0%,100%,.7)}.hljs{display:block;overflow-x:auto;padding:.5em;color:#383a42;background:#fafafa}.hljs-comment,.hljs-quote{color:#a0a1a7;font-style:italic}.hljs-doctag,.hljs-formula,.hljs-keyword{color:#a626a4}.hljs-deletion,.hljs-name,.hljs-section,.hljs-selector-tag,.hljs-subst{color:#e45649}.hljs-literal{color:#0184bb}.hljs-addition,.hljs-attribute,.hljs-meta-string,.hljs-regexp,.hljs-string{color:#50a14f}.hljs-built_in,.hljs-class .hljs-title{color:#c18401}.hljs-attr,.hljs-number,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-pseudo,.hljs-template-variable,.hljs-type,.hljs-variable{color:#986801}.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-symbol,.hljs-title{color:#4078f2}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}.hljs-link{text-decoration:underline}</style></head><body><div id="react-mount"><div style="padding-top:60px;" class="pusher" data-reactroot="" data-reactid="1" data-react-checksum="299028319"><div class="ui top fixed inverted menu" data-reactid="2"><div class="ui container" data-reactid="3"><a class="header item" href="/etc-redemption/" data-reactid="4"><!-- react-text: 5 -->@digix/etc-refund<!-- /react-text --><div class="ui grey label" data-reactid="6">0.0.1</div></a><div class="item mobile hidden" data-reactid="7"><!-- react-text: 8 --><!-- /react-text --></div><div class="right menu" data-reactid="9"><a class="item" href="/etc-redemption/docs/ERC20/" data-reactid="10">Contracts</a></div></div></div><div class="ui container" data-reactid="11"><div class="markdown" data-reactid="12"><h1 data-reactid="13"></h1><div data-reactid="14"><h1>[Draft] Digix ETC Redemption Process</h1>
+<p>This repository contains contracts and scripts for the deployment and execution of Digix’s proposed ETC redemption mechanism.</p>
+<h2>Overview</h2>
+<p><a href="https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40">Digix recently outlined</a> a proposal to allow DGD holders to redeem ETC. Since this proposal, with feedback from the DGD holder community, it has evolved into a less complex redemption process (by removing the voting step). This repository has been produced to describe and provide all the tools needed perform this updated redemption process.</p>
+<p>The proposed contracts and process details are presented to the community for discussion, criticisms and code review.</p>
+<h2>Terminology</h2>
+<ul>
+<li><strong>Testnet</strong> Kovan Testnet</li>
+<li><strong>ETH Chain</strong> Ethereum Mainnet</li>
+<li><strong>ETC Chain</strong> Ethereum Classic Mainnet</li>
+<li><strong>RTC</strong> Redemption Token Contract</li>
+<li><strong>ETC-DGDR</strong> DigixDAO Ethereum Classic Redemption Tokens</li>
+<li><strong>Snapshot Block</strong> Block on ETH chain where data is collected to determine DGD balances and thus populate the RTC ledger</li>
+<li><strong>Activation Block</strong> The block on ETC chain where the ETC-DGDR is activated (after this block, transfers and redemptions are allowed)</li>
+<li><strong>MultiSig</strong> contracts for holding funds and executing methods on both ETH and ETC chains</li>
+</ul>
+<h2>Changes to Proposal v1</h2>
+<p>This updated includes some changes to the <a href="https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40">previously announced proposal</a> - please view the previous version for additional context.</p>
+<h3>No More Voting</h3>
+<p>The main change is that we’ve decided to skip the carbonvote step. After gauging sentiment from DGD holders (including ‘whales’ and the general DGD community), there was no resistance to the principal of returning ETC to DGD holders. Therefore we have determined it would be better to forego the voting process as it would yield additional development time and reach a non-controversial already-known outcome (the motion to refund ETC to DGD holders).</p>
+<h3>Redemption Token Contract (RTC, aka ETC-DGDR)</h3>
+<p>In the previous proposal, the RTC was somewhat sidelined as the voting system would be the primary refund mechanism. Without voting, the RTC becomes the primary (only) mechanism, so additional time has been spend designing and developing it accordingly. See <a href="#redemption-token-contract">Redemption Token Contract</a> section for more details.</p>
+<p>Each redemption token represents 1:1 equivalent of snapshotted DGD balances. These redemption tokens are known as <code>ETC-DGDR</code>. To claim ETC, holders of ETC-DGDR should call a method on the ETC-DGDR contract to burn their holdings in return of an ETC value. At the point of burning, the balance of ETC-DGDR drops to 0, and a fixed rate will be used to convert this balance into ETC.</p>
+<p>For example, a user has 100 DGD, gets 100 ETC-DGDR, and burns it for ~22.3 ETC.</p>
+<p>The conversion rate to ETC used will be close to 100% of the original ETC pool, but with an additional fee deduced from the pool based on the gas used for testing, deployment and minting (which could amount to around a few USD cents per user).</p>
+<p><strong>ETC-DGDR balances with less than 3x the required gas value will be ignored!</strong></p>
+<h3>MultiSig &amp; Top-up System</h3>
+<ul>
+<li>Two MultiSig contracts
+<ul>
+<li>ETH Chain (to hold ETH from the Digix crowdsale until governance contracts live)</li>
+<li>ETC Chain (to hold refunded ETC and top up to the RTC, and execute RTC methods)</li>
+</ul>
+</li>
+<li>4 anonymous trusted parties will be in control of this contract</li>
+<li>3/4 of the parties to approve any transaction made from it</li>
+</ul>
+<p>A ‘top-up’ system will be used when passing funds to the RTC to reduce the effects of any unforeseen exploits. Batches of 100,000 ETC (?) will be added to the RTC as required (and topped up as the remaining balance reaches 10,000).</p>
+<h3>Additional End User Resources</h3>
+<p>As development focus shifted a carbonvote process to the RTC, some additional end-user requirements were identified to enable DGD holders to perform the redemption on the ETC chain with ease.</p>
+<ul>
+<li>Instructions for MEW / CLI / Mist</li>
+<li>Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)</li>
+<li>Instructions for installing local ETC Node (as fallback for public node)</li>
+<li>Spectrum UI for redemption process (on ETC chain)</li>
+<li>Best practices for hardware / offline signing</li>
+</ul>
+<h2>Redemption Process</h2>
+<p>The new redemption process is split roughly into the following steps:</p>
+<h3>Set Up</h3>
+<p>This stage is managed by DigixGlobal and will not require interaction from DGD holders</p>
+<ol>
+<li>Public announcement of <em>snapshot</em> and <em>activation</em> block made</li>
+<li>After the snapshot block, RTC is deployed to ETC and balances are minted</li>
+<li>Balances published to IPFS, confirmed by script &amp; community</li>
+<li>Activation block is set, admin changed to Multisig</li>
+<li>RTC is funded by Multisig (using top-up)</li>
+<li>Activation block occurs (within 24 hours)</li>
+</ol>
+<h3>Redemption</h3>
+<p>After the activation block is reached, users with an ETC-DGDR balance will be able to proceed with redemptions; (optionally trading and then) burning their ETC-DGDR tokens in return for ETC using one of the following ways:</p>
+<ul>
+<li>Use a local ETC Node</li>
+<li>Use MEW + RPC Node</li>
+<li>Depositing to an exchange during the snapshot block</li>
+<li>Use Spectrum Alpha + RPC Node</li>
+</ul>
+<h4>Note for DGD holders using smart contracts for holding</h4>
+<p>For those who hold their DGD balances in a contract address that may does not exist on ETC chain, two options are provided:</p>
+<ul>
+<li>Ensure the contract can execute other contracts (to call the redeem method)</li>
+<li>Move the DGDs into a regular address before the Snapshot Block</li>
+<li>Move the DGDs into an Exchange before the Snapshot Block</li>
+<li>Contact Digix to manually process redemption</li>
+</ul>
+<h4>Note to Exchanges</h4>
+<p>After discussing how exchanges can optimally engage with the redemption process, we identified the following general pattern that should be adopted by exchanges to ensure an easy:</p>
+<ol>
+<li>Before the snapshot block, disable deposits, redemptions and trading of DGD</li>
+<li>On the snapshot block, move DGD into a single account / multisig</li>
+<li>After the activation block, call the redeem method on the token</li>
+<li>Credit DGD holders with their proportion of the redeemed ETC</li>
+<li>Re-open trading, deposits and redemptions</li>
+</ol>
+<h3>After 1 Year</h3>
+<p>DGD holders perform a vote to determine action on unclaimed ETC</p>
+<ul>
+<li>Extend the balance 1 year</li>
+<li>Extend the redemption indefinitely (switch owner to <code>0x0</code> address)</li>
+<li>Other options to be determined by DGD holders</li>
+</ul>
+<h2>Redemption Token Contract</h2>
+<p>For full documentation on the methods please see the contract docs. The RTC is an extended EIP20 tradable token with the additional features:</p>
+<ul>
+<li>Permissioned
+<ul>
+<li>Owned by one admin</li>
+<li>Admin can transfer ownership</li>
+<li>Admin can control the activation block / mint tokens / drain contract</li>
+</ul>
+</li>
+<li>Time-Lockable
+<ul>
+<li>Disables transfers / redemptions until a specific (activation) block is reached</li>
+</ul>
+</li>
+<li>Redeemable
+<ul>
+<li>Admins can fund (ETC) value to the contract</li>
+<li>Admins can set the rate of ETC redeemed for each token</li>
+<li>Users with a balance can call ‘redeem’ (or proxy via default function) burn balance in return for ETC</li>
+<li>The redeem function can be passed a different address (uses <code>msg.sender</code> if using the default function)</li>
+</ul>
+</li>
+</ul>
+<p>A test suite with 100% method coverage has been added to this repository under <code>./test</code>, they can be run with <code>truffle test</code>.</p>
+<h3>Multisig Wallet</h3>
+<p>A Multisig contract for holding both ETH and ETC after the activation block will be: <a href="https://github.com/ConsenSys/MultiSigWallet">https://github.com/ConsenSys/MultiSigWallet</a>. Basic integration tests has been written in this project, with unit tests available in the ConsenSys repository.</p>
+<h2>Scripts</h2>
+<p>This repository contains a series of scripts to facilitate the backend process.</p>
+<table>
+<thead>
+<tr>
+<th><code>npm run</code></th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>step-1</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Get the Snapshot (run this with multiple clients &amp; Etherscan)</td>
+</tr>
+<tr>
+<td><code>step-2</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Confirm the Balance Reports are the same</td>
+</tr>
+<tr>
+<td><code>step-3</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Publish report to IPFS</td>
+</tr>
+<tr>
+<td><code>step-4</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Migrate the Contracts to ETC Chain</td>
+</tr>
+<tr>
+<td><code>step-5</code></td>
+<td><code>&lt;tx&gt; &lt;snapshot&gt;</code></td>
+<td>Mint the Tokens on ETC Chain (optional resume from tx#)</td>
+</tr>
+<tr>
+<td><code>step-6</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Confirm the balances on ETC Chain (do this before and after step 7)</td>
+</tr>
+<tr>
+<td><code>step-7</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Configure contract for live mode on ETC Chain (activationBlock, transfer to Multisig)</td>
+</tr>
+<tr>
+<td><code>step-4-test</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Migrate Contracts to Kovan (for testing)</td>
+</tr>
+<tr>
+<td><code>step-5-test</code></td>
+<td><code>&lt;tx&gt; &lt;snapshot&gt;</code></td>
+<td>Mint the Tokens on Kovan (optional resume from tx#)</td>
+</tr>
+<tr>
+<td><code>step-6-test</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Confirm balances on Kovan</td>
+</tr>
+<tr>
+<td><code>step-7-test</code></td>
+<td><code>&lt;snapshot&gt;</code></td>
+<td>Configure contract for live mode on Kovan (activationBlock, transfer to Multisig)</td>
+</tr>
+<tr>
+<td><code>estimate-gas</code></td>
+<td></td>
+<td>Estimate total ETC requirements</td>
+</tr>
+</tbody>
+</table>
+<h2><em>Estimated</em> Timelines</h2>
+<table>
+<thead>
+<tr>
+<th>Estimated Date</th>
+<th>Event</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apr 28th</td>
+<td>1 week of public review / discussion of this updated proposal, contract and scripts</td>
+</tr>
+<tr>
+<td>May 5th</td>
+<td>Around 1 week to make any updates or bugfixes to this proposal, pending community feedback</td>
+</tr>
+<tr>
+<td>May 12th</td>
+<td>Snapshot block announced</td>
+</tr>
+<tr>
+<td>May 26th</td>
+<td>Snapshot block occurs</td>
+</tr>
+<tr>
+<td>May 27th</td>
+<td>Balances confirmed, RTC deployed</td>
+</tr>
+<tr>
+<td>May 28th</td>
+<td>Activation block reached, redemption is allowed</td>
+</tr>
+</tbody>
+</table>
+<h2>TODOs</h2>
+<ul>
+<li>Setup Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)</li>
+<li>Script for validating contract addresses</li>
+<li>User Guide / best practices for hardware / offline signing
+<ul>
+<li>Instructions for MEW / CLI</li>
+<li>Instructions for installing local ETC Node (as fallback for public node)</li>
+<li>Spectrum UI for redemption process (on ETC chain)</li>
+<li>Double check replay attack protection in all redemption methods ETC &lt;-&gt; ETH</li>
+</ul>
+</li>
+</ul>
+<h2>Questions</h2>
+<p>Please join the Digix slack channel #etc-redemption</p>
+</div></div></div><div class="ui container footer" data-reactid="15"><div class="ui small top attached compact secondary segment" data-reactid="16"><div class="ui stackable grid" data-reactid="17"><div class="row" data-reactid="18"><div class="six wide column" data-reactid="19"><b data-reactid="20"><!-- react-text: 21 -->© <!-- /react-text --><!-- react-text: 22 -->Chris Hitchcott &lt;hitchcott@gmail.com&gt; (http://hitchcott.com)<!-- /react-text --></b><!-- react-text: 23 --> - <!-- /react-text --><!-- react-text: 24 -->MIT<!-- /react-text --><!-- react-text: 25 -->, <!-- /react-text --><!-- react-text: 26 -->2017<!-- /react-text --></div><div class="right aligned ten wide column" data-reactid="27"><!-- react-text: 28 -->Docs built using <!-- /react-text --><b data-reactid="29"><!-- react-text: 30 -->Solidity <!-- /react-text --></b><!-- react-text: 31 --> on <!-- /react-text --><b data-reactid="32">4/28/2017</b></div></div></div></div></div></div></div><script src="/etc-redemption/bundle.js?t=1493377941559"></script></body></html>

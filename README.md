@@ -51,7 +51,7 @@ A 'top-up' system will be used when passing funds to the RTC to reduce the effec
 
 ### Additional End User Resources
 
-As development focus shifted from the carbonvote, process to the RTC, some additional end-user requirements were identified to enable DGD holders to perform the redemption on the ETC chain with ease.
+As development focus shifted a carbonvote process to the RTC, some additional end-user requirements were identified to enable DGD holders to perform the redemption on the ETC chain with ease.
 
 * Instructions for MEW / CLI / Mist
 * Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
@@ -123,7 +123,7 @@ For full documentation on the methods please see the contract docs. The RTC is a
 * Redeemable
   * Admins can fund (ETC) value to the contract
   * Admins can set the rate of ETC redeemed for each token
-  * Users with a balance can call 'redeem' (or proxy via default function) burn balance in return for ETC
+  * Users with a balance can call 'redeem' (or proxy via default function) to burn balance in return for ETC
   * The redeem function can be passed a different address (uses `msg.sender` if using the default function)
 
 A test suite with 100% method coverage has been added to this repository under `./test`, they can be run with `truffle test`.
@@ -143,9 +143,8 @@ This repository contains a series of scripts to facilitate the backend process.
 |`step-3`|`<snapshot>`|Publish report to IPFS|
 |`step-4`|`<snapshot>`|Migrate the Contracts to ETC Chain|
 |`step-5`|`<tx> <snapshot>`|Mint the Tokens on ETC Chain (optional resume from tx#)|
-|`step-6`|`<snapshot>`|Confirm the balances on ETC Chain|
+|`step-6`|`<snapshot>`|Confirm the balances on ETC Chain (do this before and after step 7)|
 |`step-7`|`<snapshot>`|Configure contract for live mode on ETC Chain (activationBlock, transfer to Multisig)|
-|`step-10`|`<snapshot>`|Confirm the balances once again before sending value|
 |`step-4-test`|`<snapshot>`|Migrate Contracts to Kovan (for testing)|
 |`step-5-test`|`<tx> <snapshot>`|Mint the Tokens on Kovan (optional resume from tx#)|
 |`step-6-test`|`<snapshot>`|Confirm balances on Kovan|
