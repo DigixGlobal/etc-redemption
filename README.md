@@ -1,10 +1,10 @@
 # [Draft] Digix ETC Redemption Process
 
-This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC withdraw mechanism.
+This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
 
 ## Overview
 
-[Digix recently outlined](https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40) a proposal to allow DGD holders to withdraw ETC. Since this proposal, with feedback from the DGD holder community, it has evolved into a less complex withdrawal process (by removing the voting step). This repository has been produced to describe and provide all the tools needed perform this updated withdrawal process.
+[Digix recently outlined](https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40) a proposal to allow DGD holders to redeem ETC. Since this proposal, with feedback from the DGD holder community, it has evolved into a less complex redemption process (by removing the voting step). This repository has been produced to describe and provide all the tools needed perform this updated redemption process.
 
 The proposed contracts and process details are presented to the community for discussion, criticisms and code review.
 
@@ -15,9 +15,9 @@ The proposed contracts and process details are presented to the community for di
 * **ETC Chain** Ethereum Classic Mainnet
 * **RTC** Redemption Token Contract
 * **DGD-ETCR** DigixDAO Ethereum Classic Redemption Tokens
-* **Snapshot Block** Block on ETH chain where data is collected determine DGD balances and thus redemption token ledger
-* **Activation Block** The block on ETC chain where the redemption token is activated (after this block, transfers and redemptions are allowed)
-* **MultiSig** Contracts for holding funds and executing methods on both ETH and ETC chains
+* **Snapshot Block** Block on ETH chain where data is collected to determine DGD balances and thus populate the RTC ledger
+* **Activation Block** The block on ETC chain where the DGD-ETCR is activated (after this block, transfers and redemptions are allowed)
+* **MultiSig** contracts for holding funds and executing methods on both ETH and ETC chains
 
 ## Changes to Proposal v1
 
@@ -59,7 +59,7 @@ As development focus shifted from the carbonvote, process to the RTC, some addit
 
 ## Redemption Process
 
-The new process is split roughly into the following steps:
+The new redemption process is split roughly into the following steps:
 
 ### Set Up
 
@@ -67,9 +67,10 @@ This stage is managed by DigixGlobal and will not require interaction from DGD h
 
 1. Public announcement of *snapshot* and *activation* block made
 1. After the snapshot block, RTC is deployed to ETC and balances are minted
-1. Balances are confirmed, activation block is set, admin changed to Multisig
+1. Balances published to IPFS, confirmed by script & community
+1. Activation block is set, admin changed to Multisig
 1. RTC is funded by Multisig (using top-up)
-1. Activation block occurs (automatically, in 24 hours)
+1. Activation block occurs (within 24 hours)
 
 ### Redemption
 
@@ -91,20 +92,20 @@ For those who hold their DGD balances in a contract address that may does not ex
 
 #### Note to Exchanges
 
-After discussing how exchanges can optimally engage with the withdrawal process, we identified the following general pattern that should be adopted by exchanges to ensure an easy:
+After discussing how exchanges can optimally engage with the redemption process, we identified the following general pattern that should be adopted by exchanges to ensure an easy:
 
-1. Before the snapshot block, disable deposits, withdrawals and trading of DGD
+1. Before the snapshot block, disable deposits, redemptions and trading of DGD
 1. On the snapshot block, move DGD into a single account / multisig
 1. After the activation block, call the redeem method on the token
 1. Credit DGD holders with their proportion of the redeemed ETC
-1. Re-open trading, deposits and withdrawals
+1. Re-open trading, deposits and redemptions
 
 ### After 1 Year
 
 DGD holders perform a vote to determine action on unclaimed ETC
 
 * Extend the balance 1 year
-* Extend the withdrawal indefinitely (switch owner to `0x0` address)
+* Extend the redemption indefinitely (switch owner to `0x0` address)
 * Other options to be determined by DGD holders
 
 ## Redemption Token Contract
@@ -133,37 +134,41 @@ A Multisig contract for holding both ETH and ETC after the activation block will
 
 Optional `npm run estimate-gas` to estimate ETC gas requirements.
 
-1. `npm run step-1 <snapshot_block>` Get the Snapshot (run this with multiple clients & Etherscan)
-1. `npm run step-2 <snapshot_block>` Confirm the Balance Reports are the same
-1. `npm run step-3 <snapshot_block>` Publish report to IPFS
-1. `npm run step-4 <snapshot_block>` Migrate Contracts to Kovan (for testing)
-1. `npm run step-5 <tx> <snapshot_block>` Mint the Tokens on Kovan (optional resume from tx#)
-1. `npm run step-6 <snapshot_block>` Confirm balances on Kovan
-1. `npm run step-7 <snapshot_block>` Configure contract for live mode on Kovan (activationBlock, transfer to Multisig)
-1. `npm run step-8 <snapshot_block>` Migrate the Contracts to ETC Chain
-1. `npm run step-9 <tx> <snapshot_block>` Mint the Tokens on ETC Chain (optional resume from tx#)
-1. `npm run step-10 <snapshot_block>` Confirm the balances on ETC Chain
-1. `npm run step-11 <snapshot_block>` Configure contract for live mode on ETC Chain (activationBlock, transfer to Multisig)
-1. `npm run step-10 <snapshot_block>` Confirm the balances once again before sending value
+|`npm run`|Arguments|Description|
+|--|--|---|
+|`step-1`|`<snapshot_block>`|Get the Snapshot (run this with multiple clients & Etherscan)|
+|`step-2`|`<snapshot_block>`|Confirm the Balance Reports are the same|
+|`step-3`|`<snapshot_block>`|Publish report to IPFS|
+|`step-4`|`<snapshot_block>`|Migrate the Contracts to ETC Chain|
+|`step-5`|`<tx> <snapshot_block>`|Mint the Tokens on ETC Chain (optional resume from tx#)|
+|`step-6`|`<snapshot_block>`|Confirm the balances on ETC Chain|
+|`step-7`|`<snapshot_block>`|Configure contract for live mode on ETC Chain (activationBlock, transfer to Multisig)|
+|`step-10`|`<snapshot_block>`|Confirm the balances once again before sending value|
+|`step-4-test`|`<snapshot_block>`|Migrate Contracts to Kovan (for testing)|
+|`step-5-test`|`<tx> <snapshot_block>`|Mint the Tokens on Kovan (optional resume from tx#)|
+|`step-6-test`|`<snapshot_block>`|Confirm balances on Kovan|
+|`step-7-test`|`<snapshot_block>`|Configure contract for live mode on Kovan (activationBlock, transfer to Multisig)|
 
 ## *Estimated* Timelines
 
 |Estimated Date|Event|
 |---|---|
-|Apr 28th|1 week of public review of this updated proposal, contract and scripts|
-|May 5th|Around 1 week to make any update or bugfixes to this proposal|
-|May 12th|1 week to announce the snapshot block|
-|May 19th|Snapshot block occurs, RTC deployed|
-|May 20th|Activation block reached, redemption allowed|
+|Apr 28th|1 week of public review / discussion of this updated proposal, contract and scripts|
+|May 5th|Around 1 week to make any updates or bugfixes to this proposal, pending community feedback|
+|May 12th|Snapshot block announced|
+|May 26th|Snapshot block occurs|
+|May 27th|Balances confirmed, RTC deployed|
+|May 28th|Activation block reached, redemption is allowed|
 
 ## TODOs
 
-* Instructions for MEW / CLI / Mist
 * Setup Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
-* Instructions for installing local ETC Node (as fallback for public node)
-* Spectrum UI for redemption process (on ETC chain)
-* Best practices for hardware / offline signing
-
+* Script for validating contract addresses
+* User Guide / best practices for hardware / offline signing
+  * Instructions for MEW / CLI
+  * Instructions for installing local ETC Node (as fallback for public node)
+  * Spectrum UI for redemption process (on ETC chain)
+  * Double check replay attack protection in all redemption methods ETC <-> ETH
 
 ## Questions
 
