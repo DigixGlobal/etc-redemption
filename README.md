@@ -132,7 +132,7 @@ A Multisig contract for holding both ETH and ETC after the activation block will
 
 ## Scripts
 
-Optional `npm run estimate-gas` to estimate ETC gas requirements.
+This repository contains a series of scripts to facilitate the backend process.
 
 |`npm run`|Arguments|Description|
 |--|--|---|
@@ -148,6 +148,7 @@ Optional `npm run estimate-gas` to estimate ETC gas requirements.
 |`step-5-test`|`<tx> <snapshot_block>`|Mint the Tokens on Kovan (optional resume from tx#)|
 |`step-6-test`|`<snapshot_block>`|Confirm balances on Kovan|
 |`step-7-test`|`<snapshot_block>`|Configure contract for live mode on Kovan (activationBlock, transfer to Multisig)|
+|`estimate-gas`||Estimate total ETC requirements|
 
 ## *Estimated* Timelines
 
