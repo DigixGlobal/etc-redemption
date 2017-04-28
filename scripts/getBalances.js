@@ -3,13 +3,12 @@ const fs = require('fs');
 const Web3 = require('web3');
 const eachLimit = require('async/eachLimit');
 const abis = require('./data/abis');
+const getEvents = require('./helpers/getEvents');
 
 // const provider = require('./helpers/provider'); // if we wanted to try with infura
 const provider = new Web3.providers.HttpProvider('http://localhost:8546');
 // const provider = new Web3.providers.HttpProvider('https://mainnet.infura.io');
 
-const maxBatch = 10000;
-const conenctons = 16;
 const toBlock = parseInt(process.argv[process.argv.length - 1], 10);
 // etherscan test: 3,575,643
 
@@ -25,36 +24,6 @@ const totalDgdWei = web3.toBigNumber(2000000).times(1e9);
 // const totalWei = web3.toBigNumber(465134.9598).times(1e18);
 // const rate = totalWei.dividedBy(totalDgdWei);
 
-
-function getEvents(method, name, args, cb) {
-  // TODO split based on toBlock, aim for a batch of 20 requests?
-  const totalSpan = args.toBlock - args.fromBlock;
-  const batchCount = Math.ceil(totalSpan / maxBatch);
-  const batches = new Array(batchCount).fill().map((n, i) => {
-    const start = args.fromBlock + (maxBatch * i);
-    const overlappingEnd = (start + maxBatch) - 1;
-    const end = overlappingEnd > args.toBlock ? args.toBlock : overlappingEnd;
-    return { fromBlock: start, toBlock: end, i };
-  });
-  const eventBatches = new Array(batches.length);
-  process.stdout.write(`  scanning ${totalSpan} blocks for ${name} events...\r`);
-  let total = 0;
-  let processed = 0;
-  eachLimit(batches, conenctons, (args2, eachCallback) => {
-    method({}, { fromBlock: args2.fromBlock, toBlock: args2.toBlock }).get((err, res) => {
-      processed += 1;
-      total += res.length;
-      process.stdout.write(`  scanning ${totalSpan} blocks for ${name} events... ${total} events, ${(Math.round((processed / batches.length) * 100))}%\r`);
-      eventBatches[args2.i] = res;
-      eachCallback();
-    });
-  }, () => {
-    process.stdout.write('\n');
-    const combined = eventBatches.reduce((o, b) => o.concat(b), []);
-    cb(null, combined);
-  });
-}
-
 function getBalances() {
   process.stdout.write('\nGetting Unclaimed, Claimed and Transferred balances: \n');
   const balances = {};
@@ -64,7 +33,7 @@ function getBalances() {
       if (err0) { throw new Error(err0); }
       // get the from address of purchase
       const users = {};
-      eachLimit(purchaseEvents, conenctons, ({ transactionHash }, cb) => {
+      eachLimit(purchaseEvents, 16, ({ transactionHash }, cb) => {
         web3.eth.getTransaction(transactionHash, (err1, { from }) => {
           if (err1) { throw new Error(err1); }
           i += 1;
@@ -81,7 +50,7 @@ function getBalances() {
             Object.values(claims).forEach(({ args }) => { users[args._user.slice(0, 42)] = true; });
             Object.values(transfers).forEach(({ args }) => { users[args._to.slice(0, 42)] = true; });
             const totalUsers = Object.keys(users).length;
-            eachLimit(Object.keys(users), conenctons, (user, eachCallback) => {
+            eachLimit(Object.keys(users), 16, (user, eachCallback) => {
               i += 1;
               process.stdout.write(`  getting balance info... ${Math.round((i / totalUsers) * 100)}% \r`);
               web3.eth.getCode(user, (err3, res) => {

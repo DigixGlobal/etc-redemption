@@ -12,14 +12,14 @@
     "step-4": "truffle migrate --reset --network kovan",
     "step-5": "truffle exec ./scripts/mintTokens.js --network kovan",
     "step-6": "truffle exec ./scripts/confirmBalances.js --network kovan",
-    "step-7": "truffle migrate --network mainnet",
-    "step-8": "truffle exec ./scripts/mintTokens.js --network classic",
-    "step-9": "truffle exec ./scripts/confirmBalances.js --network classic",
-    "step-10": "echo 'todo configure contract (hand over admin)'",
-    "step-11": "echo 'todo something?'"
+    "step-7": "echo 'todo configure contract (and hand over admin)'",
+    "step-8": "truffle migrate --network classic",
+    "step-9": "truffle exec ./scripts/mintTokens.js --network classic",
+    "step-10": "truffle exec ./scripts/confirmBalances.js --network classic",
+    "step-11": "echo 'todo configure contract (and hand over admin)'"
   },
   "dependencies": {
-    "@digix/truffle-lightwallet-provider": "0.0.11",
+    "@digix/truffle-lightwallet-provider": "0.0.12",
     "async": "^2.3.0",
     "awaiting": "^2.2.0",
     "ipfs-api": "^14.0.0",
