@@ -14,9 +14,9 @@ The proposed contracts and process details are presented to the community for di
 * **ETH Chain** Ethereum Mainnet
 * **ETC Chain** Ethereum Classic Mainnet
 * **RTC** Redemption Token Contract
-* **DGD-ETCR** DigixDAO Ethereum Classic Redemption Tokens
+* **ETC-DGDR** DigixDAO Ethereum Classic Redemption Tokens
 * **Snapshot Block** Block on ETH chain where data is collected to determine DGD balances and thus populate the RTC ledger
-* **Activation Block** The block on ETC chain where the DGD-ETCR is activated (after this block, transfers and redemptions are allowed)
+* **Activation Block** The block on ETC chain where the ETC-DGDR is activated (after this block, transfers and redemptions are allowed)
 * **MultiSig** contracts for holding funds and executing methods on both ETH and ETC chains
 
 ## Changes to Proposal v1
@@ -27,15 +27,17 @@ This updated includes some changes to the [previously announced proposal](https:
 
 The main change is that we've decided to skip the carbonvote step. After gauging sentiment from DGD holders (including 'whales' and the general DGD community), there was no resistance to the principal of returning ETC to DGD holders. Therefore we have determined it would be better to forego the voting process as it would yield additional development time and reach a non-controversial already-known outcome (the motion to refund ETC to DGD holders).
 
-### Redemption Token Contract (RTC)
+### Redemption Token Contract (RTC, aka ETC-DGDR)
 
 In the previous proposal, the RTC was somewhat sidelined as the voting system would be the primary refund mechanism. Without voting, the RTC becomes the primary (only) mechanism, so additional time has been spend designing and developing it accordingly. See [Redemption Token Contract](#redemption-token-contract) section for more details.
 
-When minting token balances held by the, minted balances represents 1:1 with snapshot DGD balances. These redemption tokens are known as 'DGD-ETCR'. To claim ETC, holders of DGD-ETCR simple call a method on the DGD-ETCR contract to burn their holdings in return of an ETC value. At the point of burning, the balance of DGD-ETCR (their DGD balance) burn to 0, and a fixed rate will be used to convert this balance into ETC.
+Each redemption token represents 1:1 equivalent of snapshotted DGD balances. These redemption tokens are known as `ETC-DGDR`. To claim ETC, holders of ETC-DGDR should call a method on the ETC-DGDR contract to burn their holdings in return of an ETC value. At the point of burning, the balance of ETC-DGDR drops to 0, and a fixed rate will be used to convert this balance into ETC.
 
-For example, user has 100 DGD, gets 100 DGD-ETCR, redeems for ~22.3 ETC.
+For example, a user has 100 DGD, gets 100 ETC-DGDR, and burns it for ~22.3 ETC.
 
-The 'rate' used will be close to 100% of the original ETC pool, but with an additional fee deduced from the pool based on the gas used for deployment and minting.
+The conversion rate to ETC used will be close to 100% of the original ETC pool, but with an additional fee deduced from the pool based on the gas used for testing, deployment and minting (which could amount to around a few USD cents per user).
+
+**ETC-DGDR balances with less than 3x the required gas value will be ignored!**
 
 ### MultiSig & Top-up System
 
@@ -74,7 +76,7 @@ This stage is managed by DigixGlobal and will not require interaction from DGD h
 
 ### Redemption
 
-After the activation block is reached, users with an DGD-ETCR balance will be able to proceed with redemptions; (optionally trading and then) burning their DGD-ETCR tokens in return for ETC using one of the following ways:
+After the activation block is reached, users with an ETC-DGDR balance will be able to proceed with redemptions; (optionally trading and then) burning their ETC-DGDR tokens in return for ETC using one of the following ways:
 
 * Use a local ETC Node
 * Use MEW + RPC Node
@@ -136,18 +138,18 @@ This repository contains a series of scripts to facilitate the backend process.
 
 |`npm run`|Arguments|Description|
 |--|--|---|
-|`step-1`|`<snapshot_block>`|Get the Snapshot (run this with multiple clients & Etherscan)|
-|`step-2`|`<snapshot_block>`|Confirm the Balance Reports are the same|
-|`step-3`|`<snapshot_block>`|Publish report to IPFS|
-|`step-4`|`<snapshot_block>`|Migrate the Contracts to ETC Chain|
-|`step-5`|`<tx> <snapshot_block>`|Mint the Tokens on ETC Chain (optional resume from tx#)|
-|`step-6`|`<snapshot_block>`|Confirm the balances on ETC Chain|
-|`step-7`|`<snapshot_block>`|Configure contract for live mode on ETC Chain (activationBlock, transfer to Multisig)|
-|`step-10`|`<snapshot_block>`|Confirm the balances once again before sending value|
-|`step-4-test`|`<snapshot_block>`|Migrate Contracts to Kovan (for testing)|
-|`step-5-test`|`<tx> <snapshot_block>`|Mint the Tokens on Kovan (optional resume from tx#)|
-|`step-6-test`|`<snapshot_block>`|Confirm balances on Kovan|
-|`step-7-test`|`<snapshot_block>`|Configure contract for live mode on Kovan (activationBlock, transfer to Multisig)|
+|`step-1`|`<snapshot>`|Get the Snapshot (run this with multiple clients & Etherscan)|
+|`step-2`|`<snapshot>`|Confirm the Balance Reports are the same|
+|`step-3`|`<snapshot>`|Publish report to IPFS|
+|`step-4`|`<snapshot>`|Migrate the Contracts to ETC Chain|
+|`step-5`|`<tx> <snapshot>`|Mint the Tokens on ETC Chain (optional resume from tx#)|
+|`step-6`|`<snapshot>`|Confirm the balances on ETC Chain|
+|`step-7`|`<snapshot>`|Configure contract for live mode on ETC Chain (activationBlock, transfer to Multisig)|
+|`step-10`|`<snapshot>`|Confirm the balances once again before sending value|
+|`step-4-test`|`<snapshot>`|Migrate Contracts to Kovan (for testing)|
+|`step-5-test`|`<tx> <snapshot>`|Mint the Tokens on Kovan (optional resume from tx#)|
+|`step-6-test`|`<snapshot>`|Confirm balances on Kovan|
+|`step-7-test`|`<snapshot>`|Configure contract for live mode on Kovan (activationBlock, transfer to Multisig)|
 |`estimate-gas`||Estimate total ETC requirements|
 
 ## *Estimated* Timelines
