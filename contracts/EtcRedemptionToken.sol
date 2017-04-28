@@ -8,12 +8,11 @@ contract EtcRedemptionToken is TimeLockable, ERC20 {
 
   uint public totalTokensRedeemed = 0;
   uint public totalWeiRedeemed = 0;
-  uint public rate = 1000000; // 2000000 rate = 1/2 wei rewarded, 500000 = double wei rewarded
+  uint public rate = 232550000; // ETC wei redeemed per DGD wei
 
   mapping(address => uint) redemptions;
 
   event Fund(address indexed from, uint value);
-  event Debug(uint d);
   event Redeem(address indexed from, address indexed to, uint tokensUsed, uint weiRedeemed);
   event RateSet(uint rate);
 
@@ -42,8 +41,8 @@ contract EtcRedemptionToken is TimeLockable, ERC20 {
     var tokenBalance = balances[msg.sender];
     // throw if no balance
     if (tokenBalance == 0) { throw; }
-    // get the amount of wei to redeem (not safe dividing to round down)
-    var weiBalance = SafeMath.safeDiv(SafeMath.safeMul(tokenBalance, 1000000), rate);
+    // get the amount of wei to redeem
+    var weiBalance = SafeMath.safeMul(tokenBalance, rate);
     // throw if contract doesn't have enough value
     if(address(this).balance < weiBalance) { throw; }
     // set the new balance to zero

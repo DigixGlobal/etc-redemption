@@ -15,9 +15,5 @@ contract MockSafeMath {
   function safeMul(uint a, uint b) returns (uint) {
     return SafeMath.safeMul(a, b);
   }
-
-  function safeDiv(uint a, uint b) returns (uint) {
-    return SafeMath.safeDiv(a, b);
-  }
-
+  
 }

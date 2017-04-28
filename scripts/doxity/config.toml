@@ -1,14 +1,29 @@
 linkPrefix = "/etc-redemption"
 name = "@digix/etc-refund"
-license = "MIT"
+license = "BSD-3-Clause"
 version = "0.0.1"
-description = ""
-author = "Chris Hitchcott <hitchcott@gmail.com> (http://hitchcott.com)"
-buildTime = 2017-04-28T11:11:57.550Z
+description = "Digix Ethereum Classic Redemption"
+author = "DigixGlobal"
+buildTime = 2017-04-28T13:09:26.280Z
 target = "scripts/doxity"
 src = "contracts/*"
 dir = "pages/docs"
 source = "https://github.com/DigixGlobal/doxity-gatsby-starter-project/archive/a4886b7a7a04c018ac04fed3125d7d4785e74bed.tar.gz"
 out = "docs"
+homepage = "https://github.com/DigixGlobal/etc-redemption"
 
 [interaction]
+
+[whitelist]
+
+[whitelist.ERC20]
+
+[whitelist.EtcRedemptionToken]
+
+[whitelist.MultiSigWallet]
+
+[whitelist.Permissioned]
+
+[whitelist.SafeMath]
+
+[whitelist.TimeLockable]

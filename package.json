@@ -2,9 +2,16 @@
   "name": "@digix/etc-refund",
   "version": "0.0.1",
   "description": "",
-  "author": "Chris Hitchcott <hitchcott@gmail.com> (http://hitchcott.com)",
-  "license": "MIT",
+  "author": "DigixGlobal",
+  "description": "Digix Ethereum Classic Redemption",
+  "homepage": "https://github.com/DigixGlobal/etc-redemption",
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/DigixGlobal/etc-redemption.git"
+  },
+  "license": "BSD-3-Clause",
   "scripts": {
+    "test": "truffle test",
     "docs:build": "./node_modules/.bin/doxity build",
     "docs:compile": "./node_modules/.bin/doxity compile",
     "docs:develop": "./node_modules/.bin/doxity develop",
@@ -15,11 +22,9 @@
     "step-4": "truffle migrate --reset --network classic",
     "step-5": "truffle exec ./scripts/mintTokens.js --network classic",
     "step-6": "truffle exec ./scripts/confirmBalances.js --network classic",
-    "step-7": "echo 'todo configure contract (and hand over admin)'",
     "step-4-test": "truffle migrate --reset --network kovan",
     "step-5-test": "truffle exec ./scripts/mintTokens.js --network kovan",
-    "step-6-test": "truffle exec ./scripts/confirmBalances.js --network kovan",
-    "step-7-test": "echo 'todo configure contract (and hand over admin)'"
+    "step-6-test": "truffle exec ./scripts/confirmBalances.js --network kovan"
   },
   "dependencies": {
     "@digix/truffle-lightwallet-provider": "0.0.12",
@@ -30,7 +35,7 @@
     "web3-provider-engine": "^12.0.2"
   },
   "devDependencies": {
-    "@digix/doxity": "^0.4.3",
+    "@digix/doxity": "^0.4.4",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",

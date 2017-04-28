@@ -2,6 +2,8 @@
 
 This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
 
+Contract code: https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/
+
 ## Overview
 
 [Digix recently outlined](https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40) a proposal to allow DGD holders to redeem ETC. Since this proposal, with feedback from the DGD holder community, it has evolved into a less complex redemption process (by removing the voting step). This repository has been produced to describe and provide all the tools needed perform this updated redemption process.
@@ -112,7 +114,7 @@ DGD holders perform a vote to determine action on unclaimed ETC
 
 ## Redemption Token Contract
 
-For full documentation on the methods please see the contract docs. The RTC is an extended EIP20 tradable token with the additional features:
+For full documentation on the methods please see the [contract docs](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/). The RTC is an extended EIP20 tradable token with the additional features:
 
 * Permissioned
   * Owned by one admin
@@ -136,19 +138,19 @@ A Multisig contract for holding both ETH and ETC after the activation block will
 
 This repository contains a series of scripts to facilitate the backend process.
 
-|`npm run`|Arguments|Description|
+The the parameters can be configured in `./scripts/helpers/config.json`.
+
+|`npm run`|args|Description|
 |--|--|---|
-|`step-1`|`<snapshot>`|Get the Snapshot (run this with multiple clients & Etherscan)|
-|`step-2`|`<snapshot>`|Confirm the Balance Reports are the same|
-|`step-3`|`<snapshot>`|Publish report to IPFS|
-|`step-4`|`<snapshot>`|Migrate the Contracts to ETC Chain|
-|`step-5`|`<tx> <snapshot>`|Mint the Tokens on ETC Chain (optional resume from tx#)|
-|`step-6`|`<snapshot>`|Confirm the balances on ETC Chain (do this before and after step 7)|
-|`step-7`|`<snapshot>`|Configure contract for live mode on ETC Chain (activationBlock, transfer to Multisig)|
-|`step-4-test`|`<snapshot>`|Migrate Contracts to Kovan (for testing)|
-|`step-5-test`|`<tx> <snapshot>`|Mint the Tokens on Kovan (optional resume from tx#)|
-|`step-6-test`|`<snapshot>`|Confirm balances on Kovan|
-|`step-7-test`|`<snapshot>`|Configure contract for live mode on Kovan (activationBlock, transfer to Multisig)|
+|`step-1`||Get the Snapshot (run this with multiple clients & Etherscan)|
+|`step-2`||Confirm the Balance Reports are the same|
+|`step-3`||Publish report to IPFS|
+|`step-4`||Migrate the Contracts to ETC Chain|
+|`step-5`|`<tx>`|Mint the Tokens on ETC Chain (optional resume from tx#)|
+|`step-6`||Confirm the balances on ETC Chain (do this before and after step 7)|
+|`step-4-test`||Migrate Contracts to Kovan (for testing)|
+|`step-5-test`|`<tx>`|Mint the Tokens on Kovan (optional resume from tx#)|
+|`step-6-test`||Confirm balances on Kovan|
 |`estimate-gas`||Estimate total ETC requirements|
 
 ## *Estimated* Timelines
@@ -165,6 +167,8 @@ This repository contains a series of scripts to facilitate the backend process.
 ## TODOs
 
 * Setup Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
+* Test throwable redeem sender contract (Add a test to send ETH to the contract)
+* Add Natspec to contracts + deploy doxity
 * Script for validating contract addresses
 * User Guide / best practices for hardware / offline signing
   * Instructions for MEW / CLI

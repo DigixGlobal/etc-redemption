@@ -64,15 +64,15 @@
     "1": {
       "links": {},
       "events": {},
-      "updated_at": 1493368750259
+      "updated_at": 1493384136007
     },
     "42": {
       "events": {},
       "links": {},
       "address": "0x75de330739e5c673b57d1e28d5459573f6579da9",
-      "updated_at": 1493315917768
+      "updated_at": 1493383866209
     }
   },
   "schema_version": "0.0.5",
-  "updated_at": 1493368750259
+  "updated_at": 1493384136007
 }

@@ -27,8 +27,7 @@ module.exports = {
       provider: new LightWalletProvider({
         keystore: KEYSTORE,
         password: PASSWORD,
-        // debug: true,
-        rpcUrl: 'http://localhost:8547',
+        rpcUrl: 'http://localhost:8547', // must use geth etc client
         // rpcUrl: 'https://digixparity04.digix.io/',
       }),
     },
