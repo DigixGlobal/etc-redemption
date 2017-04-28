@@ -29,9 +29,11 @@ The main change is that we've decided to skip the carbonvote step. After gauging
 
 ### Redemption Token Contract (RTC)
 
-In the previous proposal, the RTC was somewhat sidelined as the voting system would be the primary refund mechanism. Without voting, the RTC becomes the primary (only) mechanism, so additional time has been spend designing and developing it accordingly. See [The Contract](#The Contracts) section for more details.
+In the previous proposal, the RTC was somewhat sidelined as the voting system would be the primary refund mechanism. Without voting, the RTC becomes the primary (only) mechanism, so additional time has been spend designing and developing it accordingly. See [Redemption Token Contract](#redemption-token-contract) section for more details.
 
-When minting token balances held by the, minted balances represents 1:1 with snapshot DGD balances. These redemption tokens are known as 'DGD-ETCR'. To claim ETC, holders of DGD-ETCR simple call a method on the DGD-ETCR contract to burn their holdings in return of an ETC value. At the point of burning, the balance of DGD-ETCR (their DGD balance) burn to 0, and a fixed rate will be used to convert this balance into ETC. (1000000 DGD -> 1000000 DGD-ETCR -> ~223000 ETC)
+When minting token balances held by the, minted balances represents 1:1 with snapshot DGD balances. These redemption tokens are known as 'DGD-ETCR'. To claim ETC, holders of DGD-ETCR simple call a method on the DGD-ETCR contract to burn their holdings in return of an ETC value. At the point of burning, the balance of DGD-ETCR (their DGD balance) burn to 0, and a fixed rate will be used to convert this balance into ETC.
+
+For example, user has 100 DGD, gets 100 DGD-ETCR, redeems for ~22.3 ETC.
 
 The 'rate' used will be close to 100% of the original ETC pool, but with an additional fee deduced from the pool based on the gas used for deployment and minting.
 
@@ -64,8 +66,10 @@ The new process is split roughly into the following steps:
 This stage is managed by DigixGlobal and will not require interaction from DGD holders
 
 1. Public announcement of *snapshot* and *activation* block made
-1. After the snapshot block, contract is deployed to ETC and balances are minted
-1. Balances are confirmed, RTC is funded by Multisig (using top-up)
+1. After the snapshot block, RTC is deployed to ETC and balances are minted
+1. Balances are confirmed, activation block is set, admin changed to Multisig
+1. RTC is funded by Multisig (using top-up)
+1. Activation block occurs (automatically, in 24 hours)
 
 ### Redemption
 
@@ -76,7 +80,7 @@ After the activation block is reached, users with an DGD-ETCR balance will be ab
 * Depositing to an exchange during the snapshot block
 * Use Spectrum Alpha + RPC Node
 
-#### Note to contract holders
+#### Note for DGD holders using smart contracts for holding
 
 For those who hold their DGD balances in a contract address that may does not exist on ETC chain, two options are provided:
 
@@ -117,6 +121,7 @@ For full documentation on the methods please see the contract docs. The RTC is a
   * Admins can fund (ETC) value to the contract
   * Admins can set the rate of ETC redeemed for each token
   * Users with a balance can call 'redeem' (or proxy via default function) burn balance in return for ETC
+  * The redeem function can be passed a different address (uses `msg.sender` if using the default function)
 
 A test suite with 100% method coverage has been added to this repository under `./test`, they can be run with `truffle test`.
 
@@ -141,7 +146,6 @@ Optional `npm run estimate-gas` to estimate ETC gas requirements.
 1. `npm run step-11 <snapshot_block>` Configure contract for live mode on ETC Chain (activationBlock, transfer to Multisig)
 1. `npm run step-10 <snapshot_block>` Confirm the balances once again before sending value
 
-
 ## *Estimated* Timelines
 
 |Estimated Date|Event|
@@ -151,3 +155,16 @@ Optional `npm run estimate-gas` to estimate ETC gas requirements.
 |May 12th|1 week to announce the snapshot block|
 |May 19th|Snapshot block occurs, RTC deployed|
 |May 20th|Activation block reached, redemption allowed|
+
+## TODOs
+
+* Instructions for MEW / CLI / Mist
+* Setup Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
+* Instructions for installing local ETC Node (as fallback for public node)
+* Spectrum UI for redemption process (on ETC chain)
+* Best practices for hardware / offline signing
+
+
+## Questions
+
+Please join the Digix slack channel #etc-redemption
