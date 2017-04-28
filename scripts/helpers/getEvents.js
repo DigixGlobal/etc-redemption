@@ -4,7 +4,6 @@ const maxBatch = 10000;
 const conenctons = 16;
 
 module.exports = function (method, name, args, cb) {
-  console.log('here we go');
   // TODO split based on toBlock, aim for a batch of 20 requests?
   function get(callback) {
     const totalSpan = args.toBlock - args.fromBlock;

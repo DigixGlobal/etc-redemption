@@ -2,6 +2,8 @@
 
 This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
 
+Contract code: https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/
+
 ## Overview
 
 [Digix recently outlined](https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40) a proposal to allow DGD holders to redeem ETC. Since this proposal, with feedback from the DGD holder community, it has evolved into a less complex redemption process (by removing the voting step). This repository has been produced to describe and provide all the tools needed perform this updated redemption process.
@@ -112,7 +114,7 @@ DGD holders perform a vote to determine action on unclaimed ETC
 
 ## Redemption Token Contract
 
-For full documentation on the methods please see the contract docs. The RTC is an extended EIP20 tradable token with the additional features:
+For full documentation on the methods please see the [contract docs](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/). The RTC is an extended EIP20 tradable token with the additional features:
 
 * Permissioned
   * Owned by one admin
@@ -166,7 +168,6 @@ The the parameters can be configured in `./scripts/helpers/config.json`.
 
 * Setup Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
 * Test throwable redeem sender contract (Add a test to send ETH to the contract)
-* Add Natspec to contracts + deploy doxity
 * Script for validating contract addresses
 * User Guide / best practices for hardware / offline signing
   * Instructions for MEW / CLI

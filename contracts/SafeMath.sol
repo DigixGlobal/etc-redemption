@@ -1,5 +1,8 @@
 pragma solidity ^0.4.8;
 
+/// @title Safe Math Operations
+/// @author Open Zeppelin
+
 library SafeMath {
 
   function assert(bool assertion) internal {

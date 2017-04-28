@@ -2,7 +2,7 @@
 
 This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
 
-Contract code: https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/
+**[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)** 
 
 ## Overview
 
@@ -168,7 +168,6 @@ The the parameters can be configured in `./scripts/helpers/config.json`.
 
 * Setup Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
 * Test throwable redeem sender contract (Add a test to send ETH to the contract)
-* Add Natspec to contracts + deploy doxity
 * Script for validating contract addresses
 * User Guide / best practices for hardware / offline signing
   * Instructions for MEW / CLI

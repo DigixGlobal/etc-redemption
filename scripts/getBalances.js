@@ -93,6 +93,7 @@ function getBalances() {
     totalDgds = dgds ? ((totalDgds && totalDgds.add(dgds || 0)) || dgds) : totalDgds;
     totalUnclaimed = unclaimed ? ((totalUnclaimed && totalUnclaimed.add(unclaimed)) || unclaimed) : totalUnclaimed;
     const combined = dgds ? dgds.add(unclaimed || 0) : unclaimed;
+    if (contract) { contracts[k] = true; }
     serialized[k] = {
       contract,
       combined: combined.toString(10),
