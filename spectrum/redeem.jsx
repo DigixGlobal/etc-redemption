@@ -8,9 +8,6 @@ const KeystoreButtons = require('@digix/spectrum/src/components/keystores/keysto
 
 
 export default class Redeem extends Component {
-  shouldComponentUpdate() {
-    return false;
-  }
   render() {
     // if activation block is passed
     // if (!active) { return 'Contract is not active'; }

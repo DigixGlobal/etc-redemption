@@ -7,16 +7,12 @@ import ExplorerTable from './explorer_table.jsx';
 import AddressSearch from './address_search.jsx';
 
 export default class ContractInterface extends Component {
-  componentDidMount() {
-    this.startPoll();
+  constructor(props) {
+    super(props);
+    this.getStatus = this.getStatus.bind(this);
   }
-  shouldComponentUpdate() {
-    // return true;
-    if (this.updated) {
-      this.updated = false;
-      return true;
-    }
-    return false;
+  componentDidMount() {
+    this.getStatus();
   }
   componentWillUnmount() {
     this.stopPoll();
@@ -94,7 +90,7 @@ export default class ContractInterface extends Component {
         </Grid.Column>
         <Grid.Column>
           <Header content="Contract Info" />
-          <ContractStatus {...{ contract, web3, data }} />
+          <ContractStatus {...{ contract, web3, data, getStatus: this.getStatus }} />
         </Grid.Column>
         <Grid.Column>
           <Header content="Address Info" />
