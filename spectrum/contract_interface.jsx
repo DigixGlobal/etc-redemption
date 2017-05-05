@@ -1,39 +1,57 @@
 import React, { PropTypes, Component } from 'react';
-import { Grid, Header, Loader } from 'semantic-ui-react';
+import { Container, Grid, Header, Loader } from 'semantic-ui-react';
 
 import Redeem from './redeem.jsx';
 import ContractStatus from './contract_status.jsx';
-import Explore from './explore.jsx';
+import ExplorerTable from './explorer_table.jsx';
+import AddressSearch from './address_search.jsx';
 
 export default class ContractInterface extends Component {
   componentDidMount() {
     this.startPoll();
+  }
+  shouldComponentUpdate() {
+    // return true;
+    if (this.updated) {
+      this.updated = false;
+      return true;
+    }
+    return false;
   }
   componentWillUnmount() {
     this.stopPoll();
   }
   getStatus() {
     const { contract, web3 } = this.props;
-    contract.rate.call();
-    contract.totalSupply.call();
-    web3.eth.getBlockNumber();
-    contract.activationBlock.call();
-    contract.totalTokensRedeemed.call();
-    contract.totalWeiRedeemed.call();
-    web3.eth.getBalance(contract.address);
+    return Promise.all([
+      contract.rate.call(),
+      contract.totalSupply.call(),
+      web3.eth.getBlockNumber(),
+      contract.activationBlock.call(),
+      contract.totalTokensRedeemed.call(),
+      contract.totalWeiRedeemed.call(),
+      web3.eth.getBalance(contract.address),
+    ]);
   }
   startPoll() {
     const poll = () => {
-      this.getStatus();
-      this.timeout = setTimeout(poll, 1000 * 4);
+      this.getStatus().then(() => {
+        this.updated = true;
+        if (!this.unmounted) {
+          this.timeout = setTimeout(poll, 1000 * 4);
+        }
+      });
     };
     poll();
   }
   stopPoll() {
+    this.unmounted = true;
     clearTimeout(this.timeout);
   }
   render() {
     const { contract, web3, network } = this.props;
+    const loader = <Loader active inline />;
+    if (!contract || !web3) { return loader; }
     const rawData = {
       rate: contract.rate(),
       activationBlock: contract.activationBlock(),
@@ -43,7 +61,8 @@ export default class ContractInterface extends Component {
       weiBalance: web3.eth.balance(contract.address),
       blockNumber: web3.eth.blockNumber(),
     };
-    if (Object.values(rawData).some(v => v === undefined)) { return <Loader active inline />; }
+    // console.log(rawData);
+    if (Object.values(rawData).some(v => v === undefined)) { return loader; }
     // decorate with calculated args
     const totalTokenExisted = rawData.totalSupply.add(rawData.totalTokenRedeemed);
     const totalWeiSupply = totalTokenExisted.mul(rawData.rate);
@@ -67,17 +86,21 @@ export default class ContractInterface extends Component {
     };
     return (
       <Grid stackable columns={2}>
+        <Grid.Column width={16}>
+          <Container text textAlign="center">
+            <Header content="Digix ETC Redemption Contract" subheader={contract.address} />
+            <Redeem {...{ network, contract, web3, data }} />
+          </Container>
+        </Grid.Column>
         <Grid.Column>
-          <Header content="Digix ETC Redemption Contract" subheader={contract.address} />
+          <Header content="Contract Info" />
           <ContractStatus {...{ contract, web3, data }} />
         </Grid.Column>
         <Grid.Column>
-          <Header content="Redeem" />
-          <Redeem {...{ network, contract, web3, data }} />
-        </Grid.Column>
-        <Grid.Column width={16}>
-          <Header content="Explore" />
-          <Explore {...{ contract, web3, data }} />
+          <Header content="Address Info" />
+          <AddressSearch {...{ contract, web3, data }} />
+          <Header content="Snapshot Balances" />
+          <ExplorerTable {...{ contract, web3, data }} />
         </Grid.Column>
       </Grid>
     );

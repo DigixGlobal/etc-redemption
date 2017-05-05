@@ -1,7 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Divider, Button, Label } from 'semantic-ui-react'
-
+import { Form, Divider, Button, Label } from 'semantic-ui-react';
 
 const { getDefaultAddress } = require('@digix/spectrum/src/selectors');
 const CryptoPrice = require('@digix/spectrum/src/components/common/crypto_price').default;
@@ -19,17 +18,21 @@ class RedemptionInfo extends Component {
   componentDidMount() {
     this.getBalances();
   }
-  componentWillReceiveProps({ defaultAddress: { address: nextAddress } }) {
-    const { defaultAddress: { address } } = this.props;
-    if (address && nextAddress && address !== nextAddress) {
-      console.log('triggering');
+  componentWillReceiveProps({ defaultAddress }) {
+    const { address: nextAddress } = defaultAddress || {};
+    const { address } = this.props.defaultAddress || {};
+    if (nextAddress && address !== nextAddress) {
       this.getBalances(nextAddress);
     }
   }
   getBalances(nextAddress) {
-    const { contract, defaultAddress: { address } } = this.props;
-    contract.balanceOf.call(nextAddress || address);
-    contract.redeemedOf.call(nextAddress || address);
+    const { contract, defaultAddress } = this.props;
+    const { address } = defaultAddress || {};
+    const a = nextAddress || address;
+    if (a) {
+      contract.balanceOf.call(a);
+      contract.redeemedOf.call(a);
+    }
   }
   handleRedeem(data) {
     const { recipient, ...params } = data;
@@ -44,24 +47,23 @@ class RedemptionInfo extends Component {
   }
   render() {
     const { web3, defaultAddress, data, contract, network } = this.props;
-    if (!defaultAddress) { return <p>No addresses</p>; }
+    if (!defaultAddress) { return null; }
     const balanceOf = contract.balanceOf(defaultAddress.address);
     const redeemedOf = contract.redeemedOf(defaultAddress.address);
     const dgdrBalance = balanceOf && balanceOf.toNumber() && balanceOf.div(1e9).toFormat(2);
     const etcBalance = balanceOf && balanceOf.toNumber() && balanceOf.mul(data.rate).div(1e18).toFormat(2);
-    const etcRedeemed = redeemedOf && redeemedOf.toNumber() && redeemedOf.mul(data.rate).div(1e18).toFormat(2);
+    const dgdrRedeemed = redeemedOf && redeemedOf.toNumber() && redeemedOf.div(1e9).toFormat(2);
     return (
       <Form>
         <Form.Field style={{ textAlign: 'center' }}>
-          <Divider hidden />
           {etcBalance ?
             <div>
-              <Label size="large" content={`You have ${dgdrBalance} DGDR`} />
+              <Label size="large" color="green" content={`You have ${dgdrBalance} DGDR`} icon="checkmark" />
               <Divider hidden />
               <TransactionModal
                 {...{ web3, network }}
                 header="ETC Redemption"
-                data={{ from: defaultAddress.address, gas: 46571 * 1.5 }}
+                data={{ from: defaultAddress.address, gas: 100000 }}
                 handleTransaction={this.handleRedeem}
                 onMined={this.handleMined}
                 form={({ formChange, formData }) => {
@@ -94,14 +96,15 @@ class RedemptionInfo extends Component {
             <Button
               fluid
               disabled
-              content="Selected account has no balance"
-              size="large"
+              basic
+              content="Selected account has no DGDR balance"
+              size="huge"
               icon="frown"
             />
           }
           <Divider hidden />
-          {!!etcRedeemed &&
-            <Label content={`You have already redeeemd ${etcRedeemed} ETC`} size="large" />
+          {!!dgdrRedeemed &&
+            <Label content={`You have already redeeemd ${dgdrRedeemed} DGDR`} size="large" color="blue" icon="history" />
           }
         </Form.Field>
       </Form>
@@ -110,7 +113,7 @@ class RedemptionInfo extends Component {
 }
 
 RedemptionInfo.propTypes = {
-  defaultAddress: PropTypes.object.isRequired,
+  defaultAddress: PropTypes.object,
   contract: PropTypes.object.isRequired,
   web3: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,

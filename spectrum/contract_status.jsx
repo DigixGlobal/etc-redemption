@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react';
-import { Table, Message, Icon, Progress } from 'semantic-ui-react';
+import { Segment, Table, Message, Icon, Progress } from 'semantic-ui-react';
+
+const Advanced = require('@digix/spectrum/src/components/common/advanced').default;
 
 export default class ContractStatus extends Component {
   renderStatus() {
@@ -38,7 +40,7 @@ export default class ContractStatus extends Component {
   render() {
     const { data } = this.props;
     return (
-      <div>
+      <Segment>
         {this.renderStatus()}
         <Progress progress percent={data.etcPercent} color="green">
           {data.etcRemaining} ETC remaining ({data.etcRedeemed} claimed)
@@ -54,24 +56,32 @@ export default class ContractStatus extends Component {
         <Table>
           <Table.Body>
             <Table.Row>
-              <Table.Cell>Calculator</Table.Cell>
-              <Table.Cell>1 DGDR = {data.rate.mul(1e9).div(1e18).toNumber()} ETC</Table.Cell>
+              <Table.Cell>Activation Block</Table.Cell>
+              <Table.Cell>{data.activationBlock.toFormat(0)}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Total DGDR created</Table.Cell>
               <Table.Cell>{data.totalTokenExisted.div(1e9).toNumber()}</Table.Cell>
             </Table.Row>
             <Table.Row>
-              <Table.Cell>DGDR redeemed</Table.Cell>
-              <Table.Cell>{data.totalTokenRedeemed.div(1e9).toNumber()}</Table.Cell>
+              <Table.Cell>ETC balance</Table.Cell>
+              <Table.Cell>{data.weiBalance.div(1e18).toNumber()}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>ETC to be distributed (incl. redeemed)</Table.Cell>
               <Table.Cell>{data.totalTokenExisted.mul(data.rate).div(1e18).toFormat(2)}</Table.Cell>
             </Table.Row>
             <Table.Row>
+              <Table.Cell>DGDR redeemed</Table.Cell>
+              <Table.Cell>{data.totalTokenRedeemed.div(1e9).toNumber()}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
               <Table.Cell>ETC funded (balance + redeeemed)</Table.Cell>
               <Table.Cell>{data.totalWeiRedeemed.add(data.weiBalance).div(1e18).toFormat(2)}</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>Exchange Rate</Table.Cell>
+              <Table.Cell>1 DGDR = {data.rate.mul(1e9).div(1e18).toNumber()} ETC</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Exchange Rate (wei per DGDR / 1e9)</Table.Cell>
@@ -80,10 +90,12 @@ export default class ContractStatus extends Component {
           </Table.Body>
           {/* TODO Cold Storage */}
         </Table>
-        <pre><code>
-          {JSON.stringify(data, null, 2)}
-        </code></pre>
-      </div>
+        <Advanced title="JSON">
+          <pre><code>
+            {JSON.stringify(data, null, 2)}
+          </code></pre>
+        </Advanced>
+      </Segment>
     );
   }
 }
