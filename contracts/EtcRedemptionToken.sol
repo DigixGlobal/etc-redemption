@@ -13,6 +13,10 @@ contract EtcRedemptionToken is TimeLockable, ERC20 {
   uint public totalWeiRedeemed = 0;
   uint public rate = 232550000; // ETC wei redeemed per DGD wei
 
+  string public constant name = "Digix ETC Redemption Tokens";
+  string public constant symbol = "DGDR";
+  uint8 public constant decimals = 9;
+
   mapping(address => uint) redemptions;
 
   event Fund(address indexed from, uint value);
