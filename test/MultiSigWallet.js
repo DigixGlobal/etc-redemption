@@ -7,7 +7,7 @@ const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
 contract('MultiSigWallet', function (accounts) {
   let multiSigWallet;
   let token;
-  const owners = accounts.splice(0, 4);
+  const owners = accounts.slice(0, 4);
   describe('init', function () {
     it('inits with the corect values', async function () {
       multiSigWallet = await MultiSigWallet.new(owners, 3);

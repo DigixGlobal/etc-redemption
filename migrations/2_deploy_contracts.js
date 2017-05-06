@@ -1,7 +1,7 @@
 const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
-const MultiSigWallet = artifacts.require('MultiSigWallet');
+// const MultiSigWallet = artifacts.require('MultiSigWallet');
 
-module.exports = function (deployer, network, accounts) {
+module.exports = function (deployer) {
   deployer.deploy(EtcRedemptionToken);
-  deployer.deploy(MultiSigWallet, accounts.splice(0, 4), 3);
+  // deployer.deploy(MultiSigWallet, accounts.splice(0, 4), 3);
 };
