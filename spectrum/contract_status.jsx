@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Segment, Table, Message, Icon, Progress } from 'semantic-ui-react';
+import { Header, Segment, Table, Message, Icon, Progress } from 'semantic-ui-react';
 
 const Advanced = require('@digix/spectrum/src/components/common/advanced').default;
 
@@ -38,64 +38,70 @@ export default class ContractStatus extends Component {
     );
   }
   render() {
-    const { data } = this.props;
+    const { data, contract } = this.props;
     return (
-      <Segment>
-        {this.renderStatus()}
-        <Progress progress percent={data.etcPercent} color="green">
-          {data.etcRemaining} ETC remaining ({data.etcRedeemed} claimed)
-        </Progress>
-        <Progress progress percent={data.topUpPercent} color="orange">
-          {data.etcBalance} ETC hot balance remaining <a href="#"><Icon name="info circle" /></a>
-        </Progress>
-        <Progress progress percent={data.multiSigPercent} color="blue">
-          {data.multiSigEtc} ETC cold balance remaining <a href="#"><Icon name="info circle" /></a>
-        </Progress>
-        {/* TODO calculator input box */}
+      <div>
+        <Header>
+          Conrract Info
+          <Header.Subheader>{contract.address}</Header.Subheader>
+        </Header>
+        <Segment>
+          {this.renderStatus()}
+          <Progress progress percent={data.etcPercent} color="green">
+            {data.etcRemaining} ETC available ({data.etcRedeemed} claimed)
+          </Progress>
+          <Progress progress percent={data.topUpPercent} color="orange">
+            {data.etcBalance} ETC contract balance
+          </Progress>
+          <Progress progress percent={data.multiSigPercent} color="blue">
+            {data.multiSigEtc} ETC cold storage balance
+          </Progress>
+          {/* TODO calculator input box */}
 
-        <Table>
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell>Activation Block</Table.Cell>
-              <Table.Cell>{data.activationBlock.toFormat(0)}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Total DGDR created</Table.Cell>
-              <Table.Cell>{data.totalTokenExisted.shift(-9).toNumber()}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>ETC balance</Table.Cell>
-              <Table.Cell>{data.weiBalance.shift(-18).toNumber()}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>ETC to be distributed (incl. redeemed)</Table.Cell>
-              <Table.Cell>{data.totalTokenExisted.mul(data.rate).shift(-18).toFormat(2)}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>DGDR redeemed</Table.Cell>
-              <Table.Cell>{data.totalTokenRedeemed.shift(-9).toNumber()}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>ETC funded (balance + redeeemed)</Table.Cell>
-              <Table.Cell>{data.totalWeiRedeemed.add(data.weiBalance).shift(-18).toFormat(2)}</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Exchange Rate</Table.Cell>
-              <Table.Cell>1 DGDR = {data.rate.shift(-9).toNumber()} ETC</Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>Exchange Rate (wei per DGDR / 1e9)</Table.Cell>
-              <Table.Cell>{data.rate.toFormat(0)}</Table.Cell>
-            </Table.Row>
-          </Table.Body>
-          {/* TODO Cold Storage */}
-        </Table>
-        <Advanced title="JSON">
-          <pre><code>
-            {JSON.stringify(data, null, 2)}
-          </code></pre>
-        </Advanced>
-      </Segment>
+          <Table>
+            <Table.Body>
+              <Table.Row>
+                <Table.Cell>Activation Block</Table.Cell>
+                <Table.Cell>{data.activationBlock.toFormat(0)}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>Total DGDR created</Table.Cell>
+                <Table.Cell>{data.totalTokenExisted.shift(-9).toNumber()}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>ETC balance</Table.Cell>
+                <Table.Cell>{data.weiBalance.shift(-18).toNumber()}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>ETC to be distributed (incl. redeemed)</Table.Cell>
+                <Table.Cell>{data.totalTokenExisted.mul(data.rate).shift(-18).toFormat(2)}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>DGDR redeemed</Table.Cell>
+                <Table.Cell>{data.totalTokenRedeemed.shift(-9).toNumber()}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>ETC funded (balance + redeeemed)</Table.Cell>
+                <Table.Cell>{data.totalWeiRedeemed.add(data.weiBalance).shift(-18).toFormat(2)}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>Exchange Rate</Table.Cell>
+                <Table.Cell>1 DGDR = {data.rate.shift(-9).toNumber()} ETC</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>Exchange Rate (wei per DGDR / 1e9)</Table.Cell>
+                <Table.Cell>{data.rate.toFormat(0)}</Table.Cell>
+              </Table.Row>
+            </Table.Body>
+            {/* TODO Cold Storage */}
+          </Table>
+          <Advanced title="JSON">
+            <pre><code>
+              {JSON.stringify(data, null, 2)}
+            </code></pre>
+          </Advanced>
+        </Segment>
+      </div>
     );
   }
 }

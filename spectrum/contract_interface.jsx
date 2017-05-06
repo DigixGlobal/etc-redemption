@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Container, Grid, Header, Loader } from 'semantic-ui-react';
+import { Divider, Container, Grid, Header, Loader } from 'semantic-ui-react';
 
 import Redeem from './redeem.jsx';
 import ContractStatus from './contract_status.jsx';
@@ -95,18 +95,16 @@ export default class ContractInterface extends Component {
       <Grid stackable columns={2}>
         <Grid.Column width={16}>
           <Container text textAlign="center">
-            <Header content="Digix ETC Redemption Contract" subheader={contract.address} />
+            <Header content="Digix ETC Redemption Contract" />
             <Redeem {...{ network, contract, web3, data }} />
           </Container>
         </Grid.Column>
         <Grid.Column>
-          <Header content="Contract Info" />
           <ContractStatus {...{ contract, web3, data, getStatus: this.getStatus }} />
         </Grid.Column>
         <Grid.Column>
-          <Header content="Address Info" />
           <AddressSearch {...{ contract, web3, data }} />
-          <Header content="Snapshot Balances" />
+          <Divider hidden />
           <ExplorerTable {...{ contract, web3, data }} />
         </Grid.Column>
       </Grid>

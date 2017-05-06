@@ -27,25 +27,31 @@ export default class AddressSearch extends Component {
     const balanceOf = bal && bal.toNumber() && bal;
     const redeemedOf = red && red.toNumber() && red;
     return (
-      <Segment>
-        <AddressInput placeholder="Enter address to check info" onChange={this.handleAddressChange} value={address} />
-        {valid && address && (
-          <Table definition>
-            <Table.Row positive={!!balanceOf}>
-              <Table.Cell>DGDR Balanace</Table.Cell>
-              <Table.Cell>{(balanceOf && <b>{balanceOf.shift(-9).toFormat(2)}</b>) || 0}</Table.Cell>
-            </Table.Row>
-            <Table.Row positive={!!balanceOf}>
-              <Table.Cell>ETC Equivalent Balanace</Table.Cell>
-              <Table.Cell>{(balanceOf && <b>{balanceOf.mul(rate).shift(-18).toFormat(2)}</b>) || 0}</Table.Cell>
-            </Table.Row>
-            <Table.Row positive={!!redeemedOf}>
-              <Table.Cell>DGDR Redeemed</Table.Cell>
-              <Table.Cell>{(redeemedOf && <b>{redeemedOf.div(1e8).toFormat(2)}</b>) || 0}</Table.Cell>
-            </Table.Row>
-          </Table>
-        )}
-      </Segment>
+      <div>
+        <Header>
+          Account Search
+          <Header.Subheader>Check DGDR balance of specific address</Header.Subheader>
+        </Header>
+        <Segment>
+          <AddressInput placeholder="Enter address to check info" onChange={this.handleAddressChange} value={address} />
+          {valid && address && (
+            <Table definition>
+              <Table.Row positive={!!balanceOf}>
+                <Table.Cell>DGDR Balanace</Table.Cell>
+                <Table.Cell>{(balanceOf && <b>{balanceOf.shift(-9).toFormat(2)}</b>) || 0}</Table.Cell>
+              </Table.Row>
+              <Table.Row positive={!!balanceOf}>
+                <Table.Cell>ETC Equivalent Balanace</Table.Cell>
+                <Table.Cell>{(balanceOf && <b>{balanceOf.mul(rate).shift(-18).toFormat(2)}</b>) || 0}</Table.Cell>
+              </Table.Row>
+              <Table.Row positive={!!redeemedOf}>
+                <Table.Cell>DGDR Redeemed</Table.Cell>
+                <Table.Cell>{(redeemedOf && <b>{redeemedOf.div(1e8).toFormat(2)}</b>) || 0}</Table.Cell>
+              </Table.Row>
+            </Table>
+          )}
+        </Segment>
+      </div>
     );
   }
 }

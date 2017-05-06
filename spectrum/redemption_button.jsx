@@ -20,7 +20,7 @@ export default class RedemptionButton extends Component {
         <TransactionModal
           {...{ web3, network }}
           header="ETC Redemption"
-          data={{ from: defaultAddress.address, gas: 100000 }}
+          data={{ from: defaultAddress.address, gas: 200000 }}
           handleTransaction={this.props.handleRedeem}
           onMined={this.props.handleMined}
           form={({ formChange, formData }) => {
