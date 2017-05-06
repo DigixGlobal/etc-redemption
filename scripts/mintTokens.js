@@ -37,16 +37,21 @@ function mintTokens({ data, token }) {
   });
 }
 
+
 module.exports = async function () {
   const token = await Token.deployed();
-  const output = `${scriptsDir}transactions-${toBlock}-${new Date().getTime()}`;
+  const output = `${scriptsDir}/transactions-${toBlock}-${new Date().getTime()}`;
   const filename = fs.readdirSync(scriptsDir).filter(a => a.indexOf(`balances-${toBlock}-`) === 0)[0];
   const data = JSON.parse(fs.readFileSync(`${scriptsDir}/${filename}`));
   // write the report on exit, catching errors
+  let written = false;
   function exitHandler() {
-    fs.writeFileSync(output, JSON.stringify(transactions));
-    console.log(`wrote: transactions-${toBlock}-${new Date().getTime()}`);
-    process.exit();
+    if (!written) {
+      written = true;
+      fs.writeFileSync(output, JSON.stringify(transactions));
+      console.log(`wrote: transactions-${toBlock}-${new Date().getTime()}`);
+      process.exit();
+    }
   }
   process.on('exit', exitHandler);
   process.on('SIGINT', exitHandler);
