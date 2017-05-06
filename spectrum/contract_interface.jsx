@@ -12,7 +12,7 @@ export default class ContractInterface extends Component {
     this.getStatus = this.getStatus.bind(this);
   }
   componentDidMount() {
-    this.getStatus();
+    this.startPoll();
   }
   componentWillUnmount() {
     this.stopPoll();

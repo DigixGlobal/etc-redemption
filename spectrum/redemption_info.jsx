@@ -47,6 +47,7 @@ class RedemptionInfo extends Component {
   }
   render() {
     const { web3, defaultAddress, data, contract, network } = this.props;
+    const { handleRedeem, handleMined } = this;
     if (!defaultAddress) { return null; }
     const balanceOf = contract.balanceOf(defaultAddress.address);
     const redeemedOf = contract.redeemedOf(defaultAddress.address);
@@ -56,18 +57,7 @@ class RedemptionInfo extends Component {
     return (
       <Form>
         <Form.Field style={{ textAlign: 'center' }}>
-          {etcBalance ?
-            <RedemptionButton {...{ web3, network, dgdrBalance, defaultAddress, etcBalance }} />
-          :
-            <Button
-              fluid
-              disabled
-              basic
-              content="Selected account has no DGDR balance"
-              size="huge"
-              icon="frown"
-            />
-          }
+          <RedemptionButton {...{ handleMined, handleRedeem, web3, network, dgdrBalance, defaultAddress, etcBalance }} />
           <Divider hidden />
           {!!dgdrRedeemed &&
             <Label content={`You have already redeeemd ${dgdrRedeemed} DGDR`} size="large" color="blue" icon="history" />

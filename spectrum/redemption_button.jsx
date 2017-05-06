@@ -6,21 +6,23 @@ const TransactionModal = require('@digix/spectrum/src/components/transactions/tr
 const AddressInput = require('@digix/spectrum/src/components/common/address_input').default;
 
 export default class RedemptionButton extends Component {
-  shouldComponentUpdate({ defaultAddress: { address } }) {
-    return this.props.defaultAddress.address !== address;
+  shouldComponentUpdate(nextProps) {
+    const { defaultAddress: { address }, dgdrBalance } = this.props || {};
+    const { defaultAddress: { address: newAddress }, dgdrBalance: newDgdrBalance } = nextProps;
+    return address !== newAddress || dgdrBalance !== newDgdrBalance;
   }
   render() {
     const { web3, network, dgdrBalance, defaultAddress, etcBalance } = this.props;
     return (
       <div>
-        <Label size="large" color="green" content={`You have ${dgdrBalance} DGDR`} icon="checkmark" />
+        {!!dgdrBalance && <Label size="large" color="green" content={`You have ${dgdrBalance} DGDR`} icon="checkmark" />}
         <Divider hidden />
         <TransactionModal
           {...{ web3, network }}
           header="ETC Redemption"
           data={{ from: defaultAddress.address, gas: 100000 }}
-          handleTransaction={this.handleRedeem}
-          onMined={this.handleMined}
+          handleTransaction={this.props.handleRedeem}
+          onMined={this.props.handleMined}
           form={({ formChange, formData }) => {
             return (
               <Form.Field>
@@ -34,7 +36,16 @@ export default class RedemptionButton extends Component {
               </Form.Field>
             );
           }}
-          trigger={
+          trigger={!etcBalance ?
+            <Button
+              fluid
+              disabled
+              basic
+              content="Selected account has no DGDR balance"
+              size="huge"
+              icon="frown"
+            />
+          :
             <Button
               fluid
               size="huge"
@@ -45,7 +56,7 @@ export default class RedemptionButton extends Component {
             />
           }
         />
-        <CryptoPrice textAlign="center" basic pointing size="large" symbol="ETC" amount={etcBalance} />
+        {!!etcBalance && <CryptoPrice textAlign="center" basic pointing size="large" symbol="ETC" amount={etcBalance} />}
       </div>
     );
   }
@@ -57,4 +68,6 @@ RedemptionButton.propTypes = {
   dgdrBalance: PropTypes.object.isRequired,
   defaultAddress: PropTypes.object.isRequired,
   etcBalance: PropTypes.object.isRequired,
+  handleRedeem: PropTypes.func.isRequired,
+  handleMined: PropTypes.func.isRequired,
 };
