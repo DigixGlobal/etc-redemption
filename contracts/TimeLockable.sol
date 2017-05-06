@@ -15,7 +15,7 @@ contract TimeLockable is Permissioned {
   }
 
   /// @notice Set the activation block number
-  /// @param _blockNumber Contract will become active if current block is greater than this
+  /// @param _blockNumber Contract will become active if current block is greater or equal than this
   function setActivationBlock(uint _blockNumber) onlyAdmin {
     activationBlock = _blockNumber;
   }

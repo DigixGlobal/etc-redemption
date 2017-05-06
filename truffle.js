@@ -16,19 +16,22 @@ module.exports = {
       provider: new LightWalletProvider({
         keystore: KEYSTORE,
         password: PASSWORD,
-        rpcUrl: 'https://kovan.infura.io/',
+        // rpcUrl: 'https://ethereum03.digixdev.com/',
+        // rpcUrl: 'https://kovan.infura.io/',
+        rpcUrl: 'http://localhost:8545/',
         pollingInterval: 2000,
       }),
     },
     classic: {
-      network_id: '1',
+      network_id: '61',
       gas: 2500000,
       gasPrice: 21000000000,
       provider: new LightWalletProvider({
         keystore: KEYSTORE,
         password: PASSWORD,
-        rpcUrl: 'http://localhost:8547', // must use geth etc client
+        // rpcUrl: 'http://localhost:8547', // must use geth etc client
         // rpcUrl: 'https://digixparity04.digix.io/',
+        rpcUrl: 'https://mewapi.epool.io/',
       }),
     },
   },
