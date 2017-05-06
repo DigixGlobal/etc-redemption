@@ -42,7 +42,6 @@ module.exports = async function () {
     if (data.balances[k].combined < minimumDgdWei) { return o; }
     return Object.assign(o, { [k]: data.balances[k] });
   }, {});
-  console.log(balances);
   const thisBlock = await (a.callback(web3.eth.getBlockNumber));
   const events = await getEvents(token.Mint, 'Mint', { fromBlock: 0, toBlock: thisBlock });
   // reduce events into addresses, compare lengths

@@ -9,6 +9,7 @@ import AddressSearch from './address_search.jsx';
 export default class ContractInterface extends Component {
   constructor(props) {
     super(props);
+    this.state = {};
     this.getStatus = this.getStatus.bind(this);
   }
   componentDidMount() {
@@ -30,11 +31,53 @@ export default class ContractInterface extends Component {
     ]);
   }
   startPoll() {
+    const { contract, web3 } = this.props;
     const poll = () => {
       this.getStatus().then(() => {
         this.updated = true;
         if (!this.unmounted) {
           this.timeout = setTimeout(poll, 1000 * 4);
+          const rate = contract.rate();
+          const activationBlock = contract.activationBlock();
+          const totalSupply = contract.totalSupply();
+          const totalTokenRedeemed = contract.totalTokensRedeemed();
+          const totalWeiRedeemed = contract.totalWeiRedeemed();
+          const weiBalance = web3.eth.balance(contract.address);
+          const blockNumber = web3.eth.blockNumber();
+          const totalTokenExisted = totalSupply.add(totalTokenRedeemed);
+          const totalWeiSupply = totalTokenExisted.mul(rate);
+          const weiRemaining = totalWeiSupply.sub(totalWeiRedeemed);
+          // TODO this is made up! actually get the multisig address
+          const multiSigBalance = totalWeiSupply.sub(weiBalance);
+          const active = activationBlock > 0 && activationBlock.lte(blockNumber);
+          const etcRedeemed = totalWeiRedeemed.shift(-18).toFormat(0);
+          const etcRemaining = weiRemaining.shift(-18).toFormat(0);
+          const etcPercent = 100 - totalTokenRedeemed.div(totalTokenExisted).mul(100).round().toNumber();
+          const etcBalance = weiBalance.shift(-18).toFormat(0);
+          const topUpPercent = weiBalance.div(weiRemaining).mul(100).round().toNumber();
+          const multiSigEtc = multiSigBalance.shift(-18).toFormat(0);
+          const multiSigPercent = multiSigBalance.div(weiRemaining).mul(100).round().toNumber(0);
+          this.setState({ data: {
+            rate,
+            activationBlock,
+            totalSupply,
+            totalTokenRedeemed,
+            totalWeiRedeemed,
+            weiBalance,
+            blockNumber,
+            totalTokenExisted,
+            totalWeiSupply,
+            weiRemaining,
+            multiSigBalance,
+            active,
+            etcRedeemed,
+            etcRemaining,
+            etcPercent,
+            etcBalance,
+            topUpPercent,
+            multiSigEtc,
+            multiSigPercent,
+          } });
         }
       });
     };
@@ -46,40 +89,8 @@ export default class ContractInterface extends Component {
   }
   render() {
     const { contract, web3, network } = this.props;
-    const loader = <Loader active inline />;
-    if (!contract || !web3) { return loader; }
-    const rawData = {
-      rate: contract.rate(),
-      activationBlock: contract.activationBlock(),
-      totalSupply: contract.totalSupply(),
-      totalTokenRedeemed: contract.totalTokensRedeemed(),
-      totalWeiRedeemed: contract.totalWeiRedeemed(),
-      weiBalance: web3.eth.balance(contract.address),
-      blockNumber: web3.eth.blockNumber(),
-    };
-    // console.log(rawData);
-    if (Object.values(rawData).some(v => v === undefined)) { return loader; }
-    // decorate with calculated args
-    const totalTokenExisted = rawData.totalSupply.add(rawData.totalTokenRedeemed);
-    const totalWeiSupply = totalTokenExisted.mul(rawData.rate);
-    const weiRemaining = totalWeiSupply.sub(rawData.totalWeiRedeemed);
-    // TODO this is made up! actually get the multisig address
-    const multiSigBalance = totalWeiSupply.sub(rawData.weiBalance);
-    // console.log(' 21wtf', rawData.weiBalance.div(totalWeiSupply).mul(100));
-    const data = {
-      ...rawData,
-      totalWeiSupply,
-      multiSigBalance,
-      totalTokenExisted,
-      active: rawData.activationBlock > 0 && rawData.activationBlock.lte(rawData.blockNumber),
-      etcRedeemed: rawData.totalWeiRedeemed.div(1e18).toFormat(0),
-      etcRemaining: weiRemaining.div(1e18).toFormat(0),
-      etcPercent: 100 - rawData.totalTokenRedeemed.div(totalTokenExisted).mul(100).round().toNumber(),
-      etcBalance: rawData.weiBalance.div(1e18).toFormat(0),
-      topUpPercent: rawData.weiBalance.div(weiRemaining).mul(100).round().toNumber(),
-      multiSigEtc: multiSigBalance.div(1e18).toFormat(0),
-      multiSigPercent: multiSigBalance.div(weiRemaining).mul(100).round().toNumber(0),
-    };
+    const { data } = this.state;
+    if (!contract || !web3 || !data) { return <Loader active inline />; }
     return (
       <Grid stackable columns={2}>
         <Grid.Column width={16}>

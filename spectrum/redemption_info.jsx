@@ -28,7 +28,6 @@ class RedemptionInfo extends Component {
     const { contract, defaultAddress } = this.props;
     const { address } = defaultAddress || {};
     const a = nextAddress || address;
-    console.log('getting balances', a);
     if (a) {
       contract.balanceOf.call(a);
       contract.redeemedOf.call(a);
@@ -51,9 +50,9 @@ class RedemptionInfo extends Component {
     if (!defaultAddress) { return null; }
     const balanceOf = contract.balanceOf(defaultAddress.address);
     const redeemedOf = contract.redeemedOf(defaultAddress.address);
-    const dgdrBalance = balanceOf && balanceOf.toNumber() && balanceOf.div(1e9).toFormat(2);
-    const etcBalance = balanceOf && balanceOf.toNumber() && balanceOf.mul(data.rate).div(1e18).toFormat(2);
-    const dgdrRedeemed = redeemedOf && redeemedOf.toNumber() && redeemedOf.div(1e9).toFormat(2);
+    const dgdrBalance = balanceOf && balanceOf.toNumber() && balanceOf.shift(-9).toFormat(2);
+    const etcBalance = balanceOf && balanceOf.toNumber() && balanceOf.mul(data.rate).shift(-18).toFormat(2);
+    const dgdrRedeemed = redeemedOf && redeemedOf.toNumber() && redeemedOf.shift(-9).toFormat(2);
     return (
       <Form>
         <Form.Field style={{ textAlign: 'center' }}>

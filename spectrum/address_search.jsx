@@ -33,11 +33,11 @@ export default class AddressSearch extends Component {
           <Table definition>
             <Table.Row positive={!!balanceOf}>
               <Table.Cell>DGDR Balanace</Table.Cell>
-              <Table.Cell>{(balanceOf && <b>{balanceOf.div(1e9).toFormat(2)}</b>) || 0}</Table.Cell>
+              <Table.Cell>{(balanceOf && <b>{balanceOf.shift(-9).toFormat(2)}</b>) || 0}</Table.Cell>
             </Table.Row>
             <Table.Row positive={!!balanceOf}>
               <Table.Cell>ETC Equivalent Balanace</Table.Cell>
-              <Table.Cell>{(balanceOf && <b>{balanceOf.mul(rate).div(1e18).toFormat(2)}</b>) || 0}</Table.Cell>
+              <Table.Cell>{(balanceOf && <b>{balanceOf.mul(rate).shift(-18).toFormat(2)}</b>) || 0}</Table.Cell>
             </Table.Row>
             <Table.Row positive={!!redeemedOf}>
               <Table.Cell>DGDR Redeemed</Table.Cell>

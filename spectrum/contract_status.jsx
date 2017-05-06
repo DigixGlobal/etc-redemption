@@ -61,27 +61,27 @@ export default class ContractStatus extends Component {
             </Table.Row>
             <Table.Row>
               <Table.Cell>Total DGDR created</Table.Cell>
-              <Table.Cell>{data.totalTokenExisted.div(1e9).toNumber()}</Table.Cell>
+              <Table.Cell>{data.totalTokenExisted.shift(-9).toNumber()}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>ETC balance</Table.Cell>
-              <Table.Cell>{data.weiBalance.div(1e18).toNumber()}</Table.Cell>
+              <Table.Cell>{data.weiBalance.shift(-18).toNumber()}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>ETC to be distributed (incl. redeemed)</Table.Cell>
-              <Table.Cell>{data.totalTokenExisted.mul(data.rate).div(1e18).toFormat(2)}</Table.Cell>
+              <Table.Cell>{data.totalTokenExisted.mul(data.rate).shift(-18).toFormat(2)}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>DGDR redeemed</Table.Cell>
-              <Table.Cell>{data.totalTokenRedeemed.div(1e9).toNumber()}</Table.Cell>
+              <Table.Cell>{data.totalTokenRedeemed.shift(-9).toNumber()}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>ETC funded (balance + redeeemed)</Table.Cell>
-              <Table.Cell>{data.totalWeiRedeemed.add(data.weiBalance).div(1e18).toFormat(2)}</Table.Cell>
+              <Table.Cell>{data.totalWeiRedeemed.add(data.weiBalance).shift(-18).toFormat(2)}</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Exchange Rate</Table.Cell>
-              <Table.Cell>1 DGDR = {data.rate.mul(1e9).div(1e18).toNumber()} ETC</Table.Cell>
+              <Table.Cell>1 DGDR = {data.rate.shift(-9).toNumber()} ETC</Table.Cell>
             </Table.Row>
             <Table.Row>
               <Table.Cell>Exchange Rate (wei per DGDR / 1e9)</Table.Cell>

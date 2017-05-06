@@ -3,8 +3,8 @@ const Web3 = require('web3');
 
 const { toBigNumber } = new Web3();
 
-const dgdWei = toBigNumber(dgdPool).mul(1e9);
-const wei = toBigNumber(etcPool).mul(1e18);
+const dgdWei = toBigNumber(dgdPool).shift(9);
+const wei = toBigNumber(etcPool).shift(18);
 const rate = wei.dividedBy(dgdWei);
 
 console.log({
