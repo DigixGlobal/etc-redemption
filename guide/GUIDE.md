@@ -184,6 +184,4 @@ $ cd spectrum
 $ open index.html # opens in browser, or start static server instead
 ```
 
-You could even copy this folder to an SD card and run it on a mobile phone by navigating to `file:///sdcard<path_on_device>/index.html`
-
 In modern versions of chrome, you can simple save `cmd & s` and select `Web Page, Complete` to save a working offline version of Spectrum (although right now the icons don't work - fix incoming).
