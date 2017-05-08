@@ -4,7 +4,7 @@
 
 This document is a guide for DGD holders outlining the required steps for redeeming ETC. For background, please review previous announcements and documentation on the ETC redemption contract.
 
-DGD holders are credited with DGDR tokens on the ETC chain, which can be used to call the `redeem(_to)` method on the DGDR contract and exchange them for an equivalent ETC balance. This requires executing a transaction on the ETC chain using the same keystore that holds DGD on the main chain. There are several methods available, which one depends on the DGDR holder's keystore type.
+DGD holders are credited with DGDR tokens on the ETC chain, which can be used to call the `redeem(_to)` method on the DGDR contract and exchange them for an equivalent ETC balance. This requires executing a transaction on the ETC chain using the same keystore that holds DGD on the main chain. There are several methods available, which one used depends on the DGDR holder's keystore type and security/convenience preferences.
 
 The sender of the redemption transaction (DGDR holder) will need a small amount of ETC to preform the transaction.
 
@@ -19,13 +19,15 @@ The `redeem` method on the Redemption Contract needs to be passed an address; `_
 * A *different* (preferably new) ETC address that you control, to prevent potential replay attacks
 * A standard address that you can access the keystore of; **NOT an exchange or contract address!**
 
+Additionally, DGDR uses Ethereum's token 'standard' and it can be used on many ERC20-compatible applications. DGDR balances are burned entirely (to 0) on redemption to prevent double spends.
+
 ## Redemption Contract Address
 
 Current ETC *dry-run* test address: 0x2ea9a44fb6bf22f09263eb59807aa5bc7f6dc9e2
 
 The real (not dry-run) deployment address will be announced at a future date and can be seen in the [Spectrum UI](https://spectrum-alpha.digixdev.com).
 
-![Contract address](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/764D356A-6029-4C84-AE61-9C3AF6AA8CDF.png)
+![Contract address](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/C9A18098-521B-485D-8155-143786AC733E.png)
 
 ## ABI (just the `redeem` method)
 
