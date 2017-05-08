@@ -38,9 +38,9 @@ The real (not dry-run) deployment address will be announced at a future date and
 ## Recommended Methods for sending `redeem` transaction
 
 - [Spectrum (bespoke UI)](#spectrum)
-- [MyEtherWallet](#MyEtherWallet)
+- [MyEtherWallet](#myetherwallet)
 - [Parity](#parity)
-- [Geth (Ethereum Classic)](#geth)
+- [Geth](#geth)
 
 At present the most battle-tested client is MEW. You can also use the newer (but less tested) Spectrum (by Digix), which has a UI built specifically for the ETC Redemption Contract. These web clients support a range of different features:
 
@@ -104,12 +104,6 @@ You should then see a transaction confirmation, click 'View your transaction' an
 
 You should now have the ETC redeemed
 
-
-### Geth
-
-Download the Ethereum Classic Geth Client
-
-
 ### Parity
 
 Start Parity with `parity --chain classic`
@@ -157,3 +151,7 @@ Click Post Transaction
 Enter your Password in parity signer and confirm the request
 
 You should now have a transaction ID, please record it
+
+### Geth (Ethereum Classic)
+
+Download the [Ethereum Classic Geth Client](https://github.com/ethereumproject/go-ethereum) and use the CLI or [truffle](http://truffleframework.com/) :)
