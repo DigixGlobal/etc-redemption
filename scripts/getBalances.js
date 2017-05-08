@@ -7,7 +7,7 @@ const getEvents = require('./helpers/getEvents');
 const { scriptsDir, toBlock } = require('./helpers/config');
 
 // const provider = require('./helpers/provider'); // if we wanted to try with infura
-const provider = new Web3.providers.HttpProvider('http://localhost:8546');
+const provider = new Web3.providers.HttpProvider('http://localhost:8545');
 // const provider = new Web3.providers.HttpProvider('https://mainnet.infura.io');
 
 const web3 = new Web3(provider);

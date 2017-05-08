@@ -7,12 +7,14 @@ function getData(name) {
   const data = type === 'default' ?
     Object.keys(parsed.balances).reduce((o, key) => {
       const { dgd, unclaimedDgdWei, combined } = parsed.balances[key];
-      return Object.assign({}, o, { [key]: { dgd: parseFloat(dgd, 10), unclaimedDgdWei, combined } });
+      const parsedDgd = parseFloat(dgd, 10);
+      const test = parseFloat(`${parsedDgd.toFixed(8)}`);
+      return Object.assign({}, o, { [key]: { test, dgd: parsedDgd, unclaimedDgdWei, combined } });
     }, {})
   :
     Object.keys(parsed.items).reduce((o, key) => {
       const dgd = parsed.items[key];
-      return Object.assign({}, o, { [key]: { dgd } });
+      return Object.assign({}, o, { [key]: { test: dgd, dgd } });
     }, {});
   return { name, type, data };
 }
@@ -33,8 +35,8 @@ function validateData(dataSet) {
         fail += `missing ${key}`;
       }
       if (data[key] && prev.data[key]) {
-        if (data[key].dgd !== prev.data[key].dgd) {
-          fail += `dgd ${data[key].dgd} !== ${prev.data[key].dgd} `;
+        if (data[key].test !== prev.data[key].test) {
+          fail += `dgd ${data[key].test} !== ${prev.data[key].test} `;
         }
         // again, only compare non-etherscan links
         if (type !== 'etherscan' && prev.type !== 'etherscan') {
