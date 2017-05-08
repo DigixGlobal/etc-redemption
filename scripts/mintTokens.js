@@ -45,7 +45,7 @@ function mintTokens({ data, token }) {
 
 module.exports = async function () {
   const token = await Token.deployed();
-  const output = `${scriptsDir}/transactions-${toBlock}-${new Date().getTime()}`;
+  const output = `${scriptsDir}/transactions-${toBlock}-${new Date().getTime()}.json`;
   const filename = fs.readdirSync(scriptsDir).filter(a => a.indexOf(`balances-${toBlock}-`) === 0)[0];
   const data = JSON.parse(fs.readFileSync(`${scriptsDir}/${filename}`));
   // write the report on exit, catching errors
@@ -54,7 +54,7 @@ module.exports = async function () {
     if (!written) {
       written = true;
       fs.writeFileSync(output, JSON.stringify(transactions));
-      console.log(`wrote: transactions-${toBlock}-${new Date().getTime()}`);
+      console.log(`wrote: ${output}`);
       process.exit();
     }
   }
