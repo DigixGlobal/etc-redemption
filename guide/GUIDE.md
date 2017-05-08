@@ -65,7 +65,7 @@ https://myetherwallet.com/#contracts
 
 Select ETC (top right)
 
-![Select ETC (top right)](https://github.com/adam-p/markdown-here/raw/master/guide/451060D0-F428-4609-9A8F-A55B86C6A92D.png)
+![Select ETC (top right)](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/451060D0-F428-4609-9A8F-A55B86C6A92D.png)
 
 Open the "contracts" tab
 
