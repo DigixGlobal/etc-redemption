@@ -57,7 +57,39 @@ At present the most battle-tested client is MEW. You can also use the newer (but
 
 Should all of the public RPC nodes become unavailable for some reason such as a Denial of Service attack, or you just prefer to be decentralized, you can still publish the redemption transaction by running a local ETC node. We would recommend using either Parity, or for hardware wallets, the [local dist version of MEW](https://github.com/kvhnuke/etherwallet#users-non-developers) and either Parity of Geth (ETC Fork).
 
-## Method Method Instructions
+You can also visit the latest version online via infura's IPFS gateway:
+
+`<latest_ipfs_hash> = QmV6fagfrX8eZmtJnQnrHCKUAqbWquzM8iiMhZty3LMqwL` (updated 8/5)
+
+https://ipfs.infura.io/ipfs/<latest_ipfs_hash>
+
+### Running Locally
+
+Running over HTTP allows you to connect to a local RPC instance running on http:// (such as parity or geth)
+
+You create a folder that is small and portable and can be easily hosted or copied and used from a USB drive
+
+The recommended method is to install [IPFS](https://github.com/ipfs/go-ipfs) locally, and start it using `ipfs daemon`:
+
+You can then navigate to a local gateway:
+
+http://localhost:8090/ipfs/<latest_ipfs_hash>
+
+Or you can copy Spectrum and run locally
+
+```bash
+$ ipfs get <latest_ipfs_hash> -o spectrum
+Saving file(s) to spectrum
+4.54 MB / 4.54 MB [================================================] 100.00% 0s
+$ cd spectrum
+$ open index.html # opens in browser, or start static server instead
+```
+
+You could even copy this folder to an SD card and run it on a mobile phone by navigating to `file:///sdcard<path_on_device>/index.html`
+
+In modern versions of chrome, you can simple save `cmd & s` and select `Web Page, Complete` to save a working offline version of Spectrum (although right now the icons don't work - fix incoming).
+
+## Ways of transacting with the `redeem` method
 
 ### Spectrum
 
