@@ -4,6 +4,11 @@ const { randomAddress, assertThrow } = require('./helpers');
 
 const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
 
+const MockThrowableA = artifacts.require('MockThrowableA');
+const MockThrowableB = artifacts.require('MockThrowableB');
+const MockThrowableC = artifacts.require('MockThrowableC');
+const MockThrowableD = artifacts.require('MockThrowableD');
+
 contract('EtcRedemptionToken', function (accounts) {
   let token;
   describe('init', function () {
@@ -179,5 +184,29 @@ contract('EtcRedemptionToken', function (accounts) {
       assert.equal(await token.totalWeiRedeemed.call(), rate.mul(minted).toString(10));
       assert.equal(await token.totalSupply.call(), 0);
     });
+  });
+  describe('redeem with external contract', function () {
+    function testSuite(Throwable, name) {
+      return it(`throws when redeeming with with a contract (${name})`, async function () {
+        const throwable = await Throwable.new();
+        token = await EtcRedemptionToken.new({ from: accounts[0] });
+        await token.fund({ value: 1000, from: accounts[0] });
+        await token.setRate(1, { from: accounts[0] });
+        await token.mint(accounts[0], 100, { from: accounts[0] });
+        await token.setActivationBlock(1, { from: accounts[0] });
+        assert.equal((await token.totalSupply.call()).toNumber(), 100);
+        assert.equal((await token.balanceOf(accounts[0])).toNumber(), 100);
+        assert.equal((await a.callback(web3.eth.getBalance, throwable.address)).toNumber(), 0);
+        assert.equal((await a.callback(web3.eth.getBalance, token.address)).toNumber(), 1000);
+        await assertThrow(() => token.redeem(throwable.address, { from: accounts[0] }));
+        assert.equal((await token.balanceOf(accounts[0])).toNumber(), 100);
+        assert.equal((await a.callback(web3.eth.getBalance, throwable.address)).toNumber(), 0);
+        assert.equal((await a.callback(web3.eth.getBalance, token.address)).toNumber(), 1000);
+      });
+    }
+    testSuite(MockThrowableA, 'A');
+    testSuite(MockThrowableB, 'B');
+    testSuite(MockThrowableC, 'C');
+    testSuite(MockThrowableD, 'D');
   });
 });
