@@ -4,17 +4,19 @@ This repository contains contracts and scripts for the deployment and execution 
 
 The project is currently in "Dry run" mode, where a live test deployment is available on ETC chain.
 
-A dapp UI is deployed to https://spectrum-alpha.digixdev.com
+---
 
-Please view the [the user guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md) for specific instructions redeeming DGDR into ETC.
+* **[DGDR to ETC User Guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md)**
+* **[Spectrum Dapp UI](https://spectrum-alpha.digixdev.com)**
+* **[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)**
+
+---
 
 ## Overview
 
 [Digix recently outlined](https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40) a proposal to allow DGD holders to redeem ETC. Since this proposal, with feedback from the DGD holder community, it has evolved into a less complex redemption process (by removing the voting step). This repository has been produced to describe and provide all the tools needed perform this updated redemption process.
 
 The proposed contracts and process details are presented to the community for discussion, questions and criticisms. The current codebase is subject to change pending code review.
-
-**[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)**
 
 ## Changes to Proposal v1
 
