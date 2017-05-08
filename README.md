@@ -4,7 +4,9 @@ This repository contains contracts and scripts for the deployment and execution 
 
 The project is currently in "Dry run" mode, where a live test deployment is available on ETC chain.
 
-Please view the [the user guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md) for specific instructions on using the ETC withdrawal contract to redeem DGDR into ETC.
+A dapp UI is deployed to https://spectrum-alpha.digixdev.com
+
+Please view the [the user guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md) for specific instructions redeeming DGDR into ETC.
 
 ## Overview
 

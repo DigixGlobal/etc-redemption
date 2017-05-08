@@ -1,6 +1,10 @@
-# [Draft] Digix ETC Redemption Process
+# Digix ETC Redemption Process
 
 This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
+
+The project is currently in "Dry run" mode, where a live test deployment is available on ETC chain.
+
+Please view the [the user guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md) for specific instructions on using the ETC withdrawal contract to redeem DGDR into ETC.
 
 ## Overview
 
@@ -18,29 +22,33 @@ This updated includes some changes to the [previously announced proposal](https:
 
 The main change is that we've decided to skip the carbonvote step. After gauging sentiment from DGD holders (including 'whales' and the general DGD community), there was no resistance to the principal of returning ETC to DGD holders. Therefore we have determined it would be better to forego the voting process as it would yield additional development time and reach a non-controversial already-known outcome (the motion to refund ETC to DGD holders).
 
-### Redemption Token Contract (RTC, aka ETC-DGDR)
+### ETC Redemption Contract
 
-In the previous proposal, the RTC was somewhat sidelined as the voting system would be the primary refund mechanism. Without voting, the RTC becomes the primary (only) mechanism, so additional time has been spend designing and developing it accordingly. See [Redemption Token Contract](#redemption-token-contract) section for more details.
+The redemption contract allows users to claim an ETC balance by redeeming tokens that are issued to them automatically on the ETC chain.
 
-Each redemption token represents 1:1 equivalent of DGD balances. These redemption tokens are known as `ETC-DGDR`. To claim ETC, holders of ETC-DGDR should call a method on the ETC-DGDR contract to burn their holdings in return of an ETC value. At the point of burning, the balance of ETC-DGDR drops to 0, and a fixed rate will be used to convert this balance into ETC.
+Each redemption token represents 1:1 equivalent of DGD balances. These redemption tokens are known as `DGDR`, which is an EIP20 token.
 
-For example, a user has 100 DGD, gets 100 ETC-DGDR, and burns it for ~22.3 ETC.
+To claim ETC, holders of `DGDR` should call a method on the `DGDR` contract to burn their holdings in return of an ETC value. At the point of burning, the balance of `DGDR` drops to 0, and a fixed rate will be used to convert this balance into ETC.
+
+For example, a user has 100 DGD, gets 100 `DGDR`, and burns it for ~22.3 ETC.
 
 The conversion rate to ETC used will be close to 100% of the original ETC pool, but with an additional fee deduced from the pool based on the gas used for testing, deployment and minting (which could amount to around a few USD cents per user).
+
+See [Redemption Token Contract](#redemption-token-contract) section for more details.
 
 ### MultiSig & Top-up System
 
 * Two MultiSig contracts
   * ETH Chain (to hold ETH from the Digix crowdsale until governance contracts live)
-  * ETC Chain (to hold refunded ETC and top up to the RTC, and execute RTC methods)
+  * ETC Chain (to hold refunded ETC and top up to the redemption contract, and execute it's methods)
 * 4 anonymous trusted parties will be in control of this contract
 * 3/4 of the parties to approve any transaction made from it
 
-A 'top-up' system will be used when passing funds to the RTC to reduce the effects of any unforeseen exploits. Batches of 100,000 ETC (?) will be added to the RTC as required (and topped up as the remaining balance reaches 10,000).
+A 'top-up' system will be used when passing funds to the redemption contract to reduce the effects of any unforeseen exploits. Batches of 100,000 ETC (?) will be added to the redemption contract as required (and topped up as the remaining balance reaches 10,000).
 
 ### Additional End User Resources
 
-As development focus shifted a carbonvote process to the RTC, some additional end-user requirements were identified to enable DGD holders to perform the redemption on the ETC chain with ease.
+As development focus shifted a carbonvote process to the redemption contract, some additional end-user requirements were identified to enable DGD holders to perform the redemption on the ETC chain with ease.
 
 * Instructions for MEW / CLI / Mist
 * Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
@@ -57,15 +65,15 @@ The new redemption process is split roughly into the following steps:
 This stage is managed by DigixGlobal and will not require interaction from DGD holders
 
 1. Public announcement of *snapshot* and *activation* block made
-1. After the snapshot block, RTC is deployed to ETC and balances are minted
+1. After the snapshot block, redemption contract is deployed to ETC and balances are minted
 1. Balances published to IPFS, confirmed by script & community
 1. Activation block is set, admin changed to Multisig
-1. RTC is funded by Multisig (using top-up)
+1. DGDR is funded by Multisig (using top-up)
 1. Activation block occurs (within 24 hours)
 
 ### Redemption
 
-After the activation block is reached, users with an ETC-DGDR balance will be able to proceed with redemptions; (optionally trading and then) burning their ETC-DGDR tokens in return for ETC using one of the following ways:
+After the activation block is reached, users with a `DGDR` balance will be able to proceed with redemptions; (optionally trading and then) burning their `DGDR` tokens in return for ETC using one of the following ways:
 
 * Use a local ETC Node
 * Use MEW + RPC Node
@@ -101,7 +109,7 @@ DGD holders perform a vote to determine action on unclaimed ETC
 
 ## Redemption Token Contract
 
-For full documentation on the methods please see the [contract docs](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/). The RTC is an extended EIP20 tradable token with the additional features:
+For full documentation on the methods please see the [contract docs](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/). The redemption contract is an extended EIP20 tradable token with the additional features:
 
 * Permissioned
   * Owned by one admin
@@ -148,7 +156,7 @@ The the parameters can be configured in `./scripts/helpers/config.json`.
 |May 5th|Around 1 week to make any updates or bugfixes to this proposal, pending community feedback|
 |May 12th|Snapshot block announced|
 |May 26th|Snapshot block occurs|
-|May 27th|Balances confirmed, RTC deployed|
+|May 27th|Balances confirmed, redemption contract deployed|
 |May 28th|Activation block reached, redemption is allowed|
 
 ## TODOs

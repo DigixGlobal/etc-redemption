@@ -1,10 +1,10 @@
 linkPrefix = "/etc-redemption"
-name = "@digix/etc-refund"
+name = "@digix/etc-redemption"
 license = "BSD-3-Clause"
 version = "0.0.1"
 description = "Digix Ethereum Classic Redemption"
 author = "DigixGlobal"
-buildTime = 2017-04-28T17:17:32.198Z
+buildTime = 2017-05-08T20:27:53.358Z
 target = "scripts/doxity"
 src = "contracts/*"
 dir = "pages/docs"
