@@ -156,11 +156,11 @@ Download the [Ethereum Classic Geth Client](https://github.com/ethereumproject/g
 
 Should all of the public RPC nodes become unavailable for some reason such as a Denial of Service attack, or you just prefer to be decentralized, you can still publish the redemption transaction by running a local ETC node. We would recommend using either Parity, or for hardware wallets, the [local dist version of MEW](https://github.com/kvhnuke/etherwallet#users-non-developers) and either Parity of Geth (ETC Fork).
 
-With Spectrum, you can also visit the latest version online via infura's IPFS gateway:
+With Spectrum, you can also visit the latest version online via an IPFS gateway:
 
 `<latest_ipfs_hash> = QmV6fagfrX8eZmtJnQnrHCKUAqbWquzM8iiMhZty3LMqwL` (updated 8/5)
 
-https://ipfs.infura.io/ipfs/<latest_ipfs_hash>
+https://gateway.ipfs.io/ipfs/<latest_ipfs_hash> or https://ipfs.infura.io/ipfs/<latest_ipfs_hash>
 
 ### Running Spectrum Locally
 
