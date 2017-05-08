@@ -10,13 +10,13 @@ class EtcRefund extends Component {
   render() {
     const loading = <p>Loading...</p>;
     const { web3Redux, networks } = this.props;
-    const { address: contractAddress } = (contractNetworks || {})['42'];
+    const { address: contractAddress } = (contractNetworks || {})['61'];
     if (!contractAddress) { return loading; }
-    const { web3 } = (web3Redux.networks || {})['eth-kovan'] || {};
+    const { web3 } = (web3Redux.networks || {})['etc'] || {};
     if (!web3) { return loading; }
     const contract = web3.eth.contract(abi).at(contractAddress);
     if (!contract) { return loading; }
-    const network = networks.find(n => n.id === 'eth-kovan');
+    const network = networks.find(n => n.id === 'etc');
     return <ContractInterface {...{ contract, web3, network }} />;
   }
 }

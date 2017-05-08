@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Header, Segment, Table, Message, Icon, Progress } from 'semantic-ui-react';
+import { Header, Segment, Table, Message, Progress } from 'semantic-ui-react';
 
 const Advanced = require('@digix/spectrum/src/components/common/advanced').default;
 
@@ -38,12 +38,18 @@ export default class ContractStatus extends Component {
     );
   }
   render() {
-    const { data, contract } = this.props;
+    const { data, contract, network } = this.props;
     return (
       <div>
         <Header>
-          Conrract Info
-          <Header.Subheader>{contract.address}</Header.Subheader>
+          Contract Info
+          <Header.Subheader>
+            {network.explorerAddressPrefix ?
+              <a href={`${network.explorerAddressPrefix}${contract.address}`} target="_blank">{contract.address}</a>
+            :
+              contract.address
+            }
+          </Header.Subheader>
         </Header>
         <Segment>
           {this.renderStatus()}
@@ -56,8 +62,6 @@ export default class ContractStatus extends Component {
           <Progress progress percent={data.multiSigPercent} color="blue">
             {data.multiSigEtc} ETC cold storage balance
           </Progress>
-          {/* TODO calculator input box */}
-
           <Table>
             <Table.Body>
               <Table.Row>
@@ -66,11 +70,11 @@ export default class ContractStatus extends Component {
               </Table.Row>
               <Table.Row>
                 <Table.Cell>Total DGDR created</Table.Cell>
-                <Table.Cell>{data.totalTokenExisted.shift(-9).toNumber()}</Table.Cell>
+                <Table.Cell>{data.totalTokenExisted.shift(-9).toFormat(2)}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>ETC balance</Table.Cell>
-                <Table.Cell>{data.weiBalance.shift(-18).toNumber()}</Table.Cell>
+                <Table.Cell>{data.weiBalance.shift(-18).toFormat(2)}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>ETC to be distributed (incl. redeemed)</Table.Cell>
@@ -85,11 +89,11 @@ export default class ContractStatus extends Component {
                 <Table.Cell>{data.totalWeiRedeemed.add(data.weiBalance).shift(-18).toFormat(2)}</Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell>Exchange Rate</Table.Cell>
-                <Table.Cell>1 DGDR = {data.rate.shift(-9).toNumber()} ETC</Table.Cell>
+                <Table.Cell>Exchange Rate (1 DGDR = )</Table.Cell>
+                <Table.Cell>{data.rate.shift(-9).toNumber()} ETC</Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell>Exchange Rate (wei per DGDR / 1e9)</Table.Cell>
+                <Table.Cell>Exchange Rate (wei per DGDR unit)</Table.Cell>
                 <Table.Cell>{data.rate.toFormat(0)}</Table.Cell>
               </Table.Row>
             </Table.Body>
@@ -108,6 +112,6 @@ export default class ContractStatus extends Component {
 
 ContractStatus.propTypes = {
   contract: PropTypes.object.isRequired,
-  web3: PropTypes.object.isRequired,
+  network: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired,
 };

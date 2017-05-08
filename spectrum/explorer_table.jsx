@@ -1,11 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { Header, Segment, Table, Icon } from 'semantic-ui-react';
-import { balances, toBlock } from '../scripts/data/balances-3575643-1493302749220.json';
+import { balances, toBlock } from '../scripts/data/balances-3670542-1494231029659.json';
 import { minimumDgdWei } from '../scripts/helpers/config.json';
 
 const PaginationMenu = require('@digix/spectrum/src/components/common/pagination_menu').default;
 
-const ipfsLink = 'https://ipfs.infura.io/ipfs/QmdHPZqLsEBZe14uz4jiSYXvrKXStcy6Cvko26S39PtZys';
+const ipfsLink = 'https://ipfs.infura.io/ipfs/QmYuPWEzBJKU37ZEQAsV7wtemv8sWzygfw6vBYdvetNrRL';
 
 const items = Object.keys(balances).reduce((a, b) => {
   return a.concat([{ ...balances[b], address: b }]);

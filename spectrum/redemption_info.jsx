@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Divider, Label } from 'semantic-ui-react';
+import { Header, Form, Divider, Label } from 'semantic-ui-react';
 
 import RedemptionButton from './redemption_button.jsx';
 

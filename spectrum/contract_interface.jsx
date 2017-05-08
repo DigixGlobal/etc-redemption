@@ -100,7 +100,7 @@ export default class ContractInterface extends Component {
           </Container>
         </Grid.Column>
         <Grid.Column>
-          <ContractStatus {...{ contract, web3, data, getStatus: this.getStatus }} />
+          <ContractStatus {...{ network, contract, web3, data, getStatus: this.getStatus }} />
         </Grid.Column>
         <Grid.Column>
           <AddressSearch {...{ contract, web3, data }} />
