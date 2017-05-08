@@ -1,6 +1,10 @@
-# [Draft] Digix ETC Redemption Process
+# Digix ETC Redemption Process
 
 This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
+
+The project is currently in "Dry run" mode, where a live test deployment is available on ETC chain.
+
+Please view the [the user guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md) for specific instructions on using the ETC withdrawal contract to redeem DGDR into ETC.
 
 ## Overview
 
