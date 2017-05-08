@@ -22,7 +22,9 @@ The main change is that we've decided to skip the carbonvote step. After gauging
 
 The redemption contract allows users to claim an ETC balance by redeeming tokens that are issued to them automatically on the ETC chain.
 
-Each redemption token represents 1:1 equivalent of DGD balances. These redemption tokens are known as `DGDR`. To claim ETC, holders of `DGDR` should call a method on the `DGDR` contract to burn their holdings in return of an ETC value. At the point of burning, the balance of `DGDR` drops to 0, and a fixed rate will be used to convert this balance into ETC.
+Each redemption token represents 1:1 equivalent of DGD balances. These redemption tokens are known as `DGDR`, which is an EIP20 token.
+
+To claim ETC, holders of `DGDR` should call a method on the `DGDR` contract to burn their holdings in return of an ETC value. At the point of burning, the balance of `DGDR` drops to 0, and a fixed rate will be used to convert this balance into ETC.
 
 For example, a user has 100 DGD, gets 100 `DGDR`, and burns it for ~22.3 ETC.
 
