@@ -15,7 +15,7 @@ export default class RedemptionButton extends Component {
     const { web3, network, dgdrBalance, defaultAddress, etcBalance } = this.props;
     return (
       <div>
-        {!!dgdrBalance && <Label size="large" color="green" content={`You have ${dgdrBalance} DGDR`} icon="checkmark" />}
+        {!!dgdrBalance && <Label size="large" basic color="green" content={`You have ${dgdrBalance} DGDR`} icon="checkmark" />}
         <Divider hidden />
         <TransactionModal
           {...{ web3, network }}

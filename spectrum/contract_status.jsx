@@ -60,7 +60,7 @@ export default class ContractStatus extends Component {
             {data.etcBalance} ETC contract balance
           </Progress>
           <Progress progress percent={data.multiSigPercent} color="blue">
-            {data.multiSigEtc} ETC cold storage balance
+            {data.multiSigEtc} ETC multisig top-up balance
           </Progress>
           <Table>
             <Table.Body>
@@ -70,23 +70,27 @@ export default class ContractStatus extends Component {
               </Table.Row>
               <Table.Row>
                 <Table.Cell>Total DGDR created</Table.Cell>
-                <Table.Cell>{data.totalTokenExisted.shift(-9).toFormat(2)}</Table.Cell>
+                <Table.Cell>{data.totalTokenExisted.shift(-9).toFormat(4)}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>ETC balance</Table.Cell>
-                <Table.Cell>{data.weiBalance.shift(-18).toFormat(2)}</Table.Cell>
+                <Table.Cell>{data.weiBalance.shift(-18).toFormat(4)}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>ETC to be distributed (incl. redeemed)</Table.Cell>
-                <Table.Cell>{data.totalTokenExisted.mul(data.rate).shift(-18).toFormat(2)}</Table.Cell>
+                <Table.Cell>{data.totalTokenExisted.mul(data.rate).shift(-18).toFormat(4)}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>DGDR redeemed</Table.Cell>
-                <Table.Cell>{data.totalTokenRedeemed.shift(-9).toNumber()}</Table.Cell>
+                <Table.Cell>{data.totalTokenRedeemed.shift(-9).toFormat(4)}</Table.Cell>
+              </Table.Row>
+              <Table.Row>
+                <Table.Cell>ETC redeemed</Table.Cell>
+                <Table.Cell>{data.totalWeiRedeemed.shift(-18).toFormat(4)}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>ETC funded (balance + redeeemed)</Table.Cell>
-                <Table.Cell>{data.totalWeiRedeemed.add(data.weiBalance).shift(-18).toFormat(2)}</Table.Cell>
+                <Table.Cell>{data.totalWeiRedeemed.add(data.weiBalance).shift(-18).toFormat(4)}</Table.Cell>
               </Table.Row>
               <Table.Row>
                 <Table.Cell>Exchange Rate (1 DGDR = )</Table.Cell>

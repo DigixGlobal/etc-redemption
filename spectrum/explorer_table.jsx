@@ -51,8 +51,8 @@ export default class ExplorerTable extends Component {
                     {' '}{item.unclaimedDgdWei && <Icon name="clock" color="orange" />}
                     {' '}{item.address}
                   </Table.Cell>
-                  <Table.Cell>{(item.combined / 1e9).toFixed(6)}</Table.Cell>
-                  <Table.Cell>{((item.combined * data.rate) / 1e18).toFixed(6)}</Table.Cell>
+                  <Table.Cell>{(item.combined / 1e9).toFixed(4)}</Table.Cell>
+                  <Table.Cell>{((item.combined * data.rate) / 1e18).toFixed(4)}</Table.Cell>
                 </Table.Row>
               ))}
             </Table.Body>

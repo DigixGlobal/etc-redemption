@@ -50,13 +50,13 @@ export default class ContractInterface extends Component {
           // TODO this is made up! actually get the multisig address
           const multiSigBalance = totalWeiSupply.sub(weiBalance);
           const active = activationBlock > 0 && activationBlock.lte(blockNumber);
-          const etcRedeemed = totalWeiRedeemed.shift(-18).toFormat(0);
-          const etcRemaining = weiRemaining.shift(-18).toFormat(0);
-          const etcPercent = 100 - totalTokenRedeemed.div(totalTokenExisted).mul(100).round().toNumber();
-          const etcBalance = weiBalance.shift(-18).toFormat(0);
-          const topUpPercent = weiBalance.div(weiRemaining).mul(100).round().toNumber();
-          const multiSigEtc = multiSigBalance.shift(-18).toFormat(0);
-          const multiSigPercent = multiSigBalance.div(weiRemaining).mul(100).round().toNumber(0);
+          const etcRedeemed = totalWeiRedeemed.shift(-18).toFormat(4);
+          const etcRemaining = weiRemaining.shift(-18).toFormat(4);
+          const etcPercent = 100 - totalTokenRedeemed.div(totalTokenExisted).mul(100).toFormat(2);
+          const etcBalance = weiBalance.shift(-18).toFormat(4);
+          const topUpPercent = weiBalance.div(weiRemaining).mul(100).toFormat(0);
+          const multiSigEtc = multiSigBalance.shift(-18).toFormat(4);
+          const multiSigPercent = multiSigBalance.div(weiRemaining).mul(100).toFormat(0);
           this.setState({ data: {
             rate,
             activationBlock,
@@ -95,7 +95,10 @@ export default class ContractInterface extends Component {
       <Grid stackable columns={2}>
         <Grid.Column width={16}>
           <Container text textAlign="center">
-            <Header content="Digix ETC Redemption Contract" />
+            <Header
+              content="DRY RUN Digix ETC Redemption Contract"
+              subheader="Test contract on ETC chain with lowered withdraw rate"
+            />
             <Redeem {...{ network, contract, web3, data }} />
           </Container>
         </Grid.Column>
