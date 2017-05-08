@@ -23,7 +23,9 @@ The `redeem` method on the Redemption Contract needs to be passed an address; `_
 
 Current ETC *dry-run* test address: 0x2ea9a44fb6bf22f09263eb59807aa5bc7f6dc9e2
 
-The real (not dry-run) deployment address will be announced at a future date and can be seen in the [Spectrum UI](spectrum-alpha.digixdev.com).
+The real (not dry-run) deployment address will be announced at a future date and can be seen in the [Spectrum UI](https://spectrum-alpha.digixdev.com).
+
+![Contract address](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/764D356A-6029-4C84-AE61-9C3AF6AA8CDF.png)
 
 ## ABI (just the `redeem` method)
 
@@ -33,10 +35,10 @@ The real (not dry-run) deployment address will be announced at a future date and
 
 ## Recommended Methods for sending `redeem` transaction
 
-- [Spectrum (bespoke UI)][#spectrum]
-- [MyEtherWallet][#MyEtherWallet]
-- [Parity][#parity]
-- [Geth (Ethereum Classic Fork)][#geth]
+- [Spectrum (bespoke UI)](#spectrum)
+- [MyEtherWallet](#MyEtherWallet)
+- [Parity](#parity)
+- [Geth (Ethereum Classic)](#geth)
 
 At present the most battle-tested client is MEW. You can also use the newer (but less tested) Spectrum (by Digix), which has a UI built specifically for the ETC Redemption Contract. These web clients support a range of different features:
 
@@ -69,11 +71,15 @@ Select ETC (top right)
 
 Open the "contracts" tab
 
+![Open the "contracts" tab](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/8427C247-F003-4D11-81CC-8C31CB962C1C.png)
+
 Enter the Contract Address
 
 Paste in the ABI from above
 
 Click "access"
+
+![Click "access"](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/3D37C4A4-5252-44C6-9E65-B199AAE6E4D8.png)
 
 In the 'to' field, enter the address you wish to be sent the redeemed ETC
 
@@ -82,6 +88,8 @@ Select the type of wallet to use for calling the method, and unlock it.
 Click "write" to publish the redemption transaction.
 
 Transaction Popup Appears
+
+![Transaction Popup Appears](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/50FBC128-993C-40B4-BC53-DF0574CBBEB6.png)
 
 Amount to send: 0
 Gas Limit: Should be automatically set to around at least ~75k, or manually 80k+  
@@ -108,27 +116,41 @@ Navigate to URL http://127.0.0.1:8180/
 
 Contracts -> Watch
 
+![Contracts -> Watch](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/22976D61-5785-4C3B-B679-E69C4D651EAD.png)
+
 Select 'Custom Contract'
 
 Click 'Next'
 
 Enter Contract Details
 
+![Enter Contract Details](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/4C6932C7-03A6-4AD4-924A-05353289A4BC.png)
+
 Click "Add Contract"
 
 Select the New Contract
 
+![Select the New Contract](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/7107AFB3-5428-4C66-A0F1-0757C58D45C3.png)
+
 Click "Execute"
+
+![Click "Execute"](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/AACE0F5C-5B73-4689-8E84-FF0F81285755.png)
 
 Enter a recipient address in the `_to` field
 
 Check "Advanced Sending options"
 
+![Check "Advanced Sending options"](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/F2958351-C163-4BE7-A9C0-7443E59B437F.png)
+
 Click Next
 
 Set Gas to 10000
 
+![Set Gas to 10000](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/2994AAEE-6494-4D7E-9E90-38E212759F31.png)
+
 Click Post Transaction
+
+![Click Post Transaction](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/768E0CD8-BF4A-4CAA-9D8D-A0A4F62CE9AB.png)
 
 Enter your Password in parity signer and confirm the request
 
