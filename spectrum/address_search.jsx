@@ -46,7 +46,7 @@ export default class AddressSearch extends Component {
               </Table.Row>
               <Table.Row positive={!!redeemedOf}>
                 <Table.Cell>DGDR Redeemed</Table.Cell>
-                <Table.Cell>{(redeemedOf && <b>{redeemedOf.div(1e8).toFormat(2)}</b>) || 0}</Table.Cell>
+                <Table.Cell>{(redeemedOf && <b>{redeemedOf.shift(-9).toFormat(2)}</b>) || 0}</Table.Cell>
               </Table.Row>
             </Table>
           )}
