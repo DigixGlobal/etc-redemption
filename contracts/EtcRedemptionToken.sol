@@ -25,13 +25,9 @@ contract EtcRedemptionToken is TimeLockable, ERC20 {
 
   /// @notice Proxy for `redeem(msg.sender)`
   /// @dev Requires `activationBlock` to have passed
-  function () payable {
-    // not really payable; let's prevent accidental sends
-    if (msg.value > 0) { throw; }
-    // but trigger redeem if value is null
+  function () {
     redeem(msg.sender);
   }
-
   /// @notice Get total amount redeemed by `_owner`
   /// @param _owner Address of a holder that has redeemed
   /// @return { "_tokens": "Tokens redeemed by `_owner`" }
