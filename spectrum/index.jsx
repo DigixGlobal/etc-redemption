@@ -8,12 +8,12 @@ const { getNetworks } = require('@digix/spectrum/src/selectors');
 
 class EtcRefund extends Component {
   render() {
-    const loading = <p>Loading...</p>;
+    const loading = <p>Loading... Is ETC Enabled?</p>;
     const { web3Redux, networks } = this.props;
     const { address: contractAddress } = (contractNetworks || {})['61'];
     if (!contractAddress) { return loading; }
     const { web3 } = (web3Redux.networks || {})['etc'] || {};
-    if (!web3) { return loading; }
+    if (!web3 || !web3.isConnected()) { return loading; }
     const contract = web3.eth.contract(abi).at(contractAddress);
     if (!contract) { return loading; }
     const network = networks.find(n => n.id === 'etc');
@@ -37,4 +37,4 @@ EtcRefund.propTypes = {
   networks: PropTypes.array.isRequired,
 };
 
-export default connect(state => ({ networks: getNetworks(state) }))(Web3Connect(EtcRefund));
+export default Web3Connect(connect(state => ({ networks: getNetworks(state) }))(EtcRefund));

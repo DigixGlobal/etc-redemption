@@ -13,7 +13,7 @@ class MultiSig extends Component {
     const { address: contractAddress } = (contractNetworks || {})['42'];
     if (!contractAddress) { return loading; }
     const { web3 } = (web3Redux.networks || {})['eth-kovan'] || {};
-    if (!web3) { return loading; }
+    if (!web3 || !web3.isConnected()) { return loading; }
     const contract = web3.eth.contract(abi).at(contractAddress);
     if (!contract) { return loading; }
     const network = networks.find(n => n.id === 'eth-kovan');
