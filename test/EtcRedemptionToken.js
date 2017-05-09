@@ -161,10 +161,10 @@ contract('EtcRedemptionToken', function (accounts) {
       assert.equal(await a.callback(web3.eth.getBalance, token.address), beforeContractBalance.toNumber());
     }
     it('throws if sent with a value transaction', async function () {
-      await testThrowAndBalance({ value: 50, from: accounts[4], gas: 3000000 });
+      await testThrowAndBalance({ value: 50, from: accounts[4], gas: 500000, gasPrice });
     });
     it('throws if user has zero balance', async function () {
-      await testThrowAndBalance({ from: accounts[0] });
+      await testThrowAndBalance({ from: accounts[0], gas: 500000, gasPrice });
     });
     it('succeeds when user has enough balance', async function () {
       const beforeContractBalance = await a.callback(web3.eth.getBalance, token.address);
