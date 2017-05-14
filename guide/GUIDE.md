@@ -1,3 +1,5 @@
+🚨 Redemption stage has not started yet, activation block set for 3,800,000
+
 # Digix ETC Redemption User Guide
 
 ## Overview
