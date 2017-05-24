@@ -1,0 +1,21 @@
+{
+  "contract_name": "MockThrowableC",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "callsAnotherThatThrows",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "payable": true,
+      "type": "fallback"
+    }
+  ],
+  "unlinked_binary": "0x60606040523415600b57fe5b5b60748061001a6000396000f3006060604052361560235763ffffffff60e060020a600035041663192572da81146031575b602f5b602c6040565b5b565b005b3415603857fe5b602f6040565b005b60006000fd5b5600a165627a7a72305820a3f8adbf7c7531bcacbdd3284f2878075733cb8331421fb8d9cb32672316deb20029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1494923655930
+}

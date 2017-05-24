@@ -50,6 +50,7 @@
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.7.1"
+    "eslint-plugin-react": "^6.7.1",
+    "truffle-compile": "git://github.com/DigixGlobal/truffle-compile.git#6263916193d4606f7ce150000ddbe9203995b093"
   }
 }

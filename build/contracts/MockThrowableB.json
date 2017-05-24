@@ -1,0 +1,13 @@
+{
+  "contract_name": "MockThrowableB",
+  "abi": [
+    {
+      "payable": true,
+      "type": "fallback"
+    }
+  ],
+  "unlinked_binary": "0x60606040523415600b57fe5b5b603e8060196000396000f30060606040525b60105b60006000fd5b565b0000a165627a7a723058202a00776309a2bbdee051e97cff5dcb37bdd32648bb0d7666aed53e44218168860029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1494923655929
+}
