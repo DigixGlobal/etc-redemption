@@ -24,13 +24,13 @@ module.exports = {
     },
     classic: {
       network_id: '61',
-      gas: 2500000,
-      gasPrice: 21000000000,
+      gas: 4000000,
+      gasPrice: 20000000000,
       provider: new LightWalletProvider({
         keystore: KEYSTORE,
         password: PASSWORD,
-        rpcUrl: 'http://localhost:8547', // must use geth etc client
-        // rpcUrl: 'https://digixparity04.digix.io/',
+        // rpcUrl: 'http://localhost:8547', // must use geth etc client
+        rpcUrl: 'https://digixparity04.digix.io/',
         // rpcUrl: 'https://mewapi.epool.io/',
       }),
     },
