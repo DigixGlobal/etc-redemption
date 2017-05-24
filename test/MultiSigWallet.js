@@ -1,4 +1,5 @@
-const MultiSigWallet = artifacts.require('MultiSigWallet');
+const { abi, unlinked_binary } = require('../node_modules/@digix/truffle-gnosis-multisig/build/contracts/MultiSig.json');
+
 const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
 
 const a = require('../node_modules/awaiting');
@@ -12,6 +13,9 @@ contract('MultiSigWallet', function (accounts) {
   const owners = accounts.slice(0, 4);
   describe('init', function () {
     it('inits with the corect values', async function () {
+      const MultiSigWallet = require('../node_modules/truffle-contract')({ abi, unlinked_binary });
+      MultiSigWallet.defaults({ from: accounts[0], gas: 3000000 });
+      MultiSigWallet.setProvider(web3.currentProvider);
       multiSigWallet = await MultiSigWallet.new(owners, 3);
       assert.equal((await multiSigWallet.getOwners.call()).join(''), owners.join(''));
       assert.equal(await multiSigWallet.required.call(), 3);
