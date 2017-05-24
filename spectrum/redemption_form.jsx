@@ -8,7 +8,7 @@ export default class RedemptionForm extends Component {
     const { formChange, formData } = this.props;
     return (
       <Form.Field>
-        <AddressInput showQrScanner placeholder="e.g. `0x123...456`" label="To" name="to" {...{ formChange, formData }} />
+        <AddressInput showQrScanner placeholder="e.g. `0x123...456`" label="To (NOT an EXCHANGE or CONTRACT)" name="to" {...{ formChange, formData }} />
       </Form.Field>
     );
   }

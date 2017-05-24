@@ -50,9 +50,9 @@ class RedemptionInfo extends Component {
     if (!defaultAddress) { return null; }
     const balanceOf = contract.balanceOf(defaultAddress.address);
     const redeemedOf = contract.redeemedOf(defaultAddress.address);
-    const dgdrBalance = balanceOf && balanceOf.toNumber() && balanceOf.shift(-9).toFormat(4);
-    const etcBalance = balanceOf && balanceOf.toNumber() && balanceOf.mul(data.rate).shift(-18).toFormat(4);
-    const dgdrRedeemed = redeemedOf && redeemedOf.toNumber() && redeemedOf.shift(-9).toFormat(4);
+    const dgdrBalance = balanceOf && balanceOf.toNumber() && balanceOf.shift(-9).toNumber();
+    const etcBalance = balanceOf && balanceOf.toNumber() && balanceOf.mul(data.rate).shift(-18).toNumber();
+    const dgdrRedeemed = redeemedOf && redeemedOf.toNumber() && redeemedOf.shift(-9).toNumber();
     return (
       <Form>
         <Form.Field style={{ textAlign: 'center' }}>

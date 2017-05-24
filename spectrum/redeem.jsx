@@ -13,7 +13,6 @@ export default class Redeem extends Component {
     // if (!active) { return 'Contract is not active'; }
     return (
       <div>
-        {/* <AccountsModal content="Manage Accounts" icon="key" /> */}
         <DefaultAddressSelector
           {...{ fluid: false, button: false, inline: true, labeled: false }}
           preText="Selected account:"
