@@ -50,7 +50,7 @@ function getBalances() {
               process.stdout.write(`  getting balance info... ${Math.round((i / totalUsers) * 100)}% \r`);
               web3.eth.getCode(user, (err3, res) => {
                 if (err3) { throw new Error(err3); }
-                const contract = res !== '0x';
+                const contract = res !== '0x' ? res : false;
                 crowdsale.userInfo.call(user, toBlock, (err4, userInfo) => {
                   if (err4) { throw new Error(err4); }
                   const unclaimed = !userInfo[4] && userInfo[2].toNumber() && userInfo[2];
@@ -93,7 +93,7 @@ function getBalances() {
     totalDgds = dgds ? ((totalDgds && totalDgds.add(dgds || 0)) || dgds) : totalDgds;
     totalUnclaimed = unclaimed ? ((totalUnclaimed && totalUnclaimed.add(unclaimed)) || unclaimed) : totalUnclaimed;
     const combined = dgds ? dgds.add(unclaimed || 0) : unclaimed;
-    if (contract) { contracts[k] = true; }
+    if (contract) { contracts[k] = contract; }
     serialized[k] = {
       contract,
       combined: combined.toString(10),

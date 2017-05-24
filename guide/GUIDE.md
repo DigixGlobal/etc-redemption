@@ -160,7 +160,11 @@ With Spectrum, you can also visit the latest version online via an IPFS gateway:
 
 `<latest_ipfs_hash> = QmV6fagfrX8eZmtJnQnrHCKUAqbWquzM8iiMhZty3LMqwL` (updated 8/5)
 
-https://gateway.ipfs.io/ipfs/<latest_ipfs_hash> or https://ipfs.infura.io/ipfs/<latest_ipfs_hash>
+Current Release: https://gateway.ipfs.io/ipfs/QmV6fagfrX8eZmtJnQnrHCKUAqbWquzM8iiMhZty3LMqwL/
+
+* https://gateway.ipfs.io/ipfs/<latest_ipfs_hash>
+* https://ipfs.infura.io/ipfs/<latest_ipfs_hash>
+* http://localhost:8090/<latest_ipfs_hash>
 
 ### Running Spectrum Locally
 
