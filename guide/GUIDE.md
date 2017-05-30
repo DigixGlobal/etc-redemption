@@ -12,7 +12,7 @@ This document is a guide for DGD holders outlining the required steps for redeem
 
 DGD holders are credited with DGDR tokens on the ETC chain, which can be used to call the `redeem(_to)` method on the DGDR contract and exchange them for an equivalent ETC balance. This requires executing a transaction on the ETC chain using the same keystore that holds DGD on the main chain. There are several methods available, which one used depends on the DGDR holder's keystore type and security/convenience preferences.
 
-The sender of the redemption transaction (DGDR holder) will need a small amount of ETC to preform the transaction.
+The sender of the redemption transaction (DGDR holder) will need a small amount of ETC to preform the transaction. An ETC Faucet is provided to DGD holders with a 1-time use - visit https://digixparity04.digix.io/faucet/<YOUR ADDRESS HERE> (replace with your DGD address).
 
 ## Replay Attack Concerns
 
