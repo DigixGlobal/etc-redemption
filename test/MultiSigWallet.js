@@ -1,3 +1,5 @@
+/*
+TODO move to multisig repo
 const { abi, unlinked_binary } = require('../node_modules/@digix/truffle-gnosis-multisig/build/contracts/MultiSig.json');
 
 const EtcRedemptionToken = artifacts.require('EtcRedemptionToken');
@@ -89,3 +91,4 @@ contract('MultiSigWallet', function (accounts) {
     });
   });
 });
+*/
