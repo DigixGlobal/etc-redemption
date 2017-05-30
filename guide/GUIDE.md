@@ -79,7 +79,8 @@ At present the most battle-tested client is MEW. You can also use the newer (but
 
 ### Spectrum
 
-https://www.youtube.com/watch?v=4I61a45Q_t4
+Tutorial: https://www.youtube.com/watch?v=4I61a45Q_t4
+App: https://etc-redemption.digix.global
 
 ### MyEtherWallet
 
