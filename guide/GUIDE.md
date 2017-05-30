@@ -14,6 +14,16 @@ DGD holders are credited with DGDR tokens on the ETC chain, which can be used to
 
 The sender of the redemption transaction (DGDR holder) will need a small amount of ETC to preform the transaction. An ETC Faucet is provided to DGD holders with a 1-time use - visit https://digixparity04.digix.io/faucet/<YOUR ADDRESS HERE> (replace with your DGD address).
 
+## Exchanges
+
+DGD held in the following centralized exchanges on the Snapshot block will be automatically funded with the ETC balance. Please contact your exchange for details:
+
+* Yunbi
+* Bittrex
+* Gatecoin
+
+Please remove your tokens from decentralized exchanges.
+
 ## Replay Attack Concerns
 
 ETC and ETH addresses are compatible with each other, so you can generate wallets in an ETH client and use it on the ETC chain. There is however the possibility of transactions being replayed from one chain to the other when using older clients or firmware. There is also the possibility of old transactions being replayed if a previously unfunded account becomes funded.
