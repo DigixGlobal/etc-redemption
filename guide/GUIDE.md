@@ -2,6 +2,10 @@
 
 # Digix ETC Redemption User Guide
 
+Please read and understand this document fully to minimize the risk of lost funds during the ETC Redemption process.
+
+[TODO] Disclaimer
+
 ## Overview
 
 This document is a guide for DGD holders outlining the required steps for redeeming ETC. For background, please review previous announcements and documentation on the ETC redemption contract.
@@ -23,13 +27,19 @@ The `redeem` method on the Redemption Contract needs to be passed an address; `_
 
 Additionally, DGDR uses Ethereum's token 'standard' and it can be used on many ERC20-compatible applications. DGDR balances are burned entirely (to 0) on redemption to prevent double spends.
 
+## Note for those holding DGD in a Smart Contract
+
+For those who hold their DGD balances in a contract address that does not exist on the ETC chain, several options are provided:
+
+* Best Advice: Move the DGDs into a regular address before the Snapshot Block
+* Alternatively: Move the DGDs into an Exchange before the Snapshot Block
+* If you were unable to do this, contact Digix to manually process redemption - we will need you to sign a transaction on ETH chain from the contract to prove ownership.
+
 ## Redemption Contract Address
 
-Current ETC *dry-run* test address: 0x2ea9a44fb6bf22f09263eb59807aa5bc7f6dc9e2
+DGDR Contract Address: `0x1312f9EC97a2377c8e2Ba6f088AfdFedFe59398C`.
 
-The real (not dry-run) deployment address will be announced at a future date and can be seen in the [Spectrum UI](https://spectrum-alpha.digixdev.com).
-
-![Contract address](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/C9A18098-521B-485D-8155-143786AC733E.png)
+The address can also be found in the [ETC Redemption Dapp](https://etc-redemption.digix.global/).
 
 ## ABI (just the `redeem` method)
 
@@ -42,7 +52,7 @@ The real (not dry-run) deployment address will be announced at a future date and
 - [Spectrum (bespoke UI)](#spectrum)
 - [MyEtherWallet](#myetherwallet)
 - [Parity](#parity)
-- [Geth](#geth)
+- [Geth](#geth) (CLI - advanced)
 
 At present the most battle-tested client is MEW. You can also use the newer (but less tested) Spectrum (by Digix), which has a UI built specifically for the ETC Redemption Contract. These web clients support a range of different features:
 
@@ -154,15 +164,15 @@ You should now have a transaction ID, please record it
 
 Download the [Ethereum Classic Geth Client](https://github.com/ethereumproject/go-ethereum) and use the CLI or [truffle](http://truffleframework.com/) :)
 
-## Fallback Options
+## Proper Decentralized Options
 
 Should all of the public RPC nodes become unavailable for some reason such as a Denial of Service attack, or you just prefer to be decentralized, you can still publish the redemption transaction by running a local ETC node. We would recommend using either Parity, or for hardware wallets, the [local dist version of MEW](https://github.com/kvhnuke/etherwallet#users-non-developers) and either Parity of Geth (ETC Fork).
 
 With Spectrum, you can also visit the latest version online via an IPFS gateway:
 
-`<latest_ipfs_hash> = QmV6fagfrX8eZmtJnQnrHCKUAqbWquzM8iiMhZty3LMqwL` (updated 8/5)
+`<latest_ipfs_hash> = QmSKQ6iPMBqXdaG7QoAtFFfzbivVMmGdYJm3fpYkh4qBw3` (updated 30/5/17)
 
-Current Release: https://gateway.ipfs.io/ipfs/QmV6fagfrX8eZmtJnQnrHCKUAqbWquzM8iiMhZty3LMqwL/
+Current Release: https://gateway.ipfs.io/ipfs/QmSKQ6iPMBqXdaG7QoAtFFfzbivVMmGdYJm3fpYkh4qBw3/
 
 * https://gateway.ipfs.io/ipfs/<latest_ipfs_hash>
 * https://ipfs.infura.io/ipfs/<latest_ipfs_hash>

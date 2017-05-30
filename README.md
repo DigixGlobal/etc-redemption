@@ -8,7 +8,7 @@ Activation block is set to **3800000**. An updated UI will be released very shor
 
 ---
 
-* **[DGDR to ETC User Guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md)**
+* **[READ THIS: DGDR to ETC User Guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md)**
 * **[Spectrum Dapp UI](https://spectrum-alpha.digixdev.com)**
 * **[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)**
 
@@ -150,28 +150,6 @@ The the parameters can be configured in `./scripts/helpers/config.json`.
 |`step-5-test`|`<tx>`|Mint the Tokens on Kovan (optional resume from tx#)|
 |`step-6-test`||Confirm balances on Kovan|
 |`estimate-gas`||Estimate total ETC requirements|
-
-## *Estimated* Timelines
-
-|Estimated Date|Event|
-|---|---|
-|Apr 28th|1 week of public review / discussion of this updated proposal, contract and scripts|
-|May 5th|Around 1 week to make any updates or bugfixes to this proposal, pending community feedback|
-|May 12th|Snapshot block announced|
-|May 26th|Snapshot block occurs|
-|May 27th|Balances confirmed, redemption contract deployed|
-|May 28th|Activation block reached, redemption is allowed|
-
-## TODOs
-
-* Setup Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
-* Test throwable redeem sender contract (Add a test to send ETH to the contract)
-* Script for validating contract addresses
-* User Guide / best practices for hardware / offline signing
-  * Instructions for MEW / CLI
-  * Instructions for installing local ETC Node (as fallback for public node)
-  * Spectrum UI for redemption process (on ETC chain)
-  * Double check replay attack protection in all redemption methods ETC <-> ETH
 
 ## Questions
 

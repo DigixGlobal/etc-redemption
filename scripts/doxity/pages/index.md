@@ -4,15 +4,26 @@ This repository contains contracts and scripts for the deployment and execution 
 
 The project is currently in "Dry run" mode, where a live test deployment is available on ETC chain.
 
-Please view the [the user guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md) for specific instructions on using the ETC withdrawal contract to redeem DGDR into ETC.
+Activation block is set to **3800000**. An updated UI will be released very shortly with the new contract.
+
+---
+
+* **[READ THIS: DGDR to ETC User Guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md)**
+* **[Spectrum Dapp UI](https://spectrum-alpha.digixdev.com)**
+* **[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)**
+
+---
+
+**Recent Updates**
+
+30/05 - [AE] No longer using MultiSig wallet contract to avoid potential 0-day exploits  
+
 
 ## Overview
 
 [Digix recently outlined](https://medium.com/@Digix/digixdao-etc-withdrawal-proposal-v1-0-mar-22-2017-578fe1575a40) a proposal to allow DGD holders to redeem ETC. Since this proposal, with feedback from the DGD holder community, it has evolved into a less complex redemption process (by removing the voting step). This repository has been produced to describe and provide all the tools needed perform this updated redemption process.
 
 The proposed contracts and process details are presented to the community for discussion, questions and criticisms. The current codebase is subject to change pending code review.
-
-**[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)**
 
 ## Changes to Proposal v1
 
@@ -36,15 +47,11 @@ The conversion rate to ETC used will be close to 100% of the original ETC pool, 
 
 See [Redemption Token Contract](#redemption-token-contract) section for more details.
 
-### MultiSig & Top-up System
-
-* Two MultiSig contracts
-  * ETH Chain (to hold ETH from the Digix crowdsale until governance contracts live)
-  * ETC Chain (to hold refunded ETC and top up to the redemption contract, and execute it's methods)
-* 4 anonymous trusted parties will be in control of this contract
-* 3/4 of the parties to approve any transaction made from it
+### Top-up System
 
 A 'top-up' system will be used when passing funds to the redemption contract to reduce the effects of any unforeseen exploits. Batches of 100,000 ETC (?) will be added to the redemption contract as required (and topped up as the remaining balance reaches 10,000).
+
+The ETC batches will be kept on separate keys and transferred to the redemption contract when the DGDR reserve balance reaches near the highest unclaimed DGDR balance.
 
 ### Additional End User Resources
 
@@ -67,8 +74,8 @@ This stage is managed by DigixGlobal and will not require interaction from DGD h
 1. Public announcement of *snapshot* and *activation* block made
 1. After the snapshot block, redemption contract is deployed to ETC and balances are minted
 1. Balances published to IPFS, confirmed by script & community
-1. Activation block is set, admin changed to Multisig
-1. DGDR is funded by Multisig (using top-up)
+1. Activation block is set, admin changed to new (more secure) key
+1. DGDR is funded (using top-up keys)
 1. Activation block occurs (within 24 hours)
 
 ### Redemption
@@ -94,7 +101,7 @@ For those who hold their DGD balances in a contract address that may does not ex
 After discussing how exchanges can optimally engage with the redemption process, we identified the following general pattern that should be adopted by exchanges to ensure an easy:
 
 1. Before the snapshot block, disable deposits, redemptions and trading of DGD
-1. On the snapshot block, move DGD into a single account / multisig
+1. On the snapshot block, move DGD into a standard account
 1. After the activation block, call the redeem method on the token
 1. Credit DGD holders with their proportion of the redeemed ETC
 1. Re-open trading, deposits and redemptions
@@ -125,10 +132,6 @@ For full documentation on the methods please see the [contract docs](https://dig
 
 A test suite with 100% method coverage has been added to this repository under `./test`, they can be run with `truffle test`.
 
-### Multisig Wallet
-
-A Multisig contract for holding both ETH and ETC after the activation block will be: https://github.com/ConsenSys/MultiSigWallet. Basic integration tests has been written in this project, with unit tests available in the ConsenSys repository.
-
 ## Scripts
 
 This repository contains a series of scripts to facilitate the backend process.
@@ -147,28 +150,6 @@ The the parameters can be configured in `./scripts/helpers/config.json`.
 |`step-5-test`|`<tx>`|Mint the Tokens on Kovan (optional resume from tx#)|
 |`step-6-test`||Confirm balances on Kovan|
 |`estimate-gas`||Estimate total ETC requirements|
-
-## *Estimated* Timelines
-
-|Estimated Date|Event|
-|---|---|
-|Apr 28th|1 week of public review / discussion of this updated proposal, contract and scripts|
-|May 5th|Around 1 week to make any updates or bugfixes to this proposal, pending community feedback|
-|May 12th|Snapshot block announced|
-|May 26th|Snapshot block occurs|
-|May 27th|Balances confirmed, redemption contract deployed|
-|May 28th|Activation block reached, redemption is allowed|
-
-## TODOs
-
-* Setup Public ETC RPC Node (compatible with MEW / Spectrum / web3-console)
-* Test throwable redeem sender contract (Add a test to send ETH to the contract)
-* Script for validating contract addresses
-* User Guide / best practices for hardware / offline signing
-  * Instructions for MEW / CLI
-  * Instructions for installing local ETC Node (as fallback for public node)
-  * Spectrum UI for redemption process (on ETC chain)
-  * Double check replay attack protection in all redemption methods ETC <-> ETH
 
 ## Questions
 
