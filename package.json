@@ -9,6 +9,11 @@
     "url": "https://github.com/DigixGlobal/etc-redemption.git"
   },
   "license": "BSD-3-Clause",
+  "files": [
+    "spectrum",
+    "build",
+    "contracts"
+  ],
   "scripts": {
     "compile-dapplet": "rm -rf lib/* && ./node_modules/.bin/babel spectrum -d lib",
     "test": "truffle test",
