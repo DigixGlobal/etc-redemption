@@ -74,10 +74,14 @@ export default class ContractInterface extends Component {
       <Grid stackable columns={2}>
         <Grid.Column width={16}>
           <Container text textAlign="center">
-            <Header
-              content="Digix ETC Redemption Contract"
-              subheader="Test contract on ETC chain with lowered withdraw rate"
-            />
+            <Header>
+              Digix ETC Redemption Contract
+              <Header.Subheader>
+                Redeem ETC by burning DGDR (
+                  <a href="https://github.com/DigixGlobal/etc-redemption" target="_blank">more info</a>
+                )
+              </Header.Subheader>
+            </Header>
             <Redeem {...{ network, contract, web3, data }} />
           </Container>
         </Grid.Column>
