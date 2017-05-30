@@ -1,6 +1,6 @@
 {
   "name": "@digix/etc-redemption",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Digix Ethereum Classic Redemption",
   "author": "DigixGlobal",
   "homepage": "https://github.com/DigixGlobal/etc-redemption",
@@ -17,7 +17,6 @@
     "scripts"
   ],
   "scripts": {
-    "compile-dapplet": "rm -rf lib/* && ./node_modules/.bin/babel spectrum -d lib",
     "test": "truffle test",
     "truffle": "./node_modules/.bin/truffle",
     "docs:build": "./node_modules/.bin/doxity build",
