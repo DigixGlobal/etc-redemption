@@ -63,7 +63,7 @@ export default class ContractInterface extends Component {
     const etcBalance = weiBalance.shift(-18).toFormat(4);
     const toppedUpPercent = weiRemaining.toNumber() ? weiBalance.div(weiRemaining).mul(100).toFormat(0) : 0;
     const topUpPercent = weiRemaining.toNumber() ? topUpBalance.div(weiRemaining).mul(100).toFormat(0) : 0;
-    const etcPercent = weiRemaining.toNumber() ? 100 - totalWeiRedeemed.div(weiRemaining).mul(100).toFormat(2) : 0;
+    const etcPercent = weiRemaining.toNumber() ? 100 - totalWeiRedeemed.div(totalWeiSupply).mul(100).toFormat(2) : 0;
     return { rate, activationBlock, totalSupply, totalTokenRedeemed, totalWeiRedeemed, weiBalance, blockNumber, totalTokenExisted, totalWeiSupply, weiRemaining, topUpBalance, active, etcRedeemed, etcRemaining, etcPercent, etcBalance, toppedUpPercent, topUpPercent };
   }
   render() {

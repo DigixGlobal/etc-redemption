@@ -12,7 +12,7 @@ class EtcRefund extends Component {
     const { web3Redux, networks } = this.props;
     const { address: contractAddress } = (contractNetworks || {})['61'];
     if (!contractAddress) { return loading; }
-    const { web3 } = (web3Redux.networks || {})['etc'] || {};
+    const { web3 } = (web3Redux.networks || {}).etc || {};
     if (!web3 || !web3.isConnected()) { return loading; }
     const contract = web3.eth.contract(abi).at(contractAddress);
     if (!contract) { return loading; }

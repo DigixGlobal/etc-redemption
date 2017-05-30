@@ -54,7 +54,7 @@ export default class ContractStatus extends Component {
         <Segment>
           {this.renderStatus()}
           <Progress progress percent={data.etcPercent} color="green">
-            {data.etcRemaining} total ETC available ({data.etcRedeemed} claimed)
+            {data.etcRemaining} total ETC remaining ({data.etcRedeemed} claimed)
           </Progress>
           <Progress progress percent={data.toppedUpPercent} color="orange">
             {data.etcBalance} ETC in DGDR contract
