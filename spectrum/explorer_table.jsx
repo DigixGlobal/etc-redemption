@@ -30,10 +30,11 @@ export default class ExplorerTable extends Component {
         <Header>
           Snapshot Balances
           <Header.Subheader>
-            DGD balances copied from block <a href={ipfsLink} target="_blank" >{toBlock}</a>
+            {/* DGD balances copied from block <a href={ipfsLink} target="_blank" >{toBlock}</a> */}
+            DGD balances will be copied from block 3800000
           </Header.Subheader>
         </Header>
-        <Segment>
+        {/* <Segment>
           <Table>
             <Table.Header>
               <Table.Row>
@@ -64,7 +65,7 @@ export default class ExplorerTable extends Component {
             total={items.length}
             handleNavigate={this.handleNavigate}
           />
-        </Segment>
+        </Segment> */}
       </div>
     );
   }

@@ -1,6 +1,6 @@
 {
   "name": "@digix/etc-redemption",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Digix Ethereum Classic Redemption",
   "author": "DigixGlobal",
   "homepage": "https://github.com/DigixGlobal/etc-redemption",
@@ -12,7 +12,8 @@
   "files": [
     "spectrum",
     "build",
-    "contracts"
+    "contracts",
+    "scripts"
   ],
   "scripts": {
     "compile-dapplet": "rm -rf lib/* && ./node_modules/.bin/babel spectrum -d lib",
@@ -32,7 +33,7 @@
     "step-6-test": "truffle exec ./scripts/confirmBalances.js --network kovan"
   },
   "dependencies": {
-    "@digix/spectrum": "0.0.1",
+    "@digix/spectrum": "0.0.2",
     "@digix/truffle-lightwallet-provider": "0.0.12",
     "async": "^2.3.0",
     "awaiting": "^2.2.0",
