@@ -2,22 +2,20 @@
 
 This repository contains contracts and scripts for the deployment and execution of Digix's proposed ETC redemption mechanism.
 
-The project is currently in "Dry run" mode, where a live test deployment is available on ETC chain.
-
-Activation block is set to **3800000**. An updated UI will be released very shortly with the new contract.
+Activation block is set to **3800000**. DGDR on the ETC will be credited to DGD holders on this block shortly after it passes.
 
 ---
 
 * **[READ THIS: DGDR to ETC User Guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md)**
-* **[Spectrum Dapp UI](https://spectrum-alpha.digixdev.com)**
+* **[Spectrum Dapp UI](https://etc-redemption.digix.global)**
 * **[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)**
 
 ---
 
 **Recent Updates**
 
-30/05 - [AE] No longer using MultiSig wallet contract to avoid potential 0-day exploits  
-
+- 30/05 - [CH] Updated guide with deployed address
+- 30/05 - [AE] No longer using MultiSig wallet contract to avoid potential 0-day exploits
 
 ## Overview
 
