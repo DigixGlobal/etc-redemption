@@ -149,6 +149,18 @@ The the parameters can be configured in `./scripts/helpers/config.json`.
 |`step-6-test`||Confirm balances on Kovan|
 |`estimate-gas`||Estimate total ETC requirements|
 
+## Accounts
+
+```
+contract: 0x1312f9ec97a2377c8e2ba6f088afdfedfe59398c
+deployer / minter / admin 1:  0x7ecdc55af01cd035279916c76cad9d9771faf45a
+admin 2: 0xf604D10B14d66AF8badb97777f9b237DFeFeE278
+top up 1: 0x8F799dCb3BB002CD1cc02BF0B1a76Df188990a66
+top up 2: 0x392994f2EbC88c5db997737b15FFaD3f03e4FB0E
+top up 3: 0xC4d12352f82FBc41767AbB8f693A43F69c0E620a
+top up 4: 0x0D33F5C28B6D142610920Cd824A369d322167f82
+```
+
 ## Questions
 
 Please join the Digix slack channel #etc-redemption
