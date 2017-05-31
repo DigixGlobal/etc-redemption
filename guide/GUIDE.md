@@ -6,8 +6,6 @@
 
 Please read and understand this document fully to minimize the risk of lost funds during the ETC Redemption process.
 
-[TODO] Disclaimer
-
 ## Overview
 
 This document is a guide for DGD holders outlining the required steps for redeeming ETC. For background, please review previous announcements and documentation on the ETC redemption contract.
