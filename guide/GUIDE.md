@@ -1,3 +1,5 @@
+[31/05] This guide will amended regularly with status updates.
+
 🚨 Redemption stage has not started yet, *snapshot* block set for 3,800,000
 
 🚨 DGDR will be redeemable after the *activation* block - to be announced!
