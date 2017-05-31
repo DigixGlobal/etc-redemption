@@ -7,10 +7,10 @@ import ExplorerTable from './explorer_table.jsx';
 import AddressSearch from './address_search.jsx';
 
 const topUpAddresses = [
-  '0x8F799dCb3BB002CD1cc02BF0B1a76Df188990a66',
-  '0x392994f2EbC88c5db997737b15FFaD3f03e4FB0E',
-  '0xC4d12352f82FBc41767AbB8f693A43F69c0E620a',
-  '0x0D33F5C28B6D142610920Cd824A369d322167f82',
+  '0xA876e0Bb91a5277be74b340De60c7BE818DC37e8',
+  '0xEB11C580781B9339fD0668A3883f7fe1dB38B592',
+  '0x6dF098fEc80FC5Fec8D045c4eA8cc9429C90A357',
+  '0x50092395418bE5f4Ad1E720a0724F334758C3158',
 ];
 
 export default class ContractInterface extends Component {
@@ -51,10 +51,11 @@ export default class ContractInterface extends Component {
     const totalWeiSupply = totalTokenExisted.mul(rate);
     const weiRemaining = totalWeiSupply.sub(totalWeiRedeemed);
     // calculate top up balance
-    const topUpBalance = web3.eth.balance(topUpAddresses[0])
+    const topUpWei = web3.eth.balance(topUpAddresses[0])
     .plus(web3.eth.balance(topUpAddresses[1]))
     .plus(web3.eth.balance(topUpAddresses[2]))
     .plus(web3.eth.balance(topUpAddresses[3]));
+    const topUpBalance = topUpWei.shift(-18).toFormat(4);
     // get each of the top up accounts
     // transform
     const active = activationBlock > 0 && activationBlock.lte(blockNumber);
@@ -62,9 +63,10 @@ export default class ContractInterface extends Component {
     const etcRemaining = weiRemaining.shift(-18).toFormat(4);
     const etcBalance = weiBalance.shift(-18).toFormat(4);
     const toppedUpPercent = weiRemaining.toNumber() ? weiBalance.div(weiRemaining).mul(100).toFormat(0) : 0;
-    const topUpPercent = weiRemaining.toNumber() ? topUpBalance.div(weiRemaining).mul(100).toFormat(0) : 0;
+    const topUpPercent = topUpWei.toNumber() < totalWeiSupply.toNumber() ? topUpWei.div(totalWeiSupply).mul(100).toFormat(0) : 100;
     const etcPercent = weiRemaining.toNumber() ? 100 - totalWeiRedeemed.div(totalWeiSupply).mul(100).toFormat(2) : 0;
-    return { rate, activationBlock, totalSupply, totalTokenRedeemed, totalWeiRedeemed, weiBalance, blockNumber, totalTokenExisted, totalWeiSupply, weiRemaining, topUpBalance, active, etcRedeemed, etcRemaining, etcPercent, etcBalance, toppedUpPercent, topUpPercent };
+    const currentBlock = web3.eth.blockNumber();
+    return { currentBlock, rate, activationBlock, totalSupply, totalTokenRedeemed, totalWeiRedeemed, weiBalance, blockNumber, totalTokenExisted, totalWeiSupply, weiRemaining, topUpBalance, active, etcRedeemed, etcRemaining, etcPercent, etcBalance, toppedUpPercent, topUpPercent };
   }
   render() {
     const { contract, web3, network } = this.props;

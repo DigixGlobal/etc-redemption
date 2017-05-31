@@ -60,10 +60,14 @@ export default class ContractStatus extends Component {
             {data.etcBalance} ETC in DGDR contract
           </Progress>
           <Progress progress percent={data.topUpPercent} color="blue">
-            {data.topUpBalance.toFormat(4)} ETC in top-up keys
+            {data.topUpBalance} ETC in top-up keys
           </Progress>
           <Table>
             <Table.Body>
+              <Table.Row>
+                <Table.Cell>Current Block</Table.Cell>
+                <Table.Cell>{data.currentBlock}</Table.Cell>
+              </Table.Row>
               <Table.Row>
                 <Table.Cell>Activation Block</Table.Cell>
                 <Table.Cell>{data.activationBlock.toFormat(0)}</Table.Cell>

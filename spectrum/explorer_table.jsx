@@ -1,11 +1,11 @@
 import React, { PropTypes, Component } from 'react';
 import { Header, Segment, Table, Icon } from 'semantic-ui-react';
-import { balances, toBlock } from '../scripts/data/balances-3670542-1494231029659.json';
+import { balances, toBlock } from '../scripts/data/balances-3800000-1496262902240.json';
 import { minimumDgdWei } from '../scripts/helpers/config.json';
 
 const PaginationMenu = require('@digix/spectrum/src/components/common/pagination_menu').default;
 
-const ipfsLink = 'https://ipfs.infura.io/ipfs/QmYuPWEzBJKU37ZEQAsV7wtemv8sWzygfw6vBYdvetNrRL';
+const ipfsLink = 'https://ipfs.infura.io/ipfs/Qmb24BX8JFiLoTgeZx4ywnxXaeLUZFEt8JV13kLpybXz8g';
 
 const items = Object.keys(balances).reduce((a, b) => {
   return a.concat([{ ...balances[b], address: b }]);
@@ -30,11 +30,10 @@ export default class ExplorerTable extends Component {
         <Header>
           Snapshot Balances
           <Header.Subheader>
-            {/* DGD balances copied from block <a href={ipfsLink} target="_blank" >{toBlock}</a> */}
-            DGD balances will be copied from block 3800000
+            DGD balances copied from block <a href={ipfsLink} target="_blank" >{toBlock}</a>
           </Header.Subheader>
         </Header>
-        {/* <Segment>
+        <Segment>
           <Table>
             <Table.Header>
               <Table.Row>
@@ -65,7 +64,7 @@ export default class ExplorerTable extends Component {
             total={items.length}
             handleNavigate={this.handleNavigate}
           />
-        </Segment> */}
+        </Segment>
       </div>
     );
   }
