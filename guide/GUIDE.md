@@ -1,4 +1,4 @@
-[31/05] This guide will amended regularly with status updates.
+[31/05 21:12 gmt] This guide will amended regularly with status updates.
 
 🚨 Redemption stage has not started yet, *snapshot* block set for 3,800,000
 
