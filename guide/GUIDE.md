@@ -1,8 +1,5 @@
-[31/05 21:12 gmt] This guide will amended regularly with status updates.
 
-🚨 Redemption stage has not started yet, *snapshot* block set for 3,800,000
-
-🚨 DGDR will be redeemable after the *activation* block - to be announced several hours after snapshot block!
+🚨 Snapshot block has been captured. DGDR will be redeemable after the *activation* block - to be announced several hours after snapshot block!
 
 # Digix ETC Redemption User Guide
 
@@ -187,9 +184,9 @@ Should all of the public RPC nodes become unavailable for some reason such as a 
 
 With Spectrum, you can also visit the latest version online via an IPFS gateway:
 
-`<latest_ipfs_hash> = QmRtrfD6tcWDmBiD4eWGy3YAsdr7Z4gJXwgSzqB23wajiU` (updated 30/5/17)
+`<latest_ipfs_hash> = QmSC81653DQNcZYMUCGSZ52a4yYuzdLGtsHsWYmiqnMw7f` (updated 30/5/17)
 
-Current Release: https://gateway.ipfs.io/ipfs/QmRtrfD6tcWDmBiD4eWGy3YAsdr7Z4gJXwgSzqB23wajiU/
+Current Release: https://gateway.ipfs.io/ipfs/QmSC81653DQNcZYMUCGSZ52a4yYuzdLGtsHsWYmiqnMw7f/
 
 * https://gateway.ipfs.io/ipfs/<latest_ipfs_hash>
 * https://ipfs.infura.io/ipfs/<latest_ipfs_hash>
