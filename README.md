@@ -9,7 +9,7 @@ Activation block is set to **3800000**. DGDR on the ETC will be credited to DGD 
 * **[READ THIS: DGDR to ETC User Guide](https://github.com/DigixGlobal/etc-redemption/blob/master/guide/GUIDE.md)**
 * **[Spectrum Dapp UI](https://etc-redemption.digix.global)**
 * **[View Contract Code](https://digixglobal.github.io/etc-redemption/docs/EtcRedemptionToken/)**
-* ETC Faucet (1-time use for DGD holders only): https://digixparity04.digix.io/faucet/<YOUR ADDRESS HERE>
+* ETC Faucet (1-time use for DGD holders only): https://digixparity04.digix.io/faucet/0x_YOUR_ADDRESS_HERE
 ---
 
 **Recent Updates**
