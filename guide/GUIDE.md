@@ -1,4 +1,6 @@
-🚨 Redemption stage has not started yet, activation block set for 3,800,000
+🚨 Redemption stage has not started yet, *snapshot* block set for 3,800,000
+
+🚨 DGDR will be redeemable after the *activation* block - to be announced!
 
 # Digix ETC Redemption User Guide
 
