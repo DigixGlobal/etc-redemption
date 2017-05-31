@@ -49,6 +49,8 @@ For those who hold their DGD balances in a contract address that does not exist 
 
 DGDR Contract Address: `0x1312f9EC97a2377c8e2Ba6f088AfdFedFe59398C`.
 
+Source code verified: https://gastracker.io/contract/0x1312f9ec97a2377c8e2ba6f088afdfedfe59398c
+
 The address can also be found in the [ETC Redemption Dapp](https://etc-redemption.digix.global/).
 
 ## ABI (just the `redeem` method)
