@@ -184,9 +184,9 @@ Should all of the public RPC nodes become unavailable for some reason such as a 
 
 With Spectrum, you can also visit the latest version online via an IPFS gateway:
 
-`<latest_ipfs_hash> = QmSC81653DQNcZYMUCGSZ52a4yYuzdLGtsHsWYmiqnMw7f` (updated 30/5/17)
+`<latest_ipfs_hash> = QmfTV1YaHF5Rwd12cBmGrSRoiDGxNcFzweTLERetZWgfA7` (updated 30/5/17)
 
-Current Release: https://gateway.ipfs.io/ipfs/QmSC81653DQNcZYMUCGSZ52a4yYuzdLGtsHsWYmiqnMw7f/
+Current Release: https://gateway.ipfs.io/ipfs/QmfTV1YaHF5Rwd12cBmGrSRoiDGxNcFzweTLERetZWgfA7/
 
 * https://gateway.ipfs.io/ipfs/<latest_ipfs_hash>
 * https://ipfs.infura.io/ipfs/<latest_ipfs_hash>
