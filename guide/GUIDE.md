@@ -1,10 +1,12 @@
-🚨 Redemption stage has not started yet, activation block set for 3,800,000
+[31/05 21:12 gmt] This guide will amended regularly with status updates.
+
+🚨 Redemption stage has not started yet, *snapshot* block set for 3,800,000
+
+🚨 DGDR will be redeemable after the *activation* block - to be announced several hours after snapshot block!
 
 # Digix ETC Redemption User Guide
 
 Please read and understand this document fully to minimize the risk of lost funds during the ETC Redemption process.
-
-[TODO] Disclaimer
 
 ## Overview
 
@@ -46,6 +48,8 @@ For those who hold their DGD balances in a contract address that does not exist 
 * If you were unable to do this, contact Digix to manually process redemption - we will need you to sign a transaction on ETH chain from the contract to prove ownership.
 
 ## Redemption Contract Address
+
+DO NOT SEND DGD OR ETC TO THIS ADDRESS
 
 DGDR Contract Address: `0x1312f9EC97a2377c8e2Ba6f088AfdFedFe59398C`.
 
