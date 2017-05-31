@@ -18,7 +18,7 @@ export default class ContractStatus extends Component {
     }
     if (activationBlock > 0) {
       const blocksToGo = activationBlock.sub(blockNumber);
-      const estimatedTime = blocksToGo.mul(4).div(60).toFormat(0);
+      const estimatedTime = blocksToGo.mul(15).div(60).toFormat(0);
       return (
         <Message
           warning
