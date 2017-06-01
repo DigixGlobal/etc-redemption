@@ -109,6 +109,8 @@ In the 'to' field, enter the address you wish to be sent the redeemed ETC
 
 Select the type of wallet to use for calling the method, and unlock it.
 
+If you are using a Ledger Nano, select the "m/44'/60'/0' Ledger (ETH)" HD path
+
 Click "write" to publish the redemption transaction.
 
 Transaction Popup Appears
