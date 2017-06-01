@@ -1,5 +1,5 @@
 
-🚨 Snapshot block has been captured. DGDR will be redeemable after the *activation* block - to be announced several hours after snapshot block!
+🚨 DGDR is now redeemable!
 
 # Digix ETC Redemption User Guide
 
