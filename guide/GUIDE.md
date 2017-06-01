@@ -1,5 +1,5 @@
 
-🚨 Snapshot block has been captured. DGDR will be redeemable after the *activation* block - to be announced several hours after snapshot block!
+🚨 DGDR is now redeemable!
 
 # Digix ETC Redemption User Guide
 
@@ -117,8 +117,8 @@ Transaction Popup Appears
 
 ![Transaction Popup Appears](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/50FBC128-993C-40B4-BC53-DF0574CBBEB6.png)
 
-Amount to send: 0
-Gas Limit: Should be automatically set to around at least ~75k, or manually 80k+  
+Amount to send: 0  
+Gas Limit: 150000   
 
 Click Generate Transaction
 
@@ -164,7 +164,7 @@ Check "Advanced Sending options"
 
 Click Next
 
-Set Gas to 10000
+Set Gas to 150000  
 
 ![Set Gas to 10000](https://raw.githubusercontent.com/DigixGlobal/etc-redemption/master/guide/2994AAEE-6494-4D7E-9E90-38E212759F31.png)
 
