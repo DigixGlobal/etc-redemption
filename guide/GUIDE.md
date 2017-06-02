@@ -5,6 +5,12 @@
 
 Please read and understand this document fully to minimize the risk of lost funds during the ETC Redemption process.
 
+```
+This Ethereum Classic (ETC) redemption activity is a one-off event and it does not constitute itself as a form of income payout, preferred dividend distribution, profit share of sorts. It is a distribution event that happened, and enforced by the Company owners due to the hard fork that happened in July 2016, which resulted in a dual balance of both the intended raise of Ethereum (ETH) and unintended raise of ETC. 
+By using this smart contract, you must accept full responsibility for the security of my own wallet and the the Company does not owe any warranty under any circumstances.
+I have also read the full Digix ETC Redemption User Guide and agree to all terms and condition binding in this activity as setforth.
+```
+
 ## Overview
 
 This document is a guide for DGD holders outlining the required steps for redeeming ETC. For background, please review previous announcements and documentation on the ETC redemption contract.
