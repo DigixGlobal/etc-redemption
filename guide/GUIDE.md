@@ -39,6 +39,8 @@ The `redeem` method on the Redemption Contract needs to be passed an address; `_
 * A *different* (preferably new) ETC address that you control, to prevent potential replay attacks
 * A standard address that you can access the keystore of; **NOT an exchange or contract address!**
 
+The refund call is not an issue for replay attacks as it's a 0 value function call and the DGDR contract only exists on the ETC chain. As long as your refund the ETC to an account that only exists on the ETC chain, there is no risk of replay.
+
 Additionally, DGDR uses Ethereum's token 'standard' and it can be used on many ERC20-compatible applications. DGDR balances are burned entirely (to 0) on redemption to prevent double spends.
 
 ## Note for those holding DGD in a Smart Contract
