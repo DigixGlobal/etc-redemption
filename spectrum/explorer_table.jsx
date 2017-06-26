@@ -30,7 +30,7 @@ export default class ExplorerTable extends Component {
         <Header>
           Snapshot Balances
           <Header.Subheader>
-            DGD balances copied from block <a href={ipfsLink} target="_blank" >{toBlock}</a>
+            DGD balances copied from block <a href={ipfsLink} rel="noopener noreferrer" target="_blank" >{toBlock}</a>
           </Header.Subheader>
         </Header>
         <Segment>

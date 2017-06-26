@@ -45,7 +45,7 @@ export default class ContractStatus extends Component {
           Contract Info
           <Header.Subheader>
             {network.explorerAddressPrefix ?
-              <a href={`${network.explorerAddressPrefix}${contract.address}`} target="_blank">{contract.address}</a>
+              <a href={`${network.explorerAddressPrefix}${contract.address}`} rel="noopener noreferrer" target="_blank">{contract.address}</a>
             :
               contract.address
             }

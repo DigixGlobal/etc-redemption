@@ -80,7 +80,7 @@ export default class ContractInterface extends Component {
               Digix ETC Redemption Contract
               <Header.Subheader>
                 Redeem ETC by burning DGDR (
-                  <a href="https://github.com/DigixGlobal/etc-redemption" target="_blank">more info</a>
+                  <a href="https://github.com/DigixGlobal/etc-redemption" rel="noopener noreferrer" target="_blank">more info</a>
                 )
               </Header.Subheader>
             </Header>
