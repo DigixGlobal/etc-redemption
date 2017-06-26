@@ -49,7 +49,7 @@ module.exports = async function () {
   const aL = Object.keys(addresses).length;
   const bL = Object.keys(balances).length;
   if (aL !== bL) {
-    return console.log(`
+    console.log(`
       ⛔️  ${aL} events !== ${bL} balances!
       `);
   }
