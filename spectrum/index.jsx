@@ -21,17 +21,6 @@ class EtcRefund extends Component {
   }
 }
 
-/*
-** specs
-connect to web3-redux
-- check status
-- redeem
-*/
-
-/*
-next phase
-*/
-
 EtcRefund.propTypes = {
   web3Redux: PropTypes.object.isRequired,
   networks: PropTypes.array.isRequired,
