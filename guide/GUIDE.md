@@ -5,6 +5,11 @@
 
 Please read and understand this document fully to minimize the risk of lost funds during the ETC Redemption process.
 
+
+> This Ethereum Classic (ETC) redemption activity is a one-off event and it does not constitute itself as a form of income payout, preferred dividend distribution, profit share of sorts. It is a distribution event that happened, and enforced by the Company owners due to the hard fork that happened in July 2016, which resulted in a dual balance of both the intended raise of Ethereum (ETH) and unintended raise of ETC. 
+> By using this smart contract, you must accept full responsibility for the security of my own wallet and the the Company does not owe any warranty under any circumstances.
+> You must read the full Digix ETC Redemption User Guide and agree to all terms and condition binding in this activity as setforth.
+
 ## Overview
 
 This document is a guide for DGD holders outlining the required steps for redeeming ETC. For background, please review previous announcements and documentation on the ETC redemption contract.
@@ -33,6 +38,8 @@ The `redeem` method on the Redemption Contract needs to be passed an address; `_
 
 * A *different* (preferably new) ETC address that you control, to prevent potential replay attacks
 * A standard address that you can access the keystore of; **NOT an exchange or contract address!**
+
+The refund call is not an issue for replay attacks as it's a 0 value function call and the DGDR contract only exists on the ETC chain. As long as your refund the ETC to an account that only exists on the ETC chain, there is no risk of replay.
 
 Additionally, DGDR uses Ethereum's token 'standard' and it can be used on many ERC20-compatible applications. DGDR balances are burned entirely (to 0) on redemption to prevent double spends.
 
@@ -109,7 +116,7 @@ In the 'to' field, enter the address you wish to be sent the redeemed ETC
 
 Select the type of wallet to use for calling the method, and unlock it.
 
-If you are using a Ledger Nano, select the "m/44'/60'/0' Ledger (ETH)" HD path
+If you are using a Ledger Nano, make sure you have turned turned contract + browser data on, select the "m/44'/60'/0' Ledger (ETH)" HD path
 
 Click "write" to publish the redemption transaction.
 
