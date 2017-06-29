@@ -66,9 +66,9 @@ export default class RedemptionButton extends Component {
 RedemptionButton.propTypes = {
   web3: PropTypes.object.isRequired,
   network: PropTypes.object.isRequired,
-  dgdrBalance: PropTypes.object.isRequired,
+  dgdrBalance: PropTypes.number,
   defaultAddress: PropTypes.object.isRequired,
-  etcBalance: PropTypes.object,
+  etcBalance: PropTypes.number,
   handleRedeem: PropTypes.func.isRequired,
   handleMined: PropTypes.func.isRequired,
 };
