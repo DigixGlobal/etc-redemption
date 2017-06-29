@@ -1,6 +1,6 @@
 {
   "name": "@digix/etc-redemption",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Digix Ethereum Classic Redemption",
   "author": "DigixGlobal",
   "homepage": "https://github.com/DigixGlobal/etc-redemption",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/DigixGlobal/etc-redemption.git"
   },
-  "license": "BSD-3-Clause",
+  "license": "BSD-3-clause",
   "files": [
     ".babelrc",
     "spectrum",
