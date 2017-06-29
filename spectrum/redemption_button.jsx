@@ -17,14 +17,14 @@ export default class RedemptionButton extends Component {
       <div>
         {!!dgdrBalance && <Label size="large" basic color="green" content={`You have ${dgdrBalance} DGDR`} icon="checkmark" />}
         <Divider hidden />
-        <TransactionModal
-          {...{ web3, network }}
-          header="ETC Redemption"
-          data={{ from: defaultAddress.address, gas: 200000 }}
-          handleTransaction={this.props.handleRedeem}
-          onMined={this.props.handleMined}
-          form={({ formChange, formData }) => {
-            return (
+        {etcBalance ?
+          <TransactionModal
+            {...{ web3, network }}
+            header="ETC Redemption"
+            data={{ from: defaultAddress.address, gas: 200000 }}
+            handleTransaction={this.props.handleRedeem}
+            onMined={this.props.handleMined}
+            form={({ formChange, formData }) => (
               <Form.Field>
                 <AddressInput
                   showQrScanner
@@ -34,28 +34,29 @@ export default class RedemptionButton extends Component {
                   {...{ formChange, formData }}
                 />
               </Form.Field>
-            );
-          }}
-          trigger={!etcBalance ?
-            <Button
-              fluid
-              disabled
-              basic
-              content="Selected account has no DGDR balance"
-              size="huge"
-              icon="frown"
-            />
-          :
-            <Button
-              fluid
-              size="huge"
-              color="red"
-              content={`Redeem for ${etcBalance} ETC`}
-              icon="smile"
-              onClick={e => e.preventDefault()}
-            />
-          }
-        />
+            )}
+            trigger={
+              <Button
+                fluid
+                size="huge"
+                color="red"
+                content={`Redeem for ${etcBalance} ETC`}
+                icon="smile"
+                onClick={e => e.preventDefault()}
+              />
+            }
+          />
+        :
+                <Button
+                  fluid
+                  disabled
+                  basic
+                  content="Selected account has no DGDR balance"
+                  size="huge"
+                  icon="frown"
+                  onClick={e => e.preventDefault()}
+                />
+        }
         {!!etcBalance && <CryptoPrice textAlign="center" basic pointing size="large" symbol="ETC" amount={etcBalance} />}
       </div>
     );
@@ -67,7 +68,7 @@ RedemptionButton.propTypes = {
   network: PropTypes.object.isRequired,
   dgdrBalance: PropTypes.object.isRequired,
   defaultAddress: PropTypes.object.isRequired,
-  etcBalance: PropTypes.object.isRequired,
+  etcBalance: PropTypes.object,
   handleRedeem: PropTypes.func.isRequired,
   handleMined: PropTypes.func.isRequired,
 };

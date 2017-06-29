@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { Divider, Container, Grid, Header, Loader } from 'semantic-ui-react';
 
+import { toBigNumber } from '@digix/spectrum/src/helpers/stringUtils';
+
 import Redeem from './redeem.jsx';
 import ContractStatus from './contract_status.jsx';
 import ExplorerTable from './explorer_table.jsx';
@@ -64,7 +66,7 @@ export default class ContractInterface extends Component {
     const etcBalance = weiBalance.shift(-18).toFormat(4);
     const toppedUpPercent = weiRemaining.toNumber() ? weiBalance.div(weiRemaining).mul(100).toFormat(0) : 0;
     const topUpPercent = topUpWei.toNumber() < totalWeiSupply.toNumber() ? topUpWei.div(totalWeiSupply).mul(100).toFormat(0) : 100;
-    const etcPercent = weiRemaining.toNumber() ? 100 - totalWeiRedeemed.div(totalWeiSupply).mul(100).toFormat(2) : 0;
+    const etcPercent = weiRemaining.toNumber() ? toBigNumber(100).minus(totalWeiRedeemed.div(totalWeiSupply).mul(100)).toFormat(2) : 0;
     const currentBlock = web3.eth.blockNumber();
     return { currentBlock, rate, activationBlock, totalSupply, totalTokenRedeemed, totalWeiRedeemed, weiBalance, blockNumber, totalTokenExisted, totalWeiSupply, weiRemaining, topUpBalance, active, etcRedeemed, etcRemaining, etcPercent, etcBalance, toppedUpPercent, topUpPercent };
   }
